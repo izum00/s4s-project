@@ -210,20 +210,20 @@ const SoundEditor = props => (
             <div className={styles.inputGroup}>
                 <IconButton
                     className={styles.toolButton}
-                    img={CopyIcon}
+                    img={<CopyIcon />}
                     title={props.intl.formatMessage(messages.copy)}
                     onClick={props.onCopy}
                 />
                 <IconButton
                     className={styles.toolButton}
                     disabled={props.canPaste === false}
-                    img={PasteIcon}
+                    img={<PasteIcon />}
                     title={props.intl.formatMessage(messages.paste)}
                     onClick={props.onPaste}
                 />
                 <IconButton
                     className={classNames(styles.toolButton, styles.flipInRtl)}
-                    img={CopyToNewIcon}
+                    img={<CopyToNewIcon />}
                     title={props.intl.formatMessage(messages.copyToNew)}
                     onClick={props.onCopyToNew}
                 />
@@ -231,7 +231,7 @@ const SoundEditor = props => (
             <IconButton
                 className={styles.toolButton}
                 disabled={props.trimStart === null}
-                img={DeleteIcon}
+                img={<DeleteIcon />}
                 title={props.intl.formatMessage(messages.delete)}
                 onClick={props.onDelete}
             />
@@ -276,86 +276,86 @@ const SoundEditor = props => (
             <div className={styles.effects}>
                 <IconButton
                     className={styles.effectButton}
-                    img={ModifyIcon}
+                    img={<ModifyIcon />}
                     title={"Modify"}
                     onClick={props.onModifySound}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={FasterIcon}
+                    img={<FasterIcon />}
                     title={<FormattedMessage {...messages.faster} />}
                     onClick={props.onFaster}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={SlowerIcon}
+                    img={<SlowerIcon />}
                     title={<FormattedMessage {...messages.slower} />}
                     onClick={props.onSlower}
                 />
                 <IconButton
                     disabled={props.tooLoud}
                     className={classNames(styles.effectButton, styles.flipInRtl)}
-                    img={LouderIcon}
+                    img={<LouderIcon />}
                     title={<FormattedMessage {...messages.louder} />}
                     onClick={props.onLouder}
                 />
                 <IconButton
                     className={classNames(styles.effectButton, styles.flipInRtl)}
-                    img={SofterIcon}
+                    img={<SofterIcon />}
                     title={<FormattedMessage {...messages.softer} />}
                     onClick={props.onSofter}
                 />
                 <IconButton
                     className={classNames(styles.effectButton, styles.flipInRtl)}
-                    img={MuteIcon}
+                    img={<MuteIcon />}
                     title={<FormattedMessage {...messages.mute} />}
                     onClick={props.onMute}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={FadeInIcon}
+                    img={<FadeInIcon />}
                     title={<FormattedMessage {...messages.fadeIn} />}
                     onClick={props.onFadeIn}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={FadeOutIcon}
+                    img={<FadeOutIcon />}
                     title={<FormattedMessage {...messages.fadeOut} />}
                     onClick={props.onFadeOut}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={ReverseIcon}
+                    img={<ReverseIcon />}
                     title={<FormattedMessage {...messages.reverse} />}
                     onClick={props.onReverse}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={RobotIcon}
+                    img={<RobotIcon />}
                     title={<FormattedMessage {...messages.robot} />}
                     onClick={props.onRobot}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={EchoIcon}
+                    img={<EchoIcon />}
                     title={<FormattedMessage {...messages.echo} />}
                     onClick={props.onEcho}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={LowpassIcon}
+                    img={<LowpassIcon />}
                     title={"Low Pass"}
                     onClick={props.onLowPass}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={HighpassIcon}
+                    img={<HighpassIcon />}
                     title={"High Pass"}
                     onClick={props.onHighPass}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={FormatIcon}
+                    img={<FormatIcon />}
                     title={"Format"}
                     onClick={props.onFormatSound}
                 />
@@ -423,6 +423,7 @@ const SoundEditor = props => (
         )}
     </div>
 );
+
 
 SoundEditor.propTypes = {
     isStereo: PropTypes.bool.isRequired,
