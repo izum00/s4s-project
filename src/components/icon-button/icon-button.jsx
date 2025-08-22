@@ -19,11 +19,17 @@ const IconButton = ({
         role="button"
         onClick={disabled ? null : onClick}
     >
-        <img
-            className={styles.icon}
-            draggable={false}
-            src={img}
-        />
+        {typeof img === 'string' ? (
+            <img
+                className={styles.icon}
+                draggable={false}
+                src={img}
+                alt=""
+            />
+        ) : (
+            // Reactコンポーネントとして描画
+            React.cloneElement(img, { className: styles.icon })
+        )}
         <div className={styles.title}>
             {title}
         </div>
@@ -33,7 +39,10 @@ const IconButton = ({
 IconButton.propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    img: PropTypes.string,
+    img: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
+    ]),
     onClick: PropTypes.func.isRequired,
     title: PropTypes.node.isRequired
 };
