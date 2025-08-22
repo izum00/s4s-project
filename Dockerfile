@@ -14,6 +14,7 @@ RUN chmod -R 777 /app
 # 依存関係をインストール（競合を無視）
 #RUN PNPM_SKIP_BUILDS_APPROVAL=true pnpm install --prefer-offline --strict-peer-dependencies=false
 RUN npm install --prefer-offline --no-audit --legacy-peer-deps
+RUN npm install --save-dev @svgr/webpack
 
 # OpenSSL の互換オプションを有効化
 #ENV NODE_OPTIONS="--openssl-legacy-provider"
