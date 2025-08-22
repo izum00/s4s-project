@@ -17,8 +17,8 @@ import styles from './sprite-info.css';
 
 import xIcon from './icon--x.svg';
 import yIcon from './icon--y.svg';
-import { ReactComponent as showIcon } from './icon--show.svg';
-import { ReactComponent as hideIcon } from './icon--hide.svg';
+import { ReactComponent as ShowIcon } from './icon--show.svg';
+import { ReactComponent as HideIcon } from './icon--hide.svg';
 
 const BufferedInput = BufferedInputHOC(Input);
 
@@ -200,7 +200,7 @@ class SpriteInfo extends React.Component {
                                 onClick={this.props.onClickVisible}
                                 onKeyPress={this.props.onPressVisible}
                             >
-                                <showIcon className={styles.icon} />
+                                <ShowIcon className={styles.icon} />
                             </div>
                             <div
                                 className={classNames(
@@ -216,7 +216,7 @@ class SpriteInfo extends React.Component {
                                 onClick={this.props.onClickNotVisible}
                                 onKeyPress={this.props.onPressNotVisible}
                             >
-                                <hideIcon className={styles.icon} />
+                                <HideIcon className={styles.icon} />
                             </div>
                         </div>
                     </div>
