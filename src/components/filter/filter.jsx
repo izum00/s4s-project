@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import filterIcon from './icon--filter.svg';
-import xIcon from './icon--x.svg';
+import { ReactComponent as FilterIcon } from './icon--filter.svg';
+import { ReactComponent as XIcon } from './icon--x.svg';
 import styles from './filter.css';
 
 const FilterComponent = props => {
@@ -21,10 +21,7 @@ const FilterComponent = props => {
                 [styles.isActive]: filterQuery.length > 0
             })}
         >
-            <img
-                className={styles.filterIcon}
-                src={filterIcon}
-            />
+            <filterIcon className={styles.filterIcon} />
             <input
                 className={classNames(styles.filterInput, inputClassName)}
                 placeholder={placeholderText}
@@ -36,10 +33,7 @@ const FilterComponent = props => {
                 className={styles.xIconWrapper}
                 onClick={onClear}
             >
-                <img
-                    className={styles.xIcon}
-                    src={xIcon}
-                />
+                <XIcon className={styles.xIcon} />
             </div>
         </div>
     );
