@@ -21,7 +21,7 @@ const FilterComponent = props => {
                 [styles.isActive]: filterQuery.length > 0
             })}
         >
-            <filterIcon className={styles.filterIcon} />
+            <FilterIcon className={styles.filterIcon} />
             <input
                 className={classNames(styles.filterInput, inputClassName)}
                 placeholder={placeholderText}
