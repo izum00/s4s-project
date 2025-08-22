@@ -152,6 +152,10 @@ const base = {
                     }
                 }
             }]
+        },
+        {
+            test: /\.svg$/,
+            use: ['@svgr/webpack']
         }]
     },
     plugins: [
