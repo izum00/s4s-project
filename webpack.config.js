@@ -314,7 +314,7 @@ module.exports = [
             module: {
                 rules: base.module.rules.concat([
                     {
-                        test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                        test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                         loader: 'file-loader',
                         options: {
                             outputPath: 'static/assets/',
