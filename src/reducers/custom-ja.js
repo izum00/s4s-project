@@ -289,7 +289,7 @@ const customJa = {
     "gui.extension.general": "一般",
     "gui.extension.objects": "物",
     "gui.extension.materials": "金属",
-    "messages.modify.id": "修正"
+    "gui.soundEditor.modify": "修正"
   }
 };
 
