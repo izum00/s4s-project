@@ -1,4 +1,5 @@
 import messages from './tag-messages.js';
+import { FormattedMessage } from 'react-intl';
 
 let tags = [
     { tag: 'penguinmod', intlLabel: messages.penguinmod },
@@ -17,16 +18,15 @@ let tags = [
     { tag: 'library', intlLabel: messages.library },
     { tag: 'extcreate', intlLabel: messages.extcreate },
     { tag: 'divider3', intlLabel: messages.scratch, type: 'divider' },
-    { tag: 'divider1', intlLabel: 'Actions', type: 'title' },
+    { tag: 'divider1', intlLabel: <FormattedMessage id="gui.library.actions" defaultMessage="Actions" description="Tag label for Actions" /> },
     { tag: 'custom', intlLabel: messages.customextension, type: 'custom', func: (library) => {
         library.select('');
     } },
 ];
 
-// 条件によって tags をフィルター
 if (typeof ENV !== 'undefined' && ENV.CanLoadCustomExtension === false) {
     tags = tags.filter(item => {
-        if (item.tag === 'divider1' && item.intlLabel === 'Actions') return false;
+        if (item.tag === 'divider1') return false; // divider1 はすべて除外
         if (item.tag === 'custom') return false;
         return true;
     });
