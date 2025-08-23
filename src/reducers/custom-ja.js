@@ -282,7 +282,8 @@ const customJa = {
     "pm.menuBar.exportToFolder": "フォルダに保存",
     "pm.confirmBuggyUnstableExtension": "この拡張機能は実際のプロジェクトには推奨されません。不安定になり、後でプロジェクトに問題を引き起こす可能性があります。有効にしてもよろしいですか？",
     "gui.extensions": "拡張機能",
-    "gui.library.filters": "フィルター"
+    "gui.library.filters": "フィルター",
+    "gui.library.actions": ""
   }
 };
 
