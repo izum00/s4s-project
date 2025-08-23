@@ -283,7 +283,13 @@ const customJa = {
     "pm.confirmBuggyUnstableExtension": "この拡張機能は実際のプロジェクトには推奨されません。不安定になり、後でプロジェクトに問題を引き起こす可能性があります。有効にしてもよろしいですか？",
     "gui.extensions": "拡張機能",
     "gui.library.filters": "フィルター",
-    "gui.library.actions": ""
+    "gui.library.actions": "",
+    "paint.paintEditor.more": "その他",
+    "gui.extension.types": "タイプ",
+    "gui.extension.general": "一般",
+    "gui.extension.objects": "物",
+    "gui.extension.materials": "金属",
+    "messages.modify.id": "修正"
   }
 };
 
