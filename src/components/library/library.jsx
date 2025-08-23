@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import localforage from 'localforage';
 import {defineMessages, injectIntl, intlShape} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import LibraryItem from '../../containers/library-item.jsx';
 import Modal from '../../containers/modal.jsx';
@@ -349,7 +350,13 @@ class LibraryComponent extends React.Component {
                         {/*
                             todo: translation?
                         */}
-                        <h3 className={classNames(styles.whiteTextInDarkMode)}>Filters</h3>
+                        <h3 className={classNames(styles.whiteTextInDarkMode)}>
+                            <FormattedMessage
+                                defaultMessage="Filters"
+                                description="Label for the library filter section"
+                                id="gui.library.filters"
+                            />
+                        </h3>
                         {this.props.filterable && (
                             <div>
                                     <Filter
