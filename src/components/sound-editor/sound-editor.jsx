@@ -277,7 +277,7 @@ const SoundEditor = props => (
                 <IconButton
                     className={styles.effectButton}
                     img={<ModifyIcon />}
-                    title={"Modify"}
+                    title={<FormattedMessage {...messages.modify} />}
                     onClick={props.onModifySound}
                 />
                 <IconButton
