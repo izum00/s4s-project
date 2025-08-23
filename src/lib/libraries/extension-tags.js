@@ -19,7 +19,11 @@ let tags = [
     { tag: 'library', intlLabel: messages.library },
     { tag: 'extcreate', intlLabel: messages.extcreate },
     { tag: 'divider3', intlLabel: messages.scratch, type: 'divider' },
-    { tag: 'divider1', intlLabel: intlLabel: { id: 'gui.library.actions', defaultMessage: 'Actions' } },
+    { 
+      tag: 'divider1',
+      intlLabel: { id: 'gui.library.actions', defaultMessage: 'Actions' },
+      type: 'divider'
+    },
     { tag: 'custom', intlLabel: messages.customextension, type: 'custom', func: (library) => {
         library.select('');
     } },
