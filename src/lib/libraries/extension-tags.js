@@ -1,3 +1,4 @@
+import React from 'react';
 import messages from './tag-messages.js';
 import { FormattedMessage } from 'react-intl';
 
