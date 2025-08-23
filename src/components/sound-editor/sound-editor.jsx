@@ -41,6 +41,11 @@ import { ReactComponent as CopyToNewIcon } from './icon--copy-to-new.svg';
 const BufferedInput = BufferedInputHOC(Input);
 
 const messages = defineMessages({
+    modify: {
+        id: 'gui.soundEditor.modify',
+        description: 'Title of the button to modify the sound',
+        defaultMessage: 'Modify'
+    },
     sound: {
         id: 'gui.soundEditor.sound',
         description: 'Label for the name of the sound',
