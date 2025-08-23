@@ -5,6 +5,7 @@ import VM from 'scratch-vm';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import log from '../lib/log';
 import { manuallyTrustExtension } from './tw-security-manager.jsx';
+import { FormattedMessage } from 'react-intl';
 
 import extensionLibraryContent from '../lib/libraries/extensions/index.jsx';
 import extensionTags from '../lib/libraries/extension-tags';
@@ -212,7 +213,12 @@ class ExtensionLibrary extends React.PureComponent {
                 tags={extensionTags}
                 id="extensionLibrary"
                 actor="ExtensionLibrary"
-                header={"Extensions"}
+                header={
+                    <FormattedMessage
+                        defaultMessage="Extensions"
+                        description="Name for the 'Extension'"
+                        id="gui.extensions"
+                />}
                 title={this.props.intl.formatMessage(messages.extensionTitle)}
                 visible={this.props.visible}
                 onItemSelected={this.handleItemSelect}
