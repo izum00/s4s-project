@@ -290,8 +290,8 @@ const customJa = {
     "gui.extension.objects": "物",
     "gui.extension.materials": "金属",
     "gui.soundEditor.modify": "修正",
-    "gui.soundEditor.lowpass": "低音除去",
-    "gui.soundEditor.highpass": "高音除去",
+    "gui.soundEditor.lowpass": "高音除去",
+    "gui.soundEditor.highpass": "低音除去",
     "gui.soundEditor.format": "フォーマット"
   }
 };
