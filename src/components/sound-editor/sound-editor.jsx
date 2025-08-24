@@ -46,6 +46,18 @@ const messages = defineMessages({
         description: 'Title of the button to modify the sound',
         defaultMessage: 'Modify'
     },
+    lowpass: {
+        id: 'gui.soundEditor.lowpass',
+        defaultMessage: 'Low pass'
+    },
+    highpass: {
+        id: 'gui.soundEditor.highpass',
+        defaultMessage: 'High pass'
+    },
+    format: {
+        id: 'gui.soundEditor.format',
+        defaultMessage: 'Format'
+    },
     sound: {
         id: 'gui.soundEditor.sound',
         description: 'Label for the name of the sound',
@@ -349,19 +361,19 @@ const SoundEditor = props => (
                 <IconButton
                     className={styles.effectButton}
                     img={<LowpassIcon />}
-                    title={"Low Pass"}
+                    title={<FormattedMessage {...messages.lowpass} />}
                     onClick={props.onLowPass}
                 />
                 <IconButton
                     className={styles.effectButton}
                     img={<HighpassIcon />}
-                    title={"High Pass"}
+                    title={<FormattedMessage {...messages.highpass} />}
                     onClick={props.onHighPass}
                 />
                 <IconButton
                     className={styles.effectButton}
                     img={<FormatIcon />}
-                    title={"Format"}
+                    title={<FormattedMessage {...messages.format} />}
                     onClick={props.onFormatSound}
                 />
             </div>
