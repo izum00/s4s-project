@@ -154,7 +154,7 @@ export default async ({ addon, console, msg }) => {
             });
             const recordOptionScreenLabel = Object.assign(document.createElement("label"), {
                 htmlFor: "recordOptionScreen",
-                textContent: 'Record the entire screen',
+                textContent: msg('Recordtheentirescreen'),
             });
             recordOptionScreen.appendChild(recordOptionScreenInput);
             recordOptionScreen.appendChild(recordOptionScreenLabel);
