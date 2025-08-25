@@ -260,5 +260,5 @@
     "swap-local-global/to-global": "Convert to \"For all sprites\"",
     "swap-local-global/to-local": "Convert to \"For this sprite only\"",
     "hide-stage/hide-stage": "Hide stage",
-    "mediarecorder/@Recordtheentirescreen": "Record the entire screen"
+    "mediarecorder/Recordtheentirescreen": "Record the entire screen"
 }
