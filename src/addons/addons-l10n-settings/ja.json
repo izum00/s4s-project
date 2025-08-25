@@ -385,6 +385,5 @@
     "editor-animations/@info-reduced-motion-notice": "このアドオンは、システムでアニメーションが無効になっている場合は効果がありません。有効にする方法は https://mgik.dev/turn-on-motion を参照してください。",
     "editor-animations/@info-animation-support": "一部のアニメーションタイプは方向の指定に対応していないため、方向が無視される場合があります。",
     "paint-tool-panel/@name": "コスチュームツールパネル",
-    "paint-tool-panel/@description": "オブジェクトの変換とプロパティを手動で編集するためのツール メニューをコスチューム エディターに追加します。",
-    "mediarecorder/@Recordtheentirescreen": "画面全体を録画する"
+    "paint-tool-panel/@description": "オブジェクトの変換とプロパティを手動で編集するためのツール メニューをコスチューム エディターに追加します。"
 }
