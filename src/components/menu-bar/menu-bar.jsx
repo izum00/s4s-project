@@ -89,6 +89,8 @@ import sharedMessages from '../../lib/shared-messages';
 import SeeInsideButton from './tw-see-inside.jsx';
 import { notScratchDesktop } from '../../lib/isScratchDesktop.js';
 
+import { downloadLogs } from '../../lib/pm-log-capture.js';
+
 const ariaMessages = defineMessages({
     language: {
         id: 'gui.menuBar.LanguageSelector',
@@ -717,6 +719,7 @@ class MenuBar extends React.Component {
                                                 />
 
                                             </MenuItem>
+                                            
                                             <SB3Downloader>{(_className, downloadProject, extended) => (
                                                 <React.Fragment>
                                                     <MenuItem
@@ -863,6 +866,7 @@ class MenuBar extends React.Component {
                                         </MenuItem>
                                     )}</CloudVariablesToggler>
                                 </MenuSection>
+                                
                                 <MenuSection>
                                     <MenuItem onClick={this.props.onClickSettings}>
                                         <FormattedMessage
@@ -870,6 +874,9 @@ class MenuBar extends React.Component {
                                             description="Menu bar item for gameplay settings"
                                             id="pm.menuBar.moreSettings"
                                         />
+                                      <MenuItem onClick={this.handleClickDownloadLogs}>
+                                          Download Logs
+                                      </MenuItem>
                                     </MenuItem>
                                 </MenuSection>
                             </MenuBarMenu>
