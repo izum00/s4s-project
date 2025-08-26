@@ -1449,10 +1449,17 @@ const variables = function () {
     `;
 };
 
-const lists = function () {
+
+const lists = (intl) => {
+    const name = intl.formatMessage({
+        id: "gui.lists",
+        defaultMessage: "Lists",
+        description: "Name for the 'Lists'"
+    });
+
     return `
     <category
-        name="Lists"
+        name="${name}"
         id="lists"
         colour="#FF661A"
         secondaryColour="#FF5500"
