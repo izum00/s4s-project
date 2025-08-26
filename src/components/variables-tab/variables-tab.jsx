@@ -144,7 +144,6 @@ VariablesTab.propTypes = {
     onEditVariableValue: PropTypes.func.isRequired,
     onTypeVariableName: PropTypes.func.isRequired,
     onTypeVariableValue: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
 };
 
 export default injectIntl(VariablesTab);
