@@ -293,7 +293,8 @@ const customJa = {
     "gui.soundEditor.lowpass": "高音除去",
     "gui.soundEditor.highpass": "低音除去",
     "gui.soundEditor.format": "フォーマット",
-    "gui.gui.soundsTab": "音"
+    "gui.gui.soundsTab": "音",
+    "gui.lists": "リスト"
   }
 };
 
