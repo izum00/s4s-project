@@ -28,6 +28,7 @@
     font-size: $menu-bar-standard-font-size;
     font-weight: bold;
     background-color: $motion-primary;
+    background: linear-gradient(to right, #625edb, #5ea5db);
     color: $ui-white;
 }
 [theme="dark"] .menu-bar {
