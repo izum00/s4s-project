@@ -12,35 +12,25 @@ const LoadScratchBlocksHOC = function (WrappedComponent) {
                 loaded: LazyScratchBlocks.isLoaded(),
                 error: null
             };
-            this._isMounted = false;
-        }
-
-        componentDidMount () {
-            this._isMounted = true;
+            //console.log(this.state.loaded);
             if (!this.state.loaded) {
                 LazyScratchBlocks.load()
                     .then(() => {
-                        if (this._isMounted) {
-                            this.setState({ loaded: true });
-                        }
+                        this.setState({
+                            loaded: true
+                        });
                     })
                     .catch(e => {
                         log.error(e);
-                        if (this._isMounted) {
-                            this.setState({ error: e });
-                        }
+                        this.setState({
+                            error: e
+                        });
                     });
             }
         }
-
-        componentWillUnmount () {
-            this._isMounted = false;
-        }
-
         handleReload () {
             location.reload();
         }
-
         render () {
             if (this.state.error !== null) {
                 return (
@@ -51,9 +41,15 @@ const LoadScratchBlocksHOC = function (WrappedComponent) {
                 );
             }
             if (!this.state.loaded) {
-                return <LoadingSpinner />;
+                return (
+                    <LoadingSpinner />
+                );
             }
-            return <WrappedComponent {...this.props} />;
+            return (
+                <WrappedComponent
+                    {...this.props}
+                />
+            );
         }
     }
     return LoadScratchBlocks;
