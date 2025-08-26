@@ -1,9 +1,9 @@
-/*基本色（#6f00ffを基調）*/
-$ui-primary: var(--ui-primary, hsla(266, 100%, 95%, 1)); /* #F0E5FF */
-$ui-secondary: var(--ui-secondary, hsla(266, 75%, 95%, 1)); /* #F3E9FC */
-$ui-tertiary: var(--ui-tertiary, hsla(266, 50%, 90%, 1)); /* #E7D9F2 */
+/* 基本色（#625edbを基調） */
+$ui-primary: var(--ui-primary, hsla(248, 100%, 95%, 1)); /* #F0EFFF */
+$ui-secondary: var(--ui-secondary, hsla(248, 75%, 95%, 1)); /* #F3F2FC */
+$ui-tertiary: var(--ui-tertiary, hsla(248, 50%, 90%, 1)); /* #E6E6F7 */
 
-$ui-modal-overlay: var(--ui-modal-overlay, hsla(266, 100%, 65%, 0.9)); /* #B366FF with 90% opacity */
+$ui-modal-overlay: var(--ui-modal-overlay, hsla(248, 66%, 62%, 0.9)); /* #625edb with 90% opacity */
 
 $ui-white: hsla(0, 100%, 100%, 1); /* #FFFFFF */
 $ui-white-dim: hsla(0, 100%, 100%, 0.75); /* 75% */
@@ -13,41 +13,41 @@ $ui-transparent: hsla(0, 100%, 100%, 0); /* 0% */
 $ui-black-transparent-default: hsla(0, 0%, 0%, 0.15); /* 15% black */
 $ui-black-transparent: var(--ui-black-transparent, $ui-black-transparent-default);
 
-$text-primary: var(--text-primary, hsla(266, 30%, 40%, 1)); /* 渋めの紫文字色 */
-$text-primary-transparent: hsla(266, 30%, 40%, 0.75);
+$text-primary: var(--text-primary, hsla(248, 30%, 35%, 1)); /* 渋めの青紫文字色 */
+$text-primary-transparent: hsla(248, 30%, 35%, 0.75);
 
-$motion-primary: hsla(266, 100%, 50%, 1); /* #6f00ff */
-$motion-tertiary: hsla(266, 100%, 39%, 1); /* #5c00cc */
-$motion-transparent: hsla(266, 100%, 50%, 0.35); /* #6f00ff 35% */
-$motion-light-transparent: hsla(266, 100%, 39%, 0.15); /* #5c00cc 15% */
+$motion-primary: hsla(248, 66%, 62%, 1); /* #625edb */
+$motion-tertiary: hsla(248, 66%, 52%, 1); /* #504db8 */
+$motion-transparent: hsla(248, 66%, 62%, 0.35); /* #625edb 35% */
+$motion-light-transparent: hsla(248, 66%, 52%, 0.15); /* #504db8 15% */
 
 /* opt-in theme overrides */
-$motion-primary-dark: #5500cc; /* ダークモードのトップバー色 */
-$ui-primary-light: hsla(266, 100%, 95%, 1);
-$ui-secondary-light: hsla(266, 75%, 95%, 1);
-$ui-tertiary-light: hsla(266, 50%, 90%, 1);
-$text-primary-light: hsla(266, 30%, 40%, 1);
+$motion-primary-dark: #4b3ca6; /* ダークモードのトップバー色 */
+$ui-primary-light: hsla(248, 100%, 95%, 1);
+$ui-secondary-light: hsla(248, 75%, 95%, 1);
+$ui-tertiary-light: hsla(248, 50%, 90%, 1);
+$text-primary-light: hsla(248, 30%, 35%, 1);
 
-$red-primary: hsla(266, 100%, 50%, 1); /* #6f00ff */
-$red-tertiary: hsla(266, 100%, 39%, 1); /* #5c00cc */
+$red-primary: hsla(248, 66%, 62%, 1); /* #625edb */
+$red-tertiary: hsla(248, 66%, 52%, 1); /* #504db8 */
 
-$sound-primary: hsla(266, 70%, 60%, 1); /* #9966ff */
-$sound-tertiary: hsla(266, 60%, 50%, 1); /* #8040ff */
+$sound-primary: hsla(248, 70%, 60%, 1); /* #7366e6 */
+$sound-tertiary: hsla(248, 60%, 50%, 1); /* #5a40cc */
 
-$control-primary: hsla(266, 100%, 60%, 1); /* #9966ff 代替コントロール色 */
+$control-primary: hsla(248, 66%, 65%, 1); /* #6d6dec */
 
-$data-primary: hsla(266, 100%, 55%, 1); /* #8a33ff */
+$data-primary: hsla(248, 66%, 55%, 1); /* #5545d4 */
 
-$pen-primary: hsla(266, 85%, 40%, 1); /* #5900b8 */
-$pen-transparent: hsla(266, 85%, 40%, 0.25); /* #5900b8 25% */
+$pen-primary: hsla(248, 85%, 40%, 1); /* #2f1f80 */
+$pen-transparent: hsla(248, 85%, 40%, 0.25); /* 25% */
 
-$error-primary: hsla(266, 100%, 55%, 1); /* #8a33ff */
-$error-light: hsla(266, 100%, 70%, 1); /* #b380ff */
-$error-transparent: hsla(266, 100%, 55%, 0.25); /* #8a33ff 25% */
+$error-primary: hsla(248, 66%, 55%, 1); /* #5545d4 */
+$error-light: hsla(248, 66%, 70%, 1); /* #8b80f0 */
+$error-transparent: hsla(248, 66%, 55%, 0.25); /* 25% */
 
-$extensions-primary: hsla(266, 100%, 50%, 1);
-$extensions-tertiary: hsla(266, 100%, 39%, 1);
-$extensions-transparent: hsla(266, 100%, 50%, 0.35);
-$extensions-light: hsla(266, 100%, 39%, 1);
+$extensions-primary: hsla(248, 66%, 62%, 1); /* #625edb */
+$extensions-tertiary: hsla(248, 66%, 52%, 1); /* #504db8 */
+$extensions-transparent: hsla(248, 66%, 62%, 0.35);
+$extensions-light: hsla(248, 66%, 70%, 1);
 
-$drop-highlight: hsla(266, 100%, 77%, 1); /* #d1a6ff より明るい紫 */
+$drop-highlight: hsla(248, 100%, 77%, 1); /* #c6bfff 明るい紫青 */
