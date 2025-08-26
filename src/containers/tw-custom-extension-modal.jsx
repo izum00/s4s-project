@@ -308,8 +308,8 @@ class CustomExtensionModal extends React.Component {
                 onKeyDown={this.handleKeyDown}
                 text={this.state.text}
                 onChangeText={this.handleChangeText}
-                unsandboxed={this.isUnsandboxed()}
-                onChangeUnsandboxed={this.canChangeUnsandboxed() ? this.handleChangeUnsandboxed : null}
+                unsandboxed={!!this.isUnsandboxed()}
+                onChangeUnsandboxed={this.handleChangeUnsandboxed}
                 addToLibrary={this.state.addingToLibrary}
                 onChangeAddToLibrary={this.handleChangeAddToLibrary}
                 onLoadExtension={this.handleLoadExtension}
