@@ -14,10 +14,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import 'core-js';
-import 'regenerator-runtime/runtime';
-
-
 import './import-first';
 
 import ReactDOM from 'react-dom';
