@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y python3 python3-pip
 RUN pip3 install --upgrade huggingface_hub --break-system-packages
 # 依存関係をインストール（競合を無視）
 #RUN PNPM_SKIP_BUILDS_APPROVAL=true pnpm install --prefer-offline --strict-peer-dependencies=false
+RUN npm config set registry https://registry.npmjs.org/
 
 RUN npm install --prefer-offline --no-audit --legacy-peer-deps
 RUN npm install --save-dev @svgr/webpack@5
