@@ -20,11 +20,6 @@ const CommunityButton = ({
         iconSrc={communityIcon}
         onClick={onClick}
     >
-        <FormattedMessage
-            defaultMessage="See Project Page"
-            description="Label for see project page button"
-            id="gui.menuBar.seeProjectPage"
-        />
     </Button>
 );
 
