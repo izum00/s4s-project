@@ -126,63 +126,14 @@ const CustomExtensionModal = props => (
                 </React.Fragment>
             )}
 
-            {props.onChangeUnsandboxed ? (
-                <React.Fragment>
-                    <label className={styles.unsandboxedContainer}>
-                        <FancyCheckbox
-                            className={styles.unsandboxedCheckbox}
-                            checked={true}
-                            onChange={props.onChangeUnsandboxed}
-                        />
-                        <FormattedMessage
-                            defaultMessage="Run extension without sandbox"
-                            description="Message that appears in custom extension prompt"
-                            id="tw.customExtensionModal.unsandboxed"
-                        />
-                    </label>
-                    {props.unsandboxed && (
-                        <p className={styles.unsandboxedWarning}>
-                            <FormattedMessage
-                                // eslint-disable-next-line max-len
-                                defaultMessage="Loading extensions without the sandbox is dangerous and should not be enabled if you don't know what you're doing."
-                                description="Warning that appears when disabling extension security sandbox"
-                                id="tw.customExtensionModal.unsandboxedWarning1"
-                            />
-                            <FormattedMessage
-                                // eslint-disable-next-line max-len
-                                defaultMessage="Unsandboxed extensions can corrupt your project, delete your settings, phish for passwords, and other bad things. The {APP_NAME} developers are not responsible for any resulting issues."
-                                description="Warning that appears when disabling extension security sandbox"
-                                id="pm.customExtensionModal.unsandboxedWarning2"
-                                values={{
-                                    APP_NAME
-                                }}
-                            />
-                        </p>
-                    )}
-                </React.Fragment>
-            ) : (
-                <React.Fragment>
-                    {props.unsandboxed ? (
-                        <p className={styles.trustedExtension}>
-                            <FormattedMessage
-                                // eslint-disable-next-line max-len
-                                defaultMessage="This extension will be loaded without the sandbox because it is from a trusted source."
-                                description="Message that appears in custom extension prompt"
-                                id="tw.customExtensionModal.trusted"
-                            />
-                        </p>
-                    ) : (
-                        <p>
-                            <FormattedMessage
-                                // eslint-disable-next-line max-len
-                                defaultMessage="Extensions from untrusted URLs will always be loaded with the sandbox for security."
-                                description="Message that appears in custom extension prompt"
-                                id="tw.customExtensionModal.untrusted"
-                            />
-                        </p>
-                    )}
-                </React.Fragment>
-            )}
+            <p className={styles.trustedExtension}>
+                <FormattedMessage
+                    defaultMessage="This extension will always be loaded without the sandbox."
+                    description="Message that appears in custom extension prompt"
+                    id="tw.customExtensionModal.alwaysUnsandboxed"
+                />
+            </p>
+
 
             {props.type === 'url' && (
                 <p>
@@ -198,7 +149,7 @@ const CustomExtensionModal = props => (
             <label className={styles.checkboxContainer}>
                 <FancyCheckbox
                     className={styles.basicCheckbox}
-                    checked={false}
+                    checked={props.addToLibrary}
                     onChange={props.onChangeAddToLibrary}
                 />
                 <FormattedMessage
