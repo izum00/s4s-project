@@ -1,6 +1,7 @@
 // This file is only used by pull.js to generate files. It is not used at runtime.
 
 const addons = [
+    'sounds-newgrounds-button',
     'fps',
     'debug-console',
     'ScratchHighlightFullwidthNumber',
