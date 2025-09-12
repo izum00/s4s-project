@@ -10,7 +10,7 @@ const manifest = {
       "url": "userscript.js"
     }
   ],
-  "enabledByDefault": true
+  "enabledByDefault": false
 };
 import {mediaRecorderSupported} from "../../environment";
 if (!mediaRecorderSupported) manifest.unsupported = true;
