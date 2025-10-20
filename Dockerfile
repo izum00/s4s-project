@@ -38,7 +38,11 @@ ENV NODE_OPTIONS="--max-old-space-size=12288"
 RUN mkdir -p /app/translations/messages \
     && chmod -R 777 /app/translations/messages \
     && chmod -R 777 /app
-    
+
+RUN mkdir -p /translations/messages \
+    && chmod -R 777 /translations/messages
+RUN mkdir -p translations/messages \
+    && chmod -R 777 translations/messages    
 RUN NODE_OPTIONS=--openssl-legacy-provider npm run build 
 
 CMD BUILD_MODE=dist npm start
