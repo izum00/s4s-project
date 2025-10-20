@@ -3,7 +3,7 @@
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-proposal-object-rest-spread",
         ["react-intl", {
-            "messagesDir": "./translations/messages/"
+            "messagesDir": "/app/translations/messages"
         }]],
     "presets": [
         ["@babel/preset-env"],
