@@ -284,7 +284,7 @@ export default async function () {
 
     /* GUI Utils */
     function getButtonURI(name, dontCompile) {
-        const themeHex = isPM ? "#5100ff" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
+        const themeHex = isPM ? "#00c3ff" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
         const guiSVG = guiIMGS[name].replace("red", themeHex);
         if (dontCompile) return guiSVG;
         else return "data:image/svg+xml;base64," + btoa(guiSVG);
@@ -497,7 +497,7 @@ export default async function () {
     }
 
     function genButtonTable(div) {
-        const themeHex = isPM ? "#5100ff" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
+        const themeHex = isPM ? "#00c3ff" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
         const btnStyle = `color: #fff; font-weight: 600; text-align: center; padding: 10px; margin: 10px 5px; border: solid 2px var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15)); border-radius: 5px; background: ${themeHex}; transition: transform 0.2s;`;
 
         const enterBtn = document.createElement("button");
@@ -534,11 +534,11 @@ export default async function () {
 
         const container = document.createElement("div");
         container.classList.add("SP-gradient-maker");
-        container.setAttribute("style", `position: absolute; z-index: 9999; pointer-events: auto; background-color: rgba(0,0,0,.1); width: 100%; height: 100vh;`);
+        container.setAttribute("style", `position: absolute; z-index: 9999; pointer-events: auto; background-color: transparent; width: 100%; height: 100vh;`);
 
         const modal = document.createElement("div");
         modal.classList.add("gradient-modal");
-        modal.setAttribute("style", `color: var(--paint-text-primary, #575e75); width: 450px; height: 260px; display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--ui-secondary, hsla(215, 75%, 95%, 1)); border: solid 2px var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15)); border-radius: 5px; padding: 15px;`);
+        modal.setAttribute("style", `pointer-events: auto; color: var(--paint-text-primary, #575e75); width: 450px; height: 260px; display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--ui-secondary, hsla(215, 75%, 95%, 1)); border: solid 2px var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15)); border-radius: 5px; padding: 15px;`);
         modalStorage.modal = modal;
 
         const title = document.createElement("span");
@@ -577,6 +577,11 @@ export default async function () {
         else if (oldCache) decodeFromCache(oldCache.settings, draggables, settings);
         else draggables.append(createDraggable(), createDraggable());
         updateDisplay();
+
+        container.addEventListener("click", (e) => {
+            if (e.target.getAttribute("class") === "SP-gradient-maker") container.remove();
+            e.stopPropagation();
+        });
     }
 
     function startListenerWorker() {
