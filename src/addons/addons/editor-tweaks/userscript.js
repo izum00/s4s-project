@@ -217,6 +217,23 @@ export default async function({ addon }) {
       if (this.fieldGroup_) return;
       Blockly.FieldExpandableAdd.superClass_.init.call(this);
 
+      if (expandBtnSz === 0 && this.sourceBlock_) {
+        const input = this.sourceBlock_.inputList.find(i => i.fieldRow.includes(this));
+        if (input) {
+            // we dont want to hide labels or other fields:
+            if (input.fieldRow.length > 2) {
+                for (const field of input.fieldRow) {
+                  if (
+                    field instanceof Blockly.FieldExpandableAdd ||
+                    field instanceof Blockly.FieldExpandableRemove
+                  ) field.setVisible(false);
+                }
+            } else { 
+              input.setVisible(false);
+            }
+        }
+      }
+
       const ratio = (Blockly.BlockSvg.FIELD_HEIGHT / 32) * expandBtnSz;
       this.size_.width = Blockly.BlockSvg.FIELD_HEIGHT * expandBtnSz;
       this.size_.height *= expandBtnSz;
