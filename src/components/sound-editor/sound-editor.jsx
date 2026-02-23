@@ -14,50 +14,33 @@ import {SOUND_BYTE_LIMIT} from '../../lib/audio/audio-util.js';
 
 import styles from './sound-editor.css';
 
-import { ReactComponent as PlayIcon } from './icon--play.svg';
-import { ReactComponent as StopIcon } from './icon--stop.svg';
-import { ReactComponent as RedoIcon } from './icon--redo.svg';
-import { ReactComponent as UndoIcon } from './icon--undo.svg';
-import { ReactComponent as ModifyIcon } from './icon--modify.svg';
-import { ReactComponent as FormatIcon } from './icon--format.svg';
-import { ReactComponent as FasterIcon } from './icon--faster.svg';
-import { ReactComponent as SlowerIcon } from './icon--slower.svg';
-import { ReactComponent as LouderIcon } from './icon--louder.svg';
-import { ReactComponent as SofterIcon } from './icon--softer.svg';
-import { ReactComponent as RobotIcon } from './icon--robot.svg';
-import { ReactComponent as EchoIcon } from './icon--echo.svg';
-import { ReactComponent as HighpassIcon } from './icon--highpass.svg';
-import { ReactComponent as LowpassIcon } from './icon--lowpass.svg';
-import { ReactComponent as ReverseIcon } from './icon--reverse.svg';
-import { ReactComponent as FadeOutIcon } from './icon--fade-out.svg';
-import { ReactComponent as FadeInIcon } from './icon--fade-in.svg';
-import { ReactComponent as MuteIcon } from './icon--mute.svg';
+import playIcon from './icon--play.svg';
+import stopIcon from './icon--stop.svg';
+import redoIcon from './icon--redo.svg';
+import undoIcon from './icon--undo.svg';
+import modifyIcon from './icon--modify.svg';
+import formatIcon from './icon--format.svg';
+import fasterIcon from './icon--faster.svg';
+import slowerIcon from './icon--slower.svg';
+import louderIcon from './icon--louder.svg';
+import softerIcon from './icon--softer.svg';
+import robotIcon from './icon--robot.svg';
+import echoIcon from './icon--echo.svg';
+import highpassIcon from './icon--highpass.svg';
+import lowpassIcon from './icon--lowpass.svg';
+import reverseIcon from './icon--reverse.svg';
+import fadeOutIcon from './icon--fade-out.svg';
+import fadeInIcon from './icon--fade-in.svg';
+import muteIcon from './icon--mute.svg';
 
-import { ReactComponent as DeleteIcon } from './icon--delete.svg';
-import { ReactComponent as CopyIcon } from './icon--copy.svg';
-import { ReactComponent as PasteIcon } from './icon--paste.svg';
-import { ReactComponent as CopyToNewIcon } from './icon--copy-to-new.svg';
+import deleteIcon from './icon--delete.svg';
+import copyIcon from './icon--copy.svg';
+import pasteIcon from './icon--paste.svg';
+import copyToNewIcon from './icon--copy-to-new.svg';
 
 const BufferedInput = BufferedInputHOC(Input);
 
 const messages = defineMessages({
-    modify: {
-        id: 'gui.soundEditor.modify',
-        description: 'Title of the button to modify the sound',
-        defaultMessage: 'Modify'
-    },
-    lowpass: {
-        id: 'gui.soundEditor.lowpass',
-        defaultMessage: 'Low pass'
-    },
-    highpass: {
-        id: 'gui.soundEditor.highpass',
-        defaultMessage: 'High pass'
-    },
-    format: {
-        id: 'gui.soundEditor.format',
-        defaultMessage: 'Format'
-    },
     sound: {
         id: 'gui.soundEditor.sound',
         description: 'Label for the name of the sound',
@@ -157,6 +140,26 @@ const messages = defineMessages({
         id: 'gui.soundEditor.mute',
         description: 'Title of the button to apply the mute effect',
         defaultMessage: 'Mute'
+    },
+    lowPass: {
+        id: 'pm.soundEditor.lowPass',
+        description: 'Title of the button to apply low pass on audio',
+        defaultMessage: 'Low Pass'
+    },
+    highPass: {
+        id: 'pm.soundEditor.highPass',
+        description: 'Title of the button to apply high pass on audio',
+        defaultMessage: 'High Pass'
+    },
+    format: {
+        id: 'pm.soundEditor.format',
+        description: 'Title of the button that opens the audio formatting menu',
+        defaultMessage: 'Format'
+    },
+    modify: {
+        id: 'pm.soundEditor.modify',
+        description: 'Title of the button that opens the modify sound menu',
+        defaultMessage: 'Modify'
     }
 });
 
@@ -171,13 +174,21 @@ const formatTime = timeSeconds => {
 };
 
 const formatDuration = (playheadPercent, trimStartPercent, trimEndPercent, durationSeconds) => {
+    // If no selection, the trim is the entire sound.
     trimStartPercent = trimStartPercent === null ? 0 : trimStartPercent;
     trimEndPercent = trimEndPercent === null ? 1 : trimEndPercent;
+
+    // If the playhead doesn't exist, assume it's at the start of the selection.
     playheadPercent = playheadPercent === null ? trimStartPercent : playheadPercent;
+
+    // If selection has zero length, treat it as the entire sound being selected.
+    // This happens when the user first clicks to start making a selection.
     const trimSize = (trimEndPercent - trimStartPercent) || 1;
     const trimDuration = trimSize * durationSeconds;
+
     const progressInTrim = (playheadPercent - trimStartPercent) / trimSize;
     const currentTime = progressInTrim * trimDuration;
+
     return `${formatTime(currentTime)} / ${formatTime(trimDuration)}`;
 };
 
@@ -212,7 +223,11 @@ const SoundEditor = props => (
                         title={props.intl.formatMessage(messages.undo)}
                         onClick={props.onUndo}
                     >
-                        <UndoIcon className={styles.undoIcon} />
+                        <img
+                            className={styles.undoIcon}
+                            draggable={false}
+                            src={undoIcon}
+                        />
                     </button>
                     <button
                         className={styles.button}
@@ -220,27 +235,31 @@ const SoundEditor = props => (
                         title={props.intl.formatMessage(messages.redo)}
                         onClick={props.onRedo}
                     >
-                        <RedoIcon className={styles.redoIcon} />
+                        <img
+                            className={styles.redoIcon}
+                            draggable={false}
+                            src={redoIcon}
+                        />
                     </button>
                 </div>
             </div>
             <div className={styles.inputGroup}>
                 <IconButton
                     className={styles.toolButton}
-                    img={<CopyIcon />}
+                    img={copyIcon}
                     title={props.intl.formatMessage(messages.copy)}
                     onClick={props.onCopy}
                 />
                 <IconButton
                     className={styles.toolButton}
                     disabled={props.canPaste === false}
-                    img={<PasteIcon />}
+                    img={pasteIcon}
                     title={props.intl.formatMessage(messages.paste)}
                     onClick={props.onPaste}
                 />
                 <IconButton
                     className={classNames(styles.toolButton, styles.flipInRtl)}
-                    img={<CopyToNewIcon />}
+                    img={copyToNewIcon}
                     title={props.intl.formatMessage(messages.copyToNew)}
                     onClick={props.onCopyToNew}
                 />
@@ -248,7 +267,7 @@ const SoundEditor = props => (
             <IconButton
                 className={styles.toolButton}
                 disabled={props.trimStart === null}
-                img={<DeleteIcon />}
+                img={deleteIcon}
                 title={props.intl.formatMessage(messages.delete)}
                 onClick={props.onDelete}
             />
@@ -278,7 +297,10 @@ const SoundEditor = props => (
                         title={props.intl.formatMessage(messages.stop)}
                         onClick={props.onStop}
                     >
-                        <StopIcon />
+                        <img
+                            draggable={false}
+                            src={stopIcon}
+                        />
                     </button>
                 ) : (
                     <button
@@ -286,93 +308,96 @@ const SoundEditor = props => (
                         title={props.intl.formatMessage(messages.play)}
                         onClick={props.onPlay}
                     >
-                        <PlayIcon />
+                        <img
+                            draggable={false}
+                            src={playIcon}
+                        />
                     </button>
                 )}
             </div>
             <div className={styles.effects}>
                 <IconButton
                     className={styles.effectButton}
-                    img={<ModifyIcon />}
+                    img={modifyIcon}
                     title={<FormattedMessage {...messages.modify} />}
                     onClick={props.onModifySound}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<FasterIcon />}
+                    img={fasterIcon}
                     title={<FormattedMessage {...messages.faster} />}
                     onClick={props.onFaster}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<SlowerIcon />}
+                    img={slowerIcon}
                     title={<FormattedMessage {...messages.slower} />}
                     onClick={props.onSlower}
                 />
                 <IconButton
                     disabled={props.tooLoud}
                     className={classNames(styles.effectButton, styles.flipInRtl)}
-                    img={<LouderIcon />}
+                    img={louderIcon}
                     title={<FormattedMessage {...messages.louder} />}
                     onClick={props.onLouder}
                 />
                 <IconButton
                     className={classNames(styles.effectButton, styles.flipInRtl)}
-                    img={<SofterIcon />}
+                    img={softerIcon}
                     title={<FormattedMessage {...messages.softer} />}
                     onClick={props.onSofter}
                 />
                 <IconButton
                     className={classNames(styles.effectButton, styles.flipInRtl)}
-                    img={<MuteIcon />}
+                    img={muteIcon}
                     title={<FormattedMessage {...messages.mute} />}
                     onClick={props.onMute}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<FadeInIcon />}
+                    img={fadeInIcon}
                     title={<FormattedMessage {...messages.fadeIn} />}
                     onClick={props.onFadeIn}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<FadeOutIcon />}
+                    img={fadeOutIcon}
                     title={<FormattedMessage {...messages.fadeOut} />}
                     onClick={props.onFadeOut}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<ReverseIcon />}
+                    img={reverseIcon}
                     title={<FormattedMessage {...messages.reverse} />}
                     onClick={props.onReverse}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<RobotIcon />}
+                    img={robotIcon}
                     title={<FormattedMessage {...messages.robot} />}
                     onClick={props.onRobot}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<EchoIcon />}
+                    img={echoIcon}
                     title={<FormattedMessage {...messages.echo} />}
                     onClick={props.onEcho}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<LowpassIcon />}
-                    title={<FormattedMessage {...messages.lowpass} />}
+                    img={lowpassIcon}
+                    title={<FormattedMessage {...messages.lowPass} />}
                     onClick={props.onLowPass}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<HighpassIcon />}
-                    title={<FormattedMessage {...messages.highpass} />}
+                    img={highpassIcon}
+                    title={<FormattedMessage {...messages.highPass} />}
                     onClick={props.onHighPass}
                 />
                 <IconButton
                     className={styles.effectButton}
-                    img={<FormatIcon />}
+                    img={formatIcon}
                     title={<FormattedMessage {...messages.format} />}
                     onClick={props.onFormatSound}
                 />
@@ -440,7 +465,6 @@ const SoundEditor = props => (
         )}
     </div>
 );
-
 
 SoundEditor.propTypes = {
     isStereo: PropTypes.bool.isRequired,
