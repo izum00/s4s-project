@@ -1,93 +1,102 @@
-import ScratchStorage from 'scratch-storage';
+import ScratchStorage from "scratch-storage";
 
-import defaultProject from './default-project';
-import missingProject from './tw-missing-project';
+import defaultProject from "./default-project";
+import missingProject from "./tw-missing-project";
 
 /**
  * Wrapper for ScratchStorage which adds default web sources.
  * @todo make this more configurable
  */
 class Storage extends ScratchStorage {
-    constructor () {
+    constructor() {
         super();
         this.cacheDefaultProject();
     }
-    addOfficialScratchWebStores () {
+    addOfficialScratchWebStores() {
+        const die = () => {
+            throw new Error("Cannot use this web store like that!!!");
+        };
+
         this.addWebStore(
             [this.AssetType.Project],
             this.getProjectGetConfig.bind(this),
-            this.getProjectCreateConfig.bind(this),
-            this.getProjectUpdateConfig.bind(this)
+            die,
+            die,
         );
         this.addWebStore(
-            [this.AssetType.ImageVector, this.AssetType.ImageBitmap, this.AssetType.Sound],
+            [
+                this.AssetType.ImageVector,
+                this.AssetType.ImageBitmap,
+                this.AssetType.Sound,
+                this.AssetType.Font,
+            ],
             this.getAssetGetConfig.bind(this),
             // We set both the create and update configs to the same method because
             // storage assumes it should update if there is an assetId, but the
             // asset store uses the assetId as part of the create URI.
-            this.getAssetCreateConfig.bind(this),
-            this.getAssetCreateConfig.bind(this)
+            die,
+            die,
+        );
+        this.addWebStore(
+            [
+                this.AssetType.ImageVector,
+                this.AssetType.ImageBitmap,
+                this.AssetType.Sound,
+            ],
+            this.getScratchAssetGetConfig.bind(this),
+            die,
+            die,
         );
     }
-    setProjectHost (projectHost) {
+    setProjectHost(projectHost) {
         this.projectHost = projectHost;
     }
-    setProjectToken (projectToken) {
+    setProjectToken(projectToken) {
         this.projectToken = projectToken;
     }
-    getProjectGetConfig (projectAsset) {
-        const path = `${this.projectHost}/${projectAsset.assetId}`;
-        const qs = this.projectToken ? `?token=${this.projectToken}` : '';
-        return path + qs;
+    setProjectID(projectId) {
+        this.projectId = projectId;
     }
-    getProjectCreateConfig () {
-        return {
-            url: `${this.projectHost}/`,
-            withCredentials: true
-        };
+    getProjectGetConfig(projectAsset) {
+        // projectHost ends in "projectID", so we add the equals
+        return `${this.projectHost}=${projectAsset.assetId}`;
     }
-    getProjectUpdateConfig (projectAsset) {
-        return {
-            url: `${this.projectHost}/${projectAsset.assetId}`,
-            withCredentials: true
-        };
-    }
-    setAssetHost (assetHost) {
+    setAssetHost(assetHost) {
         this.assetHost = assetHost;
     }
-    getAssetGetConfig (asset) {
-        return `${this.assetHost}/internalapi/asset/${asset.assetId}.${asset.dataFormat}/get/`;
+    getAssetGetConfig(asset) {
+        if (!this.projectId) {
+            return `https://assets.scratch.mit.edu/internalapi/asset/${asset.assetId}.${asset.dataFormat}/get/`;
+        }
+
+        return `${this.assetHost}/${this.projectId}_${asset.assetId}.${asset.dataFormat}`;
     }
-    getAssetCreateConfig (asset) {
-        return {
-            // There is no such thing as updating assets, but storage assumes it
-            // should update if there is an assetId, and the asset store uses the
-            // assetId as part of the create URI. So, force the method to POST.
-            // Then when storage finds this config to use for the "update", still POSTs
-            method: 'post',
-            url: `${this.assetHost}/${asset.assetId}.${asset.dataFormat}`,
-            withCredentials: true
-        };
+    getScratchAssetGetConfig(asset) {
+        return `https://assets.scratch.mit.edu/internalapi/asset/${asset.assetId}.${asset.dataFormat}/get/`;
     }
-    setTranslatorFunction (translator) {
+    setTranslatorFunction(translator) {
         this.translator = translator;
         this.cacheDefaultProject();
     }
-    cacheDefaultProject () {
+    cacheDefaultProject() {
         const defaultProjectAssets = defaultProject(this.translator);
-        defaultProjectAssets.forEach(asset => this.builtinHelper._store(
-            this.AssetType[asset.assetType],
-            this.DataFormat[asset.dataFormat],
-            asset.data,
-            asset.id
-        ));
+        defaultProjectAssets.forEach((asset) =>
+            this.builtinHelper._store(
+                this.AssetType[asset.assetType],
+                this.DataFormat[asset.dataFormat],
+                asset.data,
+                asset.id,
+            ),
+        );
         const missingProjectAssets = missingProject(this.translator);
-        missingProjectAssets.forEach(asset => this.builtinHelper._store(
-            this.AssetType[asset.assetType],
-            this.DataFormat[asset.dataFormat],
-            asset.data,
-            asset.id
-        ));
+        missingProjectAssets.forEach((asset) =>
+            this.builtinHelper._store(
+                this.AssetType[asset.assetType],
+                this.DataFormat[asset.dataFormat],
+                asset.data,
+                asset.id,
+            ),
+        );
     }
 }
 
