@@ -1,16 +1,16 @@
-import { isMobile } from './pm-mobile';
+import { isApiAvailable, isTypeFilterAvailable } from './pm-mature-fs-available';
 
-const available = () => !!window.showSaveFilePicker;
+const available = isApiAvailable;
 
 // pm: Some bad mobile devices block any file type (iOS), so these funcs should allow all files on mobile
 const showSaveFilePicker = fileName => window.showSaveFilePicker({
     suggestedName: fileName,
-    ...(isMobile() ? {} : {
+    ...(!isTypeFilterAvailable() ? {} : {
         types: [
             {
                 description: 'PenguinMod Project',
                 accept: {
-                    'application/x.scratch.sb3': '.s4s.txt'
+                    'application/x.scratch.sb3': '.pmp'
                 }
             }
         ],
@@ -21,18 +21,18 @@ const showSaveFilePicker = fileName => window.showSaveFilePicker({
 const showOpenFilePicker = async () => {
     const [handle] = await window.showOpenFilePicker({
         multiple: false,
-        ...(isMobile() ? {} : {
+        ...(!isTypeFilterAvailable() ? {} : {
             types: [
                 {
                     description: 'Supported Files',
                     accept: {
-                        'application/x.scratch.sb3': ['.s4s.txt', '.pmp', '.pm', '.zip', '.tar.gz', '.sb3', '.sb2', '.sb']
+                        'application/x.scratch.sb3': ['.pmp', '.pm', '.sb3', '.sb2', '.sb']
                     }
                 },
                 {
                     description: 'PenguinMod Project',
                     accept: {
-                        'application/x.scratch.sb3': ['.s4s.txt', '.pmp', '.pm']
+                        'application/x.scratch.sb3': ['.pmp', '.pm']
                     }
                 },
                 {
