@@ -62,7 +62,11 @@ const CrashMessage = props => (
                 className={styles.reloadButton}
                 onClick={downloadLogs}
             >
-                {'Download Error'}
+                <FormattedMessage
+                    defaultMessage="Download Error"
+                    description="Button to download the console contents in a .pml file"
+                    id="pm.crashMessage.downloadError"
+                />
             </button>
         </Box>
     </div>
