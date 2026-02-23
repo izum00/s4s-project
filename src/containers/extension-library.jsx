@@ -5,7 +5,6 @@ import VM from 'scratch-vm';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import log from '../lib/log';
 import { manuallyTrustExtension } from './tw-security-manager.jsx';
-import { FormattedMessage } from 'react-intl';
 
 import extensionLibraryContent from '../lib/libraries/extensions/index.jsx';
 import extensionTags from '../lib/libraries/extension-tags';
@@ -35,6 +34,11 @@ const messages = defineMessages({
         defaultMessage: 'This extension is not recommended for real projects. It may be unstable and cause problems with your project later on. Are you sure you want to enable it?',
         description: 'Confirm loading buggy and unstable extension',
         id: 'pm.confirmBuggyUnstableExtension'
+    },
+    libraryHeader: {
+        defaultMessage: 'Extensions',
+        description: 'Header for the extension picker',
+        id: 'pm.costumeLibrary.extensionsHeader'
     }
 });
 
@@ -44,9 +48,10 @@ const TRUSTED_LOADEXT_ORIGINS = [
     'https://studio.penguinmod.com', // for development
     'https://extensions.penguinmod.com',
     'https://sharkpools-extensions.vercel.app',
-    'https://soiz1-sharkpool-extension.hf.space',
     'https://raw.githubusercontent.com/SharkPool-SP/SharkPools-Extensions/main', // Some people cant connect to vercel
     'https://pen-group.github.io',
+    'http://localhost:5173', // for development
+    'http://localhost:3000', // for development
 ];
 
 class ExtensionLibrary extends React.PureComponent {
@@ -73,7 +78,7 @@ class ExtensionLibrary extends React.PureComponent {
         // Only trust loading extension links from these origins.
         let foundTrustedOrigin = false;
         for (const trustedOrigin of TRUSTED_LOADEXT_ORIGINS) {
-            if (true) {
+            if (e.origin.startsWith(trustedOrigin)) {
                 foundTrustedOrigin = true;
                 break;
             }
@@ -110,12 +115,14 @@ class ExtensionLibrary extends React.PureComponent {
             return;
         }
         // load the extension like any other custom extension url (this means sandboxing for some urls)
+        console.log("Received request to load", extensionId, "from", e.origin);
         if (this.props.vm.extensionManager.isExtensionLoaded(extensionId)) {
             this.props.onCategorySelected(extensionId);
             // i mean, technically we succeeded
             e.source.postMessage({
                 p4: {
-                    type: 'success'
+                    type: 'success',
+                    extensionId
                 }
             }, e.origin);
         } else {
@@ -125,7 +132,8 @@ class ExtensionLibrary extends React.PureComponent {
                     // succeeded
                     e.source.postMessage({
                         p4: {
-                            type: 'success'
+                            type: 'success',
+                            extensionId
                         }
                     }, e.origin);
                 })
@@ -148,6 +156,7 @@ class ExtensionLibrary extends React.PureComponent {
         if (item.extensionWarningOnImport && !confirm(this.props.intl.formatMessage(messages.extensionWarning))) {
             return;
         }
+
         // const id = item.extensionId;
         // let url = item.extensionURL ? item.extensionURL : id;
         // const isCustomURL = !item.disabled && !id;
@@ -155,6 +164,7 @@ class ExtensionLibrary extends React.PureComponent {
         //     // eslint-disable-next-line no-alert
         //     url = prompt(this.props.intl.formatMessage(messages.extensionUrl));
         // }
+        
         const extensionId = item.extensionId;
         const isCustomURL = !item.disabled && !extensionId;
         if (isCustomURL) {
@@ -162,7 +172,7 @@ class ExtensionLibrary extends React.PureComponent {
             return;
         }
         if (extensionId === 'special_penguinmodExtensionLibrary') {
-            window.open('https://extensions.penguinmod.com/');
+            window.open('https://extensions.penguinmod.com/?editor=true');
             return;
         }
         const url = (item.extensionURL ? item.extensionURL : extensionId);
@@ -213,12 +223,7 @@ class ExtensionLibrary extends React.PureComponent {
                 tags={extensionTags}
                 id="extensionLibrary"
                 actor="ExtensionLibrary"
-                header={
-                    <FormattedMessage
-                        defaultMessage="Extensions"
-                        description="Name for the 'Extension'"
-                        id="gui.extensions"
-                />}
+                header={this.props.intl.formatMessage(messages.libraryHeader)}
                 title={this.props.intl.formatMessage(messages.extensionTitle)}
                 visible={this.props.visible}
                 onItemSelected={this.handleItemSelect}
