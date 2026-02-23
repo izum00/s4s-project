@@ -1,6 +1,3 @@
-import 'core-js';
-import 'regenerator-runtime/runtime';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -148,6 +145,7 @@ const Credits = () => (
                 All PenguinMod sounds are downloaded or created from:
                 <ul>
                     <li><a href="https://freesound.org/">https://freesound.org/</a></li>
+                    <li><a href="https://opengameart.org/">https://opengameart.org/</a> (only Public Domain ones)</li>
                     <li><a href="https://archive.org/">https://archive.org/</a></li>
                     <li><a href="https://discord.gg/NZ9MBMYTZh">User-submissions from the PenguinMod Discord Server</a></li>
                     <li>The PenguinMod Developers</li>
