@@ -22,17 +22,17 @@ const manuallyTrustExtension = url => {
  * @returns {boolean} True if the extension can is trusted
  */
 const isTrustedExtensionOrigin = url => (
-    /* Always trust the official extension repostiories */
+    true ||
+    // Always trust our official extension repostiory.
     url.startsWith('https://extensions.turbowarp.org/') ||
     url.startsWith('https://extensions.penguinmod.com/') ||
     url.startsWith('https://penguinmod-extensions-gallery.vercel.app/') ||
 
-    /* Trust other people's galleries. These can be removed in the future, they will just show a pop-up on load if they are */
+    // Trust other people's galleries. These can be removed in the future, they will just show a pop-up on load if they are.
     url.startsWith('https://sharkpools-extensions.vercel.app/') || // SharkPool
-    url.startsWith('https://sharkpool-sp.github.io/SharkPools-Extensions/') || // SharkPool (github link)
     url.startsWith('https://pen-group.github.io/') || // Pen-Group / ObviousAlexC
 
-    /* For development */
+    // For development.
     url.startsWith('http://localhost:8000') ||
     url.startsWith('http://localhost:6000') || // Launcher Home
     url.startsWith('http://localhost:6001') || // Launcher Extensions
@@ -67,7 +67,7 @@ const embedOriginsTrustedByUser = new Set();
 const isAlwaysTrustedForFetching = parsed => (
     // If we would trust loading an extension from here, we can trust loading resources too.
     isTrustedExtension(parsed.href) ||
-
+    true || 
     // Any TurboWarp service such as trampoline
     parsed.origin === 'https://turbowarp.org' ||
     parsed.origin.endsWith('.turbowarp.org') ||
@@ -140,23 +140,23 @@ const parseURL = (url, protocols) => {
     return parsed;
 };
 
-let allowedAudio = false;
-let allowedVideo = false;
-let allowedReadClipboard = false;
-let allowedNotify = false;
-let allowedGeolocation = false;
-let allowedScreenshotCamera = false;
+let allowedAudio = true;
+let allowedVideo = true;
+let allowedReadClipboard = true;
+let allowedNotify = true;
+let allowedGeolocation = true;
+let allowedScreenshotCamera = true;
 
-let rememberFetchSitesDecision = false;
-let rememberFetchSitesAllAllowed = false;
-let rememberEmbedSitesDecision = false;
-let rememberEmbedSitesAllAllowed = false;
-let rememberDownloadDecision = false;
-let rememberDownloadAllAllowed = false;
-let rememberLoadingExtensions = false;
+let rememberFetchSitesDecision = true;
+let rememberFetchSitesAllAllowed = true;
+let rememberEmbedSitesDecision = true;
+let rememberEmbedSitesAllAllowed = true;
+let rememberDownloadDecision = true;
+let rememberDownloadAllAllowed = true;
+let rememberLoadingExtensions = true;
 let rememberLoadingExtensionsInfo = {
-    unsandboxed: false,
-    loaded: false
+    unsandboxed: true,
+    loaded: true
 };
 
 /**
@@ -202,16 +202,16 @@ class TWSecurityManagerComponent extends React.Component {
     }
 
     projectWillChange() {
-        rememberFetchSitesDecision = false;
-        rememberFetchSitesAllAllowed = false;
-        rememberEmbedSitesDecision = false;
-        rememberEmbedSitesAllAllowed = false;
-        rememberDownloadDecision = false;
-        rememberDownloadAllAllowed = false;
-        rememberLoadingExtensions = false;
+        rememberFetchSitesDecision = true;
+        rememberFetchSitesAllAllowed = true;
+        rememberEmbedSitesDecision = true;
+        rememberEmbedSitesAllAllowed = true;
+        rememberDownloadDecision = true;
+        rememberDownloadAllAllowed = true;
+        rememberLoadingExtensions = true;
         rememberLoadingExtensionsInfo = {
-            unsandboxed: false,
-            loaded: false
+            unsandboxed: true,
+            loaded: true
         };
     }
     componentDidMount() {
