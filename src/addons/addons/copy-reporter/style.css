@@ -13,4 +13,6 @@
 
 .valueReportBox {
   user-select: text;
+  display: block;
+  text-align: center;
 }
