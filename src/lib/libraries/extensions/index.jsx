@@ -3,16 +3,11 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {APP_NAME} from '../../brand';
 
-import p5noiseIconURL from './p5-noise/48d03d1d2794e30b221465fc07da79f7.png';
-import p5noiseInsetIconURL from './p5-noise/icon.svg';
 import musicIconURL from './music/music.png';
 import musicInsetIconURL from './music/music-small.svg';
+
 import penIconURL from './pen/pen.png';
 import penInsetIconURL from './pen/pen-small.svg';
-
-import jgDebuggingIcon from './penguinmod/extensions/debugging.svg';
-import posenet4scratchIcon from './izum00/posenet4scratch/icon.png';
-import posenet4scratchThumb from './izum00/posenet4scratch/thumb.png';
 
 import videoSensingIconURL from './videoSensing/video-sensing.png';
 import videoSensingInsetIconURL from './videoSensing/video-sensing-small.svg';
@@ -38,6 +33,8 @@ import ev3IconURL from './ev3/ev3.png';
 import ev3InsetIconURL from './ev3/ev3-small.svg';
 import ev3ConnectionIconURL from './ev3/ev3-hub-illustration.svg';
 import ev3ConnectionSmallIconURL from './ev3/ev3-small.svg';
+
+import faceSensingIconURL from './faceSensing/thumb.png';
 
 import wedo2IconURL from './wedo2/wedo.png'; // TODO: Rename file names to match variable/prop names?
 import wedo2InsetIconURL from './wedo2/wedo-small.svg';
@@ -65,18 +62,15 @@ import penguinmodLibraryExtensionIcon from './penguinmod/library.svg';
 import sharkpoolGalleryIcon from './penguinmod/sharkpool-library.svg';
 
 import ExtForgeIcon from './penguinmod/extforge.svg';
-import turboBuilderIcon from './penguinmod/turbobuilder.png';
-import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
 
 import filesExtensionIcon from './penguinmod/extensions/files.svg';
-import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
 import jgTailgatingExtensionIcon from './penguinmod/extensions/tailgating.png';
 import jgRuntimeExtensionIcon from './penguinmod/extensions/runtime.svg';
 import jgPrismExtensionIcon from './penguinmod/extensions/prism.png';
+import jgDebuggingIcon from './penguinmod/extensions/debugging.svg';
 
 import jwProtoExtensionIcon from './penguinmod/extensions/proto.svg';
 import jwUniteExtensionIcon from './penguinmod/extensions/Unite.png';
-import jwXmlExtensionIcon from './penguinmod/extensions/xml.png';
 
 import jwStructsExtensionIcon from './penguinmod/extensions/ooplogo.png';
 
@@ -85,6 +79,11 @@ import jwTargetsExtensionThumb from './penguinmod/extensions/jwTargets.svg';
 import jwNumExtensionThumb from './penguinmod/extensions/jwNum.svg';
 import jwColorExtensionThumb from './penguinmod/extensions/jwColor.svg';
 import jwVectorExtensionThumb from './penguinmod/extensions/jwVector.svg';
+import jwLambdaExtensionThumb from './penguinmod/extensions/jwLambda.svg';
+import jwScopeExtensionThumb from './penguinmod/extensions/jwScope.svg';
+import jwXMLExtensionIcon from './penguinmod/extensions/jwXML.svg';
+import jwPointerExtensionThumb from './penguinmod/extensions/jwPointer.svg';
+import jwIntExtensionThumb from './penguinmod/extensions/jwInt.svg';
 
 import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
 
@@ -110,17 +109,14 @@ import pointerlockThumb from './penguinmod/extensions/pointerlock.png';
 import cursorThumb from './penguinmod/extensions/cursor.svg';
 
 // LilyMakesThings 🙏
-// import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
 import lilyTempVariablesExtensionIcon from './penguinmod/orgtw/TempVariables2.svg';
 
 // more icons so they arent just red when the extension color is not red
 import gsaTempVariablesExtensionIcon from './penguinmod/extensions/tempvariables.svg';
-import gsaColorUtilExtensionIcon from './penguinmod/extensions/colorutil.png';
 import jgIframeExtensionIcon from './penguinmod/extensions/iframe.png';
 import jgExtendedAudioExtensionIcon from './penguinmod/extensions/extendedaudio.png';
 import jgScratchAuthExtensionIcon from './penguinmod/extensions/scratchauth2.svg';
 import jgPermissionExtensionIcon from './penguinmod/extensions/permissions.png';
-import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
 import jgCloneManagerExtensionIcon from './penguinmod/extensions/clonemanager.png';
 import pmInlineBlocksExtensionIcon from './penguinmod/extensions/inlineblocks.png';
 import jgPackagerApplicationsExtensionIcon from './penguinmod/extensions/packagedApplications.png';
@@ -147,13 +143,17 @@ import theshovelLzCompressIcon from './penguinmod/orgtw/lz-compress2.svg';
 import theshovelColorPickerIcon from './penguinmod/orgtw/ColorPicker.svg';
 
 // sharkpool
-import sharkpoolLooksExpandedIcon from './penguinmod/extensions/looksExpanded.svg';
 import sharkpoolPrintingIcon from './penguinmod/extensions/printing.svg';
 import sharkpoolTuneIcon from './penguinmod/extensions/tuneShark.svg';
 import sharkpoolMBPIcon from './penguinmod/extensions/myBlocksPlus.svg';
 import sharkpoolBCIcon from './penguinmod/extensions/BetterComments.svg';
 import sharkpoolPEIcon from './penguinmod/extensions/particleEngine.svg';
 import jgScriptsExtensionIcon from './penguinmod/extensions/scripts.svg';
+import sharkpoolLooksExpandedIcon from './penguinmod/extensions/looksExpanded.svg';
+import spTurboSkinsIcon from './penguinmod/extensions/turboSkins.svg';
+import spFontManagerIcon from './penguinmod/extensions/fontManager.svg';
+import spSoundWaveIcon from './penguinmod/extensions/soundWaves.svg';
+import spTempVarsIcon from './penguinmod/extensions/sp_tempVars.svg';
 
 // events
 import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
@@ -171,313 +171,24 @@ import pmControlsExpansionExtensionIcon from './penguinmod/extensions/controls_e
 import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
 import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
 
-// jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
-// gsa: ololololololo
+/*
+    Deprecated Thumbnails, uncomment if useful again
+import turboBuilderIcon from './penguinmod/turbobuilder.png';
+import turboBuilderDevIcon from './penguinmod/turbobuilder-dev.png';
+
+import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
+import gsaColorUtilExtensionIcon from './penguinmod/extensions/colorutil.png';
+import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
+*/
+
+// default icon if one is not made yet...
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png';
 
 const urlParams = new URLSearchParams(location.search);
-
 const IsLocal = String(window.location.href).startsWith(`http://localhost:`);
 const IsLiveTests = urlParams.has('livetests');
 
-let menuItems = [
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="TMPose2Scratch"
-                description="Name for the 'TMPose2Scratch' extension"
-                id="gui.extension.tmpose2scratch.name"
-            />
-        ),
-        extensionId: "tmpose2scratch",
-        collaborator: "Tsukurusha, YengawaLab and Google",
-        iconURL: "https://github.com/champierre/tmpose2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/tmpose2scratch/tmpose2scratch.png",
-        insetIconURL: "https://github.com/champierre/tmpose2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/tmpose2scratch/tmpose2scratch-small.png",
-        description: (
-            <FormattedMessage
-                defaultMessage="Recognize your own poses."
-                description="Recognize your own poses."
-                id="gui.extension.tmpose2scratchblocks.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        internetConnectionRequired: true,
-        bluetoothRequired: false,
-        translationMap: {
-            ja: {
-                "gui.extension.tmpose2scratchblocks.description": "ポーズを学習させよう。"
-            },
-            "ja-Hira": {
-                "gui.extension.tmpose2scratchblocks.description": "ポーズをがくしゅうさせよう。"
-            },
-            en: {
-                "gui.extension.tmpose2scratchblocks.description": "Recognize your own poses."
-            },
-            ko: {
-                "gui.extension.tmpose2scratchblocks.description": "나의 몸동작 포즈를 인식해볼까요"
-            }
-        }
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="ImageClassifier2Scratch"
-                description="Name for the 'ImageClassifier2Scratch' extension"
-                id="gui.extension.imageclassifier2scratch.name"
-            />
-        ),
-        extensionId: "ic2scratch",
-        collaborator: "champierre",
-        iconURL: "https://github.com/champierre/ic2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/ic2scratch/ic2scratch.png",
-        insetIconURL: "https://github.com/champierre/ic2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/ic2scratch/ic2scratch-small.png",
-        description: (
-            <FormattedMessage
-                defaultMessage="Image Classifier Blocks."
-                description="Image Classifier Blocks."
-                id="gui.extension.ic2scratchblocks.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        internetConnectionRequired: true,
-        bluetoothRequired: false
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="BlockAI"
-                description="Name for the 'BlockAI' extension"
-                id="gui.extension.blockai.name"
-            />
-        ),
-        extensionId: "https://huggingface.co/datasets/soiz1/my-scratch-ai-extensions/raw/main/block-ai.js",
-        collaborator: "TheShovel",
-        iconURL: "https://extensions.penguinmod.com/images/TheShovel/thumbnail-blockAI.png",
-        insetIconURL: "https://huggingface.co/datasets/soiz1/my-scratch-ai-extensions/resolve/main/BlockAI-ICON.png?download=true",
-        description: (
-            <FormattedMessage
-                defaultMessage="geminiでコーディングのサポートをします。実験的で、間違った情報などを返す場合があります。"
-                description="geminiでコーディングのサポートをします。実験的で、間違った情報などを返す場合があります。"
-                id="gui.extension.blockai.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        internetConnectionRequired: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="NewHandpose2Scratch"
-                description="Name for the 'NewHandpose2Scratch' extension"
-                id="gui.extension.newhandpose2scratch.name"
-            />
-        ),
-        extensionId: "newhandpose2scratch",
-        collaborator: "champierre",
-        iconURL: "https://github.com/champierre/handpose2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/handpose2scratch/handpose2scratch.png",
-        insetIconURL: "https://github.com/champierre/handpose2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/handpose2scratch/handpose2scratch-small.png",
-        description: (
-            <FormattedMessage
-                defaultMessage="新しい手の形を認識する拡張機能です。かなり高速で、奥行き(z座標)は検出できません。"
-                description="新しい手の形を認識する拡張機能です。かなり高速で、奥行き(z座標)は検出できません。"
-                id="gui.extension.newhandpose2scratchblocks.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        internetConnectionRequired: true,
-        bluetoothRequired: false,
-        helpLink: "https://champierre.github.io/handpose2scratch/"
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Handpose2Scratch"
-                description="Name for the 'Handpose2Scratch' extension"
-                id="gui.extension.handpose2scratch.name"
-            />
-        ),
-        extensionId: "handpose2scratch",
-        collaborator: "champierre",
-        iconURL: "https://github.com/champierre/handpose2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/handpose2scratch/handpose2scratch.png",
-        insetIconURL: "https://github.com/champierre/handpose2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/handpose2scratch/handpose2scratch-small.png",
-        description: (
-            <FormattedMessage
-                defaultMessage="これは古い手のポーズトラッキングで、少し処理が遅いです。奥行き(z座標)も取得できます。"
-                description="これは古い手のポーズトラッキングで、少し処理が遅いです。奥行き(z座標)も取得できます。"
-                id="gui.extension.handpose2scratchblocks.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        internetConnectionRequired: true,
-        bluetoothRequired: false,
-        helpLink: "https://champierre.github.io/handpose2scratch/"
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="TM2Scratch"
-                description="Name for the 'TM2Scratch' extension"
-                id="gui.extension.tm2scratch.name"
-            />
-        ),
-        extensionId: "tm2scratch",
-        collaborator: "Tsukurusha, YengawaLab and Google",
-        iconURL: "https://github.com/champierre/tm2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/tm2scratch/tm2scratch.png",
-        insetIconURL: "https://github.com/champierre/tm2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/tm2scratch/tm2scratch-small.png",
-        description: (
-            <FormattedMessage
-                defaultMessage="画像や音声を学習させよう。"
-                description="画像や音声を学習させよう。"
-                id="gui.extension.tm2scratchblocks.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        internetConnectionRequired: true,
-        bluetoothRequired: false,
-        translationMap: {
-            ja: {
-                "gui.extension.tm2scratchblocks.description": "画像や音声を学習させよう。"
-            },
-            "ja-Hira": {
-                "gui.extension.tm2scratchblocks.description": "がぞうやおんせいをがくしゅうさせよう。"
-            },
-            en: {
-                "gui.extension.tm2scratchblocks.description": "Recognize your own images and sounds."
-            },
-            "zh-cn": {
-                "gui.extension.tm2scratchblocks.description": "Recognize your own images and sounds."
-            },
-            ko: {
-                "gui.extension.tm2scratchblocks.description": "나의 이미지와 소리를 인식해볼까요"
-            },
-            "zh-tw": {
-                "gui.extension.tm2scratchblocks.description": "Recognize your own images and sounds."
-            }
-        }
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="ML2Scratch"
-                description="Name for the 'ML2Scratch' extension"
-                id="gui.extension.ml2scratch.name"
-            />
-        ),
-        extensionId: "ml2scratch",
-        extensionURL: "ml2scratch",
-        collaborator: "champierre",
-        iconURL: "https://github.com/champierre/ml2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/ml2scratch/ml2scratch.png",
-        insetIconURL: "https://github.com/champierre/ml2scratch/raw/refs/heads/master/scratch-gui/src/lib/libraries/extensions/ml2scratch/ml2scratch-small.png",
-        description: (
-            <FormattedMessage
-                defaultMessage="プロジェクト内でカメラやステージの画像を学習・認識できます。"
-                description="プロジェクト内でカメラやステージの画像を学習・認識できます。"
-                id="gui.extension.ml2scratch.description"
-            />
-        ),
-        featured: true,
-        disabled: false,
-        bluetoothRequired: false,
-        internetConnectionRequired: true,
-        helpLink: "https://github.com/champierre/ml2scratch/"
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Posenet2Scratch"
-                description="Name for the 'Posenet2Scratch' extension"
-                id="gui.extension.posenet2scratch.name"
-            />
-        ),
-        extensionId: "posenet2scratch",
-        iconURL: "https://www.adacraft.org/studio/static/assets/cc4d68fe9d6a77c7f35f9d5461b60967.png",
-        insetIconURL: "https://raw.githubusercontent.com/champierre/posenet2scratch/master/scratch-gui/src/lib/libraries/extensions/posenet2scratch/posenet2scratch-small.png",
-        collaborator: "champierre",
-        internetConnectionRequired: true,
-        tags: ["other_mods", "ai"],
-        description: (
-            <FormattedMessage
-                defaultMessage="特別なデバイスを使わずに、通常のWebカメラで人間のポーズを迅速かつ正確に検出します"
-                description="Description for the 'Posenet2Scratch' extension"
-                id="gui.extension.posenet2scratch.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Facemesh2scratch"
-                description="Name for the 'Facemesh2scratch' extension"
-                id="gui.extension.facemesh2scratch.name"
-            />
-        ),
-        extensionId: "facemesh2scratch",
-        iconURL: "https://raw.githubusercontent.com/champierre/facemesh2scratch/master/scratch-gui/src/lib/libraries/extensions/facemesh2scratch/facemesh2scratch.png",
-        insetIconURL: "https://raw.githubusercontent.com/champierre/facemesh2scratch/master/scratch-gui/src/lib/libraries/extensions/facemesh2scratch/facemesh2scratch-small.png",
-        collaborator: "champierre",
-        internetConnectionRequired: true,
-        tags: ["other_mods", "ai"],
-        description: (
-            <FormattedMessage
-                defaultMessage="プロジェクトでフェイストラッキングを活用しましょう!"
-                description="Description for the 'Facemesh2scratch' extension"
-                id="gui.extension.facemesh2scratch.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Handpose2scratch"
-                description="Name for the 'Handpose2scratch' extension"
-                id="gui.extension.handpose2scratch2.name"
-            />
-        ),
-        extensionId: "handpose2scratch",
-        iconURL: "https://raw.githubusercontent.com/champierre/handpose2scratch/master/scratch-gui/src/lib/libraries/extensions/handpose2scratch/handpose2scratch.png",
-        insetIconURL: "https://raw.githubusercontent.com/champierre/handpose2scratch/master/scratch-gui/src/lib/libraries/extensions/handpose2scratch/handpose2scratch-small.png",
-        collaborator: "champierre",
-        internetConnectionRequired: true,
-        tags: ["other_mods"],
-        description: (
-            <FormattedMessage
-                defaultMessage="手の細かい部位の座標を取得・トラッキングできます。"
-                description="Description for the 'Handpose2scratch' extension"
-                id="gui.extension.handpose2scratch2.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="p5js"
-                description="Name for the 'p5js' extension"
-                id="gui.extension.p5js.name"
-            />
-        ),
-        extensionId: "https://huggingface.co/datasets/soiz1/my-scratch-ai-extensions/raw/main/p5js.js",
-        iconURL: p5noiseIconURL,
-        insetIconURL: p5noiseInsetIconURL,
-        collaborator: "adacraft",
-        internetConnectionRequired: true,
-        tags: [],
-        description: (
-            <FormattedMessage
-                defaultMessage="p5.js ライブラリを使用するいくつかのブロック。"
-                description="Description for the 'p5js' extension"
-                id="gui.extension.p5js.description"
-            />
-        ),
-        featured: true
-    },
+const menuItems = [
     {
         name: (
             <FormattedMessage
@@ -486,11 +197,11 @@ let menuItems = [
                 id="gui.extension.music.name"
             />
         ),
-        extensionId: "music",
+        extensionId: 'music',
         iconURL: musicIconURL,
         insetIconURL: musicInsetIconURL,
-        customInsetColor: "#CF63CF",
-        tags: ["scratch", "noisemaker"],
+        customInsetColor: '#CF63CF',
+        tags: ['scratch', 'noisemaker'],
         description: (
             <FormattedMessage
                 defaultMessage="Play instruments and drums."
@@ -508,10 +219,10 @@ let menuItems = [
                 id="gui.extension.pen.name"
             />
         ),
-        extensionId: "pen",
+        extensionId: 'pen',
         iconURL: penIconURL,
         insetIconURL: penInsetIconURL,
-        tags: ["scratch", "graphics"],
+        tags: ['scratch', 'graphics'],
         description: (
             <FormattedMessage
                 defaultMessage="Draw with your sprites."
@@ -522,25 +233,13 @@ let menuItems = [
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Animated Text"
-                description="Name for the 'Animated Text' extension"
-                id="gui.extension.animatedtext.name"
-            />
-        ),
-        extensionId: "text",
+        name: 'Animated Text',
+        extensionId: 'text',
         iconURL: animatedTextIconURL,
         insetIconURL: animatedTextInsetIconURL,
-        customInsetColor: "#9A66FF",
-        tags: ["scratch"],
-        description: (
-            <FormattedMessage
-                defaultMessage="文字に命を吹き込みます。元々、Scratch公式が開発中のものでした。"
-                description="Description for the 'Animated Text' extension"
-                id="gui.extension.animatedtext.description"
-            />
-        ),
+        customInsetColor: '#9A66FF',
+        tags: ['scratch'],
+        description: 'Bring words to life.',
         featured: true
     },
     {
@@ -551,11 +250,11 @@ let menuItems = [
                 id="gui.extension.videosensing.name"
             />
         ),
-        extensionId: "videoSensing",
+        extensionId: 'videoSensing',
         iconURL: videoSensingIconURL,
         insetIconURL: videoSensingInsetIconURL,
-        customInsetColor: "#74BDDC",
-        tags: ["scratch", "hardware"],
+        customInsetColor: '#74BDDC',
+        tags: ['scratch', 'hardware'],
         description: (
             <FormattedMessage
                 defaultMessage="Sense motion with the camera."
@@ -566,6 +265,14 @@ let menuItems = [
         featured: true
     },
     {
+        name: 'Face Sensing',
+        extensionId: 'https://extensions.turbowarp.org/lab/face-sensing.js',
+        iconURL: faceSensingIconURL,
+        tags: ['scratch'],
+        description: 'Sense faces with the camera.',
+        featured: true
+    },
+    {
         name: (
             <FormattedMessage
                 defaultMessage="Text to Speech"
@@ -573,13 +280,13 @@ let menuItems = [
                 id="gui.extension.text2speech.name"
             />
         ),
-        extensionId: "text2speech",
-        collaborator: "Amazon Web Services",
-        credits: "Google TTS",
+        extensionId: 'text2speech',
+        collaborator: 'Amazon Web Services',
+        credits: 'Google TTS',
         iconURL: text2speechIconURL,
         insetIconURL: text2speechInsetIconURL,
-        customInsetColor: "#9966FF",
-        tags: ["scratch", "noisemaker"],
+        customInsetColor: '#9966FF',
+        tags: ['scratch', 'noisemaker'],
         description: (
             <FormattedMessage
                 defaultMessage="Make your projects talk."
@@ -598,16 +305,16 @@ let menuItems = [
                 id="gui.extension.translate.name"
             />
         ),
-        extensionId: "translate",
-        collaborator: "Google",
+        extensionId: 'translate',
+        collaborator: 'Google',
         iconURL: translateIconURL,
         insetIconURL: translateInsetIconURL,
-        customInsetColor: "#5CB1D6",
-        tags: ["scratch"],
+        customInsetColor: '#5CB1D6',
+        tags: ['scratch'],
         description: (
             <FormattedMessage
-                defaultMessage="テキストを多くの言語に翻訳します。"
-                description="テキストを多くの言語に翻訳します。"
+                defaultMessage="Translate text into many languages."
+                description="Description for the Translate extension"
                 id="gui.extension.translate.description"
             />
         ),
@@ -615,1077 +322,432 @@ let menuItems = [
         internetConnectionRequired: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Looks Expanded"
-                description="Name for the 'Looks Expanded' extension"
-                id="gui.extension.looksexpanded.name"
-            />
-        ),
-        extensionId: "https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js",
-        iconURL: sharkpoolLooksExpandedIcon,
-        tags: ["penguinmod", "categoryexpansion", "graphics"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Expansion of the Looks Category."
-                description="Description for the 'Looks Expanded' extension"
-                id="gui.extension.looksexpanded.description"
-            />
-        ),
-        extDeveloper: "SharkPool, CST1229",
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Sensing Plus"
-                description="Name for the 'Sensing Plus' extension"
-                id="gui.extension.sensingplus.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/obviousAlexC/SensingPlus.js",
-        collaborator: "ObviousAlexC",
-        iconURL: "https://extensions.turbowarp.org/images/obviousAlexC/SensingPlus.svg",
-        tags: ["turbowarp"],
-        description: (
-            <FormattedMessage
-                defaultMessage="An extension to the sensing category."
-                description="Description for the 'Sensing Plus' extension"
-                id="gui.extension.sensingplus.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Window Controls"
-                description="Name for the 'Window Controls' extension"
-                id="gui.extension.windowcontrols.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/CubesterYT/WindowControls.js",
-        collaborator: "Created:BlueDome77 Updated:CubesterYT.",
-        iconURL: "https://extensions.turbowarp.org/images/CubesterYT/WindowControls.svg",
-        tags: ["turbowap"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Move, resize, rename the window, enter fullscreen, get screen size, and more."
-                description="Description for the 'Window Controls' extension"
-                id="gui.extension.windowcontrols.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Stretch"
-                description="Name for the 'Stretch' extension"
-                id="gui.extension.stretch.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/stretch.js",
-        iconURL: "https://extensions.turbowarp.org/images/stretch.svg",
-        tags: ["turbowap"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Stretch sprites horizontally or vertically."
-                description="Description for the 'Stretch' extension"
-                id="gui.extension.stretch.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Makey Makey"
-                description="Name for the 'Makey Makey' extension"
-                id="gui.extension.makeymakey.name"
-            />
-        ),
-        extensionId: "makeymakey",
-        collaborator: "JoyLabz",
+        name: 'Makey Makey',
+        extensionId: 'makeymakey',
+        collaborator: 'JoyLabz',
         iconURL: makeymakeyIconURL,
         insetIconURL: makeymakeyInsetIconURL,
-        customInsetColor: "#E64D00",
-        tags: ["scratch", "hardware"],
+        customInsetColor: '#E64D00',
+        tags: ['scratch', 'hardware'],
         description: (
             <FormattedMessage
-                defaultMessage="何でもキーに変えられます。"
-                description="何でもキーに変えられます。"
+                defaultMessage="Make anything into a key."
+                description="Description for the 'Makey Makey' extension"
                 id="gui.extension.makeymakey.description"
             />
         ),
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Stage Camera"
-                description="Name for the 'Stage Camera' extension"
-                id="gui.extension.stagecamera.name"
-            />
-        ),
-        extensionId: "pmCamera",
+        name: 'Stage Camera',
+        extensionId: 'pmCamera',
         iconURL: pmCameraExtensionIcon,
-        tags: ["penguinmod"],
+        tags: ['penguinmod'],
         description: (
             <FormattedMessage
                 defaultMessage="Allows the camera to move around anywhere on the stage."
-                description="Description for the 'Stage Camera' extension"
-                id="gui.extension.stagecamera.description"
+                description="The description for the PenguinMod Camera extension."
+                id="pm.extension.camera.description"
             />
         ),
-        credits: "Inspired by⠀⠀⠀⠀⠀⠀ DT-is-not-available",
+        credits: 'Inspired by⠀⠀⠀⠀⠀⠀ DT-is-not-available',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Files"
-                description="Name for the 'Files' extension"
-                id="gui.extension.files.name"
-            />
-        ),
-        extensionId: "twFiles",
-        twDeveloper: "GarboMuffin",
+        name: 'Files',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Files-Expanded.js',
+        extDeveloper: 'SharkPool',
         iconURL: filesExtensionIcon,
-        insetIconURL: turbowarpIcon,
-        tags: ["turbowarp", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Blocks for reading and creating files."
-                description="Description for the 'Files' extension"
-                id="gui.extension.files.description"
-            />
-        ),
+        tags: ['turbowarp', 'datamgmt'],
+        description: 'Blocks for reading, editing, & creating files & folders.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Zip"
-                description="Name for the 'Zip' extension"
-                id="gui.extension.zip.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/CST1229/zip.js",
-        iconURL: "https://extensions.turbowarp.org/images/CST1229/zip.svg",
+        name: 'Zip',
+        extensionId: 'https://extensions.turbowarp.org/CST1229/zip.js',
+        iconURL: 'https://extensions.turbowarp.org/images/CST1229/zip.svg',
         insetIconURL: turbowarpIcon,
-        tags: ["turbowarp", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Create and edit .zip format files, including .sb3, .pmp and .s4s.txt files."
-                description="Description for the 'Zip' extension"
-                id="gui.extension.zip.description"
-            />
-        ),
-        twDeveloper: "CST1229",
+        tags: ['turbowarp', 'datamgmt'],
+        description: 'Create and edit .zip format files, including .sb3 files.',
+        twDeveloper: 'CST1229',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Pen+"
-                description="Name for the 'Pen+' extension"
-                id="gui.extension.penplus.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/ObviousAlexC/PenPlus.js",
-        tags: ["categoryexpansion", "graphics"],
-        iconURL: "https://extensions.penguinmod.com/images/ObviousAlexC/PenPlus.svg",
-        description: (
-            <FormattedMessage
-                defaultMessage="An extension to the Pen category! Adds blocks for drawing triangles using textures and tints, drawing images and editing their pixels, etc."
-                description="Description for the 'Pen+' extension"
-                id="gui.extension.penplus.description"
-            />
-        ),
+        name: 'Pen+',
+        extensionId: 'https://extensions.penguinmod.com/extensions/ObviousAlexC/PenPlus.js',
+        tags: ['categoryexpansion', 'graphics'],
+        iconURL: 'https://extensions.penguinmod.com/images/ObviousAlexC/PenPlus.svg',
+        description: 'An extension to the Pen category! Adds blocks for drawing triangles using textures and tints, drawing images and editing their pixels, etc.',
         featured: true,
-        extDeveloper: "pinksheep2917"
+        extDeveloper: 'pinksheep2917'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Sound Systems"
-                description="Name for the 'Sound Systems' extension"
-                id="gui.extension.soundsystems.name"
-            />
-        ),
-        extensionId: "jgExtendedAudio",
+        name: 'Sound Systems',
+        extensionId: 'jgExtendedAudio',
         iconURL: jgExtendedAudioExtensionIcon,
-        tags: ["penguinmod", "categoryexpansion", "noisemaker"],
-        description: (
-            <FormattedMessage
-                defaultMessage="An audio grouping system for more intensive audio work."
-                description="Description for the 'Sound Systems' extension"
-                id="gui.extension.soundsystems.description"
-            />
-        ),
+        tags: ['penguinmod', 'categoryexpansion', 'noisemaker'],
+        description: 'An audio grouping system for more intensive audio work.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Tune Shark V3"
-                description="Name for the 'Tune Shark V3' extension"
-                id="gui.extension.tunesharkv3.name"
-            />
-        ),
-        extensionId: "https://sharkpools-extensions.vercel.app/extension-code/Tune-Shark-V3.js",
+        name: 'Tune Shark V3',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Tune-Shark-V3.js',
         iconURL: sharkpoolTuneIcon,
-        tags: ["penguinmod", "categoryexpansion", "noisemaker"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Advanced audio engine with complex sound control, multiple audio effects and more!"
-                description="Description for the 'Tune Shark V3' extension"
-                id="gui.extension.tunesharkv3.description"
-            />
-        ),
-        extDeveloper: "SharkPool",
+        tags: ['penguinmod', 'categoryexpansion', 'noisemaker'],
+        description: 'Advanced audio engine with complex sound control, multiple audio effects and more!',
+        extDeveloper: 'SharkPool',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Sound Waves"
-                description="Name for the 'Sound Waves' extension"
-                id="gui.extension.soundwaves.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/SharkPool/Sound-Waves.js",
-        iconURL: "https://extensions.penguinmod.com/images/SharkPool/Sound-Waves.svg",
-        tags: ["penguinmod", "noisemaker"],
-        description: (
-            <FormattedMessage
-                defaultMessage="音を作ろう！"
-                description="音を作ろう！"
-                id="gui.extension.soundwaves.description"
-            />
-        ),
-        extDeveloper: "SharkPool",
+        name: 'Sound Waves',
+        extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/Sound-Waves.js',
+        iconURL: spSoundWaveIcon,
+        tags: ['penguinmod', 'noisemaker'],
+        description: 'Make sounds with oscillators!',
+        extDeveloper: 'SharkPool',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Motion Expansion"
-                description="Name for the 'Motion Expansion' extension"
-                id="gui.extension.motionexpansion.name"
-            />
-        ),
-        extensionId: "pmMotionExpansion",
+        name: 'Motion Expansion',
+        extensionId: 'pmMotionExpansion',
         iconURL: pmMotionExpansionExtensionIcon,
-        tags: ["penguinmod", "categoryexpansion"],
-        description: (
-            <FormattedMessage
-                defaultMessage="移動や衝突のための小さなモーション ブロックが増えました。"
-                description="移動や衝突のための小さなモーション ブロックが増えました。"
-                id="gui.extension.motionexpansion.description"
-            />
-        ),
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'More small motion blocks for movement or collision.',
         featured: true,
-        credits: "Some blocks from NexusKitten"
+        credits: 'Some blocks from NexusKitten'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Events Expansion"
-                description="Name for the 'Events Expansion' extension"
-                id="gui.extension.eventsexpansion.name"
-            />
-        ),
-        extensionId: "pmEventsExpansion",
+        name: 'Looks Expanded',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Looks-Expanded.js',
+        iconURL: sharkpoolLooksExpandedIcon,
+        tags: ['penguinmod', 'categoryexpansion', 'graphics'],
+        description: 'Expansion of the Looks Category.',
+        extDeveloper: 'SharkPool, CST1229',
+        featured: true
+    },
+    {
+        name: 'Events Expansion',
+        extensionId: 'pmEventsExpansion',
         iconURL: pmEventsExpansionExtensionIcon,
-        tags: ["penguinmod", "categoryexpansion"],
-        description: (
-            <FormattedMessage
-                defaultMessage="情報の送受信、特定のスプライトの通知、または物事が起こるタイミングをより適切に制御するためのイベントが増えます。"
-                description="情報の送受信、特定のスプライトの通知、または物事が起こるタイミングをより適切に制御するためのイベントが増えます。"
-                id="gui.extension.eventsexpansion.description"
-            />
-        ),
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'More events for sending & receiving information, notifing specific sprites or better control when things should happen.',
         featured: true,
-        credits: "Some blocks from LilyMakesThings"
+        credits: 'Some blocks from LilyMakesThings'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Controls Expansion"
-                description="Name for the 'Controls Expansion' extension"
-                id="gui.extension.controlsexpansion.name"
-            />
-        ),
-        extensionId: "pmControlsExpansion",
+        name: 'Controls Expansion',
+        extensionId: 'pmControlsExpansion',
         iconURL: pmControlsExpansionExtensionIcon,
-        tags: ["penguinmod", "categoryexpansion"],
-        description: (
-            <FormattedMessage
-                defaultMessage="アニメーション、複雑なシステム、またはよりクリーンな 1 回限りの使用ブロック用のコントロール ブロックが増えました。"
-                description="アニメーション、複雑なシステム、またはよりクリーンな 1 回限りの使用ブロック用のコントロール ブロックが増えました。"
-                id="gui.extension.controlsexpansion.description"
-            />
-        ),
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'More control blocks for animations, complex systems or cleaner one-time use blocks.',
         featured: true,
         credits: '"new thread" by CubesterYT, CST1229, SharkPool'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Sensing Expansion"
-                description="Name for the 'Sensing Expansion' extension"
-                id="gui.extension.sensingexpansion.name"
-            />
-        ),
-        extensionId: "pmSensingExpansion",
+        name: 'Sensing Expansion',
+        extensionId: 'pmSensingExpansion',
         iconURL: pmSensingExpansionExtensionIcon,
-        tags: ["penguinmod", "categoryexpansion"],
-        description: (
-            <FormattedMessage
-                defaultMessage="特定のユースケースやユーザーのデバイスとの対話のための、より多くのセンシング ブロック。"
-                description="特定のユースケースやユーザーのデバイスとの対話のための、より多くのセンシング ブロック。"
-                id="gui.extension.sensingexpansion.description"
-            />
-        ),
-        credits: "Some blocks from SharkPool-SP",
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: "More sensing blocks for specific use cases or interacting with the user's device.",
+        credits: 'Some blocks from SharkPool-SP',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Operators Expansion"
-                description="Name for the 'Operators Expansion' extension"
-                id="gui.extension.operatorsexpansion.name"
-            />
-        ),
-        extensionId: "pmOperatorsExpansion",
+        name: 'Operators Expansion',
+        extensionId: 'pmOperatorsExpansion',
         iconURL: pmOperatorsExpansionExtensionIcon,
-        tags: ["penguinmod", "categoryexpansion", "math"],
-        description: (
-            <FormattedMessage
-                defaultMessage="NAND、NOR、文字コードから文字への変換、複数行のテキストを行ごとに読み取るなどの演算子。"
-                description="NAND、NOR、文字コードから文字への変換、複数行のテキストを行ごとに読み取るなどの演算子。"
-                id="gui.extension.operatorsexpansion.description"
-            />
-        ),
+        tags: ['penguinmod', 'categoryexpansion', 'math'],
+        description: 'More operators like nand, nor, character code to character, reading multiple lined text line by line, etc.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="My Blocks+"
-                description="Name for the 'My Blocks+' extension"
-                id="gui.extension.myblocksplus.name"
-            />
-        ),
-        extensionId: "https://sharkpools-extensions.vercel.app/extension-code/My-Blocks-Plus.js",
+        name: 'My Blocks+',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/My-Blocks-Plus.js',
         iconURL: sharkpoolMBPIcon,
-        tags: ["penguinmod", "categoryexpansion"],
-        description: (
-            <FormattedMessage
-                defaultMessage="カスタム入力、色などを使用して、プライベートまたはグローバルのカスタム ブロックを作成します。"
-                description="カスタム入力、色などを使用して、プライベートまたはグローバルのカスタム ブロックを作成します。"
-                id="gui.extension.myblocksplus.description"
-            />
-        ),
-        extDeveloper: "SharkPool, CST1229, 0znzw",
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'Create private or global custom blocks with custom inputs, colors, and more!',
+        extDeveloper: 'SharkPool, CST1229, 0znzw',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Better Comments"
-                description="Name for the 'Better Comments' extension"
-                id="gui.extension.bettercomments.name"
-            />
-        ),
-        extensionId: "https://sharkpools-extensions.vercel.app/extension-code/Better-Comments.js",
+        name: 'Better Comments',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Better-Comments.js',
         iconURL: sharkpoolBCIcon,
-        tags: ["penguinmod", "categoryexpansion"],
-        description: (
-            <FormattedMessage
-                defaultMessage="カスタマイズとマークダウンのサポートにより、コメントの見た目を良くします。"
-                description="カスタマイズとマークダウンのサポートにより、コメントの見た目を良くします。"
-                id="gui.extension.bettercomments.description"
-            />
-        ),
-        extDeveloper: "SharkPool",
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'Better Comments with Customization and Markdown support',
+        extDeveloper: 'SharkPool',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="JSON"
-                description="Name for the 'JSON' extension"
-                id="gui.extension.json.name"
-            />
-        ),
-        extensionId: "jgJSON",
-        iconURL: jgJSONExtensionIcon,
-        tags: ["penguinmod", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="JSON オブジェクトと配列を処理するためのブロック。"
-                description="JSON オブジェクトと配列を処理するためのブロック。"
-                id="gui.extension.json.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Swift JSON"
-                description="Name for the 'Swift JSON' extension"
-                id="gui.extension.swiftjson.name"
-            />
-        ),
-        extensionId: "https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js",
-        iconURL: spJSONExtensionIcon,
-        tags: ["penguinmod", "datamgmt"],
-        extDeveloper: "SharkPool",
-        description: (
-            <FormattedMessage
-                defaultMessage="潜在的に危険ですが、JSONオブジェクトと配列の処理を高速化する拡張機能です。プロジェクトでJSONを頻繁に使用する場合に推奨されます。"
-                description="潜在的に危険ですが、JSONオブジェクトと配列の処理を高速化する拡張機能です。プロジェクトでJSONを頻繁に使用する場合に推奨されます。"
-                id="gui.extension.swiftjson.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Particle Engine"
-                description="Name for the 'Particle Engine' extension"
-                id="gui.extension.particleengine.name"
-            />
-        ),
-        extensionId: "https://sharkpools-extensions.vercel.app/extension-code/Particle-Engine.js",
+        name: 'Particle Engine',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Particle-Engine.js',
         iconURL: sharkpoolPEIcon,
-        tags: ["penguinmod", "graphics"],
-        description: (
-            <FormattedMessage
-                defaultMessage="クローンなしで強力なパーティクルエンジンを作成する"
-                description="クローンなしで強力なパーティクルエンジンを作成する"
-                id="gui.extension.particleengine.description"
-            />
-        ),
-        extDeveloper: "SharkPool",
+        tags: ['penguinmod', 'graphics'],
+        description: 'Create powerful Particle Engines without Clones',
+        extDeveloper: 'SharkPool',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Custom Styles"
-                description="Name for the 'Custom Styles' extension"
-                id="gui.extension.customstyles.name"
-            />
-        ),
-        extensionId: "shovelcss",
+        name: 'Custom Styles',
+        extensionId: 'shovelcss',
         iconURL: theshovelCustomStylesIcon,
-        tags: ["penguinmod", "graphics"],
-        description: (
-            <FormattedMessage
-                defaultMessage="プロジェクト内の変数モニターとプロンプトの外観をカスタマイズします。"
-                description="プロジェクト内の変数モニターとプロンプトの外観をカスタマイズします。"
-                id="gui.extension.customstyles.description"
-            />
-        ),
-        extDeveloper: "TheShovel",
+        tags: ['penguinmod', 'graphics'],
+        description: 'Customize the appearance of variable monitors and prompts in your project.',
+        extDeveloper: 'TheShovel',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Physics"
-                description="Name for the 'Physics' extension"
-                id="gui.extension.physics.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/box2d.js",
-        tags: ["turbowarp"],
-        extDeveloper: "griffpatch",
+        name: 'Physics',
+        extensionId: 'https://extensions.turbowarp.org/box2d.js',
+        tags: ['turbowarp'],
+        extDeveloper: 'griffpatch',
         iconURL: griffpatchPhysicsThumb,
         insetIconURL: griffpatchPhysicsIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="Griffpatch によって作成された物理処理をとても簡単にするBox2D拡張機能。"
-                description="Griffpatch によって作成された物理処理をとても簡単にするBox2D拡張機能。"
-                id="gui.extension.physics.description"
-            />
-        ),
-        customInsetColor: "#D9F0FF",
+        description: 'Box2D Physics extension created by Griffpatch.',
+        customInsetColor: '#D9F0FF',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Tweening"
-                description="Name for the 'Tweening' extension"
-                id="gui.extension.tweening.name"
-            />
-        ),
-        extensionId: "jgTween",
-        credits: "easings.net, Arrow & GarboMuffin",
-        description: (
-            <FormattedMessage
-                defaultMessage="さまざまなイージング関数と方向を使用して値をスムーズにアニメーション化します。"
-                description="さまざまなイージング関数と方向を使用して値をスムーズにアニメーション化します。"
-                id="gui.extension.tweening.description"
-            />
-        ),
-        iconURL: "https://extensions.turbowarp.org/images/JeremyGamer13/tween.svg",
-        tags: ["penguinmod"],
+        name: 'Tweening',
+        extensionId: 'jgTween',
+        credits: 'easings.net, Arrow & GarboMuffin',
+        description: 'Smoothly animating values using different easing functions and directions.',
+        iconURL: 'https://extensions.turbowarp.org/images/JeremyGamer13/tween.svg',
+        tags: ['penguinmod'],
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Tailgating"
-                description="Name for the 'Tailgating' extension"
-                id="gui.extension.tailgating.name"
-            />
-        ),
-        extensionId: "jgTailgating",
-        description: (
-            <FormattedMessage
-                defaultMessage="RPG のパーティ メンバーのように、スプライトとクローンを他のスプライトとクローンの後ろをオフセットで追従させます。"
-                description="RPG のパーティ メンバーのように、スプライトとクローンを他のスプライトとクローンの後ろをオフセットで追従させます。"
-                id="gui.extension.tailgating.description"
-            />
-        ),
+        name: 'Tailgating',
+        extensionId: 'jgTailgating',
+        description: 'Have sprites & clones follow behind other sprites & clones by an offset, like RPG party members.',
         iconURL: jgTailgatingExtensionIcon,
-        tags: ["penguinmod"],
+        tags: ['penguinmod'],
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Tile Grids"
-                description="Name for the 'Tile Grids' extension"
-                id="gui.extension.tilegrids.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/SharkPool/Tile-Grids.js",
-        iconURL: "https://extensions.penguinmod.com/images/SharkPool/Tile-Grids.svg",
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="スプライトをグリッド上に配置します。"
-                description="スプライトをグリッド上に配置します。"
-                id="gui.extension.tilegrids.description"
-            />
-        ),
-        extDeveloper: "SharkPool-SP",
+        name: 'Tile Grids',
+        extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/Tile-Grids.js',
+        iconURL: 'https://extensions.penguinmod.com/images/SharkPool/Tile-Grids.svg',
+        tags: ['penguinmod'],
+        description: 'Place sprites on grids.',
+        extDeveloper: 'SharkPool-SP',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Canvas Effects"
-                description="Name for the 'Canvas Effects' extension"
-                id="gui.extension.canvaseffects.name"
-            />
-        ),
-        extensionId: "theshovelcanvaseffects",
+        name: 'Canvas Effects',
+        extensionId: 'theshovelcanvaseffects',
         iconURL: theshovelCanvasEffectsIcon,
-        tags: ["penguinmod", "graphics"],
-        description: (
-            <FormattedMessage
-                defaultMessage="ステージ全体に視覚効果を適用します。"
-                description="ステージ全体に視覚効果を適用します。"
-                id="gui.extension.canvaseffects.description"
-            />
-        ),
-        extDeveloper: "TheShovel",
-        credits: "SharkPool",
+        tags: ['penguinmod', 'graphics'],
+        description: 'Apply visual effects to the entire stage.',
+        extDeveloper: 'TheShovel',
+        credits: 'SharkPool',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Clones+"
-                description="Name for the 'Clones+' extension"
-                id="gui.extension.clonesplus.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/Lily/ClonesPlus.js",
-        tags: ["turbowarp", "categoryexpansion"],
-        iconURL: "https://extensions.turbowarp.org/images/Lily/ClonesPlus.svg",
+        name: 'Clones+',
+        extensionId: 'https://extensions.turbowarp.org/Lily/ClonesPlus.js',
+        tags: ['turbowarp', 'categoryexpansion'],
+        iconURL: 'https://extensions.turbowarp.org/images/Lily/ClonesPlus.svg',
         insetIconURL: turbowarpIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="Scratchのクローン機能を拡張します。"
-                description="Scratchのクローン機能を拡張します。"
-                id="gui.extension.clonesplus.description"
-            />
-        ),
+        description: "Expansion of Scratch's clone features.",
         featured: true,
-        twDeveloper: "LilyMakesThings"
+        twDeveloper: 'LilyMakesThings'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Skins"
-                description="Name for the 'Skins' extension"
-                id="gui.extension.skins.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/Lily/Skins.js",
-        tags: ["turbowarp", "graphics"],
-        iconURL: "https://extensions.turbowarp.org/images/Lily/Skins.svg",
-        insetIconURL: turbowarpIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="スプライトを他の画像や衣装として表示します。"
-                description="スプライトを他の画像や衣装として表示します。"
-                id="gui.extension.skins.description"
-            />
-        ),
+        name: 'Turbo Skins',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Turbo-Skins.js',
+        tags: ['penguinmod', 'graphics'],
+        iconURL: spTurboSkinsIcon,
+        description: 'Display sprites with various images or costumes and control their hitboxes',
+        extraLabels: [
+            {
+                name: "Inspired by",
+                value: "\"Skins\" by LilyMakesThings"
+            }
+        ],
         featured: true,
-        twDeveloper: "LilyMakesThings"
+        credits: 'SharkPool'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Multiple Timers"
-                description="Name for the 'Multiple Timers' extension"
-                id="gui.extension.multipletimers.name"
-            />
-        ),
-        extensionId: "jgTimers",
+        name: 'Multiple Timers',
+        extensionId: 'jgTimers',
         iconURL: jgTimersExtensionIcon,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="個別に制御できるタイマーを作成します。"
-                description="個別に制御できるタイマーを作成します。"
-                id="gui.extension.multipletimers.description"
-            />
-        ),
-        eventSubmittor: "Arrow",
+        tags: ['penguinmod'],
+        description: 'Create different timers you can control seperately.',
+        eventSubmittor: 'Arrow',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Temporary Variables"
-                description="Name for the 'Temporary Variables' extension"
-                id="gui.extension.temporaryvariables.name"
-            />
-        ),
-        extensionId: "tempVars",
+        name: 'Temporary Variables',
+        extensionId: 'tempVars',
         iconURL: gsaTempVariablesExtensionIcon,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="1つのブロックスタック内でのみ使用する変数を作成します。一度しか使用しない変数で変数リストが乱雑になるのを防ぐのに役立ちます。"
-                description="1つのブロックスタック内でのみ使用する変数を作成します。一度しか使用しない変数で変数リストが乱雑になるのを防ぐのに役立ちます。"
-                id="gui.extension.temporaryvariables.description"
-            />
-        ),
-        credits: "LilyMakesThings",
+        tags: ['penguinmod'],
+        description: 'Create temporary variables for use in one block stack.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="TurboWarp Temporary Variables"
-                description="Name for the 'TurboWarp Temporary Variables' extension"
-                id="gui.extension.turbowarptemporaryvariables.name"
-            />
-        ),
-        extensionId: "lmsTempVars2",
+        name: 'SharkPool\'s Temporary Variables',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/Temporary-Variables.js',
+        iconURL: spTempVarsIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Create temporary runtime, threaded, sprite & scoped variables.',
+        featured: true
+    },
+    {
+        name: 'TurboWarp Temporary Variables',
+        extensionId: 'lmsTempVars2',
         iconURL: lilyTempVariablesExtensionIcon,
-        tags: ["turbowarp"],
-        description: (
-            <FormattedMessage
-                defaultMessage="使い捨てのランタイム変数またはスレッド変数を作成します。"
-                description="使い捨てのランタイム変数またはスレッド変数を作成します。"
-                id="gui.extension.turbowarptemporaryvariables.description"
-            />
-        ),
+        tags: ['turbowarp'],
+        description: 'Create disposable runtime or thread variables.',
         insetIconURL: turbowarpIcon,
-        credits: "LilyMakesThings",
+        credits: 'LilyMakesThings',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Runtime Modifications"
-                description="Name for the 'Runtime Modifications' extension"
-                id="gui.extension.runtimemodifications.name"
-            />
-        ),
-        extensionId: "jgRuntime",
-        tags: ["penguinmod"],
+        name: 'Swift JSON',
+        extensionId: 'https://sharkpools-extensions.vercel.app/extension-code/JSON-Array.js',
+        iconURL: spJSONExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        extDeveloper: 'SharkPool',
+        description: 'FAST Extension for handling JSON objects and arrays efficiently. Recommended if you are heavily using JSON several times in a project.',
+        featured: true
+    },
+    {
+        name: 'Runtime Modifications',
+        extensionId: 'jgRuntime',
+        tags: ['penguinmod'],
         iconURL: jgRuntimeExtensionIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="ステージやスプライトなどの Scratch オブジェクトを更新するためのブロック。"
-                description="ステージやスプライトなどの Scratch オブジェクトを更新するためのブロック。"
-                id="gui.extension.runtimemodifications.description"
-            />
-        ),
-        credits: "TheShovel, showierdata9978, SharkPool",
+        description: 'Blocks for updating Scratch objects like the stage and sprites.',
+        credits: 'TheShovel, showierdata9978, SharkPool',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Font Manager"
-                description="Name for the 'Font Manager' extension"
-                id="gui.extension.fontmanager.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/SharkPool/Font-Manager.js",
-        iconURL: "https://extensions.penguinmod.com/images/SharkPool/Font-Manager.svg",
-        tags: ["penguinmod", "graphics"],
-        description: (
-            <FormattedMessage
-                defaultMessage="フォントを管理、作成、削除します。"
-                description="フォントを管理、作成、削除します。"
-                id="gui.extension.fontmanager.description"
-            />
-        ),
-        credits: "SharkPool, Ashimee",
+        name: 'Font Manager',
+        extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/Font-Manager.js',
+        iconURL: spFontManagerIcon,
+        tags: ['penguinmod', 'graphics'],
+        description: 'Manage, create, and delete fonts.',
+        credits: 'SharkPool, Ashimee',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Storage"
-                description="Name for the 'Storage' extension"
-                id="gui.extension.storage.name"
-            />
-        ),
-        extensionId: "jgStorage",
+        name: 'Storage',
+        extensionId: 'jgStorage',
         iconURL: jgStorageExtensionIcon,
-        tags: ["penguinmod", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="プロジェクトが閉じられた後でもデータを保存します。基本サーバーストレージも含まれます。"
-                description="プロジェクトが閉じられた後でもデータを保存します。基本サーバーストレージも含まれます。"
-                id="gui.extension.storage.description"
-            />
-        ),
-        eventSubmittor: "Fir & silvxrcat",
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store data after PenguinMod has already been closed out. Basic Server Storage is also included.',
+        eventSubmittor: 'Fir & silvxrcat',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="HTTP"
-                description="Name for the 'HTTP' extension"
-                id="gui.extension.http.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/godslayerakp/http.js",
-        iconURL: "https://extensions.turbowarp.org/images/godslayerakp/http.svg",
+        name: 'HTTP',
+        extensionId: 'https://extensions.turbowarp.org/godslayerakp/http.js',
+        iconURL: 'https://extensions.turbowarp.org/images/godslayerakp/http.svg',
         insetIconURL: turbowarpIcon,
-        tags: ["turbowarp"],
-        description: (
-            <FormattedMessage
-                defaultMessage="外部 Web サイトとやりとりするための包括的な拡張機能。"
-                description="外部 Web サイトとやりとりするための包括的な拡張機能。"
-                id="gui.extension.http.description"
-            />
-        ),
+        tags: ['turbowarp'],
+        description: 'Comprehensive extension for interacting with external websites.',
         featured: true,
         internetConnectionRequired: true,
-        customInsetColor: "#ff4d4d"
+        customInsetColor: '#ff4d4d'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="CloudLink"
-                description="Name for the 'CloudLink' extension"
-                id="gui.extension.cloudlink.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/MikeDev101/cloudlink.js",
-        tags: ["turbowarp", "penguinmod"],
+        name: 'CloudLink',
+        extensionId: 'https://extensions.penguinmod.com/extensions/MikeDev101/cloudlink.js',
+        tags: ['turbowarp', 'penguinmod'],
         insetIconURL: cloudlinkIcon,
-        iconURL: "https://extensions.penguinmod.com/images/MikeDev101/cloudlink.svg",
-        description: (
-            <FormattedMessage
-                defaultMessage="強力なWebSocket拡張機能。"
-                description="強力なWebSocket拡張機能。"
-                id="gui.extension.cloudlink.description"
-            />
-        ),
+        iconURL: 'https://extensions.penguinmod.com/images/MikeDev101/cloudlink.svg',
+        description: 'A powerful WebSocket extension for Scratch.',
         featured: true,
-        extDeveloper: "MikeDev",
+        extDeveloper: 'MikeDev',
         internetConnectionRequired: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Scripts"
-                description="Name for the 'Scripts' extension"
-                id="gui.extension.scripts.name"
-            />
-        ),
-        extensionId: "jgScripts",
+        name: 'Scripts',
+        extensionId: 'jgScripts',
         iconURL: jgScriptsExtensionIcon,
-        tags: ["penguinmod", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="プロジェクトの実行中にブロックを使用してコンパイルされたスクリプトを作成します。"
-                description="プロジェクトの実行中にブロックを使用してコンパイルされたスクリプトを作成します。"
-                id="gui.extension.scripts.description"
-            />
-        ),
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Create compiled scripts with blocks while the project is running.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Pang API"
-                description="Name for the 'Pang API' extension"
-                id="gui.extension.pangapi.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/SammerLOL/pangapi.js",
-        iconURL: "https://extensions.penguinmod.com/images/SammerLOL/pangapi.png",
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="PenguinMod APIから情報を取得します。"
-                description="PenguinMod APIから情報を取得します。"
-                id="gui.extension.pangapi.description"
-            />
-        ),
-        extDeveloper: "oc9x97, Ianyourgod",
+        name: 'Pang API',
+        extensionId: 'https://extensions.penguinmod.com/extensions/SammerLOL/pangapi.js',
+        iconURL: 'https://extensions.penguinmod.com/images/SammerLOL/pangapi.avif',
+        tags: ['penguinmod'],
+        description: 'Fetch information from the PenguinMod API.',
+        extDeveloper: 'oc9x97, Ianyourgod',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="3D Math"
-                description="Name for the '3D Math' extension"
-                id="gui.extension.3dmath.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/ObviousAlexC/3DMath.js",
-        iconURL: "https://extensions.penguinmod.com/images/ObviousAlexC/3DMath.svg",
-        tags: ["penguinmod", "3d", "graphics", "math"],
-        description: (
-            <FormattedMessage
-                defaultMessage="独自のスプライトベースの 3D エンジンを作成するためのユーティリティ。"
-                description="独自のスプライトベースの 3D エンジンを作成するためのユーティリティ。"
-                id="gui.extension.3dmath.description"
-            />
-        ),
-        extDeveloper: "pinksheep2917",
+        name: '3D Math',
+        extensionId: 'https://extensions.penguinmod.com/extensions/ObviousAlexC/3DMath.js',
+        iconURL: 'https://extensions.penguinmod.com/images/ObviousAlexC/3DMath.svg',
+        tags: ['penguinmod', '3d', 'graphics', 'math'],
+        description: 'A handful of utilities for making your own sprite-based 3D engine.',
+        extDeveloper: 'pinksheep2917',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Random Utilities"
-                description="Name for the 'Random Utilities' extension"
-                id="gui.extension.randomutilities.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/Gen1x/random_utils.js",
-        iconURL: "https://extensions.penguinmod.com/images/Gen1x/randomutils.png",
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="シードベースの数値生成、真の数値生成、UUID、ランダム文字列など、ランダム値の生成に関連する多くのブロック。"
-                description="シードベースの数値生成、真の数値生成、UUID、ランダム文字列など、ランダム値の生成に関連する多くのブロック。"
-                id="gui.extension.randomutilities.description"
-            />
-        ),
-        extDeveloper: "G1nX",
+        name: 'Random Utilities',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/random_utils.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Gen1x/randomutils.avif',
+        tags: ['penguinmod'],
+        description: 'Many blocks related to generating random values, including seed-based number generation, true number generation, UUID\'s, random strings, etc.',
+        extDeveloper: 'G1nX',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="LZ Compress"
-                description="Name for the 'LZ Compress' extension"
-                id="gui.extension.lzcompress.name"
-            />
-        ),
-        extensionId: "shovellzcompresss",
+        name: 'LZ Compress',
+        extensionId: 'shovellzcompresss',
         iconURL: theshovelLzCompressIcon,
-        tags: ["penguinmod", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="lz-stringを使用してテキストを圧縮および解凍します。"
-                description="lz-stringを使用してテキストを圧縮および解凍します。"
-                id="gui.extension.lzcompress.description"
-            />
-        ),
-        extDeveloper: "TheShovel",
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Compress and decompress text using lz-string.',
+        extDeveloper: 'TheShovel',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Prism"
-                description="Name for the 'Prism' extension"
-                id="gui.extension.prism.name"
-            />
-        ),
-        extensionId: "jgPrism",
-        tags: ["penguinmod", "datamgmt"],
+        name: 'Prism',
+        extensionId: 'jgPrism',
+        tags: ['penguinmod', 'datamgmt'],
         iconURL: jgPrismExtensionIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="特定のユースケースまたは主要な利便性のためのブロック。"
-                description="特定のユースケースまたは主要な利便性のためのブロック。"
-                id="gui.extension.prism.description"
-            />
-        ),
+        description: 'Blocks for specific use-cases or major convenience.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Vector"
-                description="Name for the 'Vector' extension"
-                id="gui.extension.vector.name"
-            />
-        ),
-        extensionId: "jwVector",
-        iconURL: jwVectorExtensionThumb,
-        tags: ["penguinmod", "math"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Vector type for calculating with X and Y coordinates."
-                description="Description for the 'Vector' extension"
-                id="gui.extension.vector.description"
-            />
-        ),
-        extDeveloper: "jwklong",
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Odd Messages"
-                description="Name for the 'Odd Messages' extension"
-                id="gui.extension.oddmessages.name"
-            />
-        ),
-        extensionId: "oddMessage",
-        tags: ["penguinmod"],
-        iconURL: silvxrcatOddMessagesExtensionIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="ログ記録と変数の利用。"
-                description="ログ記録と変数の利用。"
-                id="gui.extension.oddmessages.description"
-            />
-        ),
-        featured: true,
-        extDeveloper: "silvxrcat"
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="HTML iframe Elements"
-                description="Name for the 'HTML iframe Elements' extension"
-                id="gui.extension.htmliframeelements.name"
-            />
-        ),
-        extensionId: "jgIframe",
+        name: 'HTML iframe Elements',
+        extensionId: 'jgIframe',
         iconURL: jgIframeExtensionIcon,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="HTML コンテンツまたは Web サイトを含むフレームを配置および移動するためのブロック。"
-                description="HTML コンテンツまたは Web サイトを含むフレームを配置および移動するためのブロック。"
-                id="gui.extension.htmliframeelements.description"
-            />
-        ),
+        tags: ['penguinmod'],
+        description: 'Blocks to place and move around frames that contain HTML content or websites.',
         featured: true,
         internetConnectionRequired: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Color Picker"
-                description="Name for the 'Color Picker' extension"
-                id="gui.extension.colorpicker.name"
-            />
-        ),
-        extensionId: "shovelColorPicker",
+        name: 'Color Picker',
+        extensionId: 'shovelColorPicker',
         iconURL: theshovelColorPickerIcon,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="ユーザーが組み込みのカラーピッカーを使用して色を選択できるようにすることで、独自にカラーピッカーを作成する必要はありません。"
-                description="ユーザーが組み込みのカラーピッカーを使用して色を選択できるようにすることで、独自にカラーピッカーを作成する必要はありません。"
-                id="gui.extension.colorpicker.description"
-            />
-        ),
-        extDeveloper: "TheShovel",
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="Color Utility Blocks"
-                description="Name for the 'Color Utility Blocks' extension"
-                id="gui.extension.colorutilityblocks.name"
-            />
-        ),
-        extensionId: "colors",
-        iconURL: gsaColorUtilExtensionIcon,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="16 進数、RGB、HSV、10 進数の色やその他の色関連のコンバーター。"
-                description="16 進数、RGB、HSV、10 進数の色やその他の色関連のコンバーター。"
-                id="gui.extension.colorutilityblocks.description"
-            />
-        ),
-        featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="All Menus"
-                description="Name for the 'All Menus' extension"
-                id="gui.extension.allmenus.name"
-            />
-        ),
-        extensionId: "https://extensions.penguinmod.com/extensions/Lily/AllMenus.js",
-        iconURL: "https://extensions.penguinmod.com/images/Lily/AllMenus.svg",
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="各ブロックのすべてのドロップダウンメニューを抽出します。"
-                description="各ブロックのすべてのドロップダウンメニューを抽出します。"
-                id="gui.extension.allmenus.description"
-            />
-        ),
-        extDeveloper: "LilyMakesThings",
+        tags: ['penguinmod'],
+        description: 'Allow the user to choose a color using the built-in color picker, so you don\'t need to make your own.',
+        extDeveloper: 'TheShovel',
         featured: true
     },
     {
         name: (
             <FormattedMessage
                 defaultMessage="Labels"
-                description="Name for the 'Labels' extension"
-                id="gui.extension.labels.name"
+                description="Name of Proto extension"
+                id="jwProto.jwProtoExtension.name"
             />
         ),
-        extensionId: "jwProto",
+        extensionId: 'jwProto',
         iconURL: jwProtoExtensionIcon,
-        tags: ["penguinmod"],
+        tags: ['penguinmod'],
         description: (
             <FormattedMessage
+                // change this back if you update the extension to have more things
                 defaultMessage="Labelling and Placeholders."
-                description="Description for the 'Labels' extension"
-                id="gui.extension.labels.description"
+                description="Description of Proto extension"
+                id="jwProto.jwProtoExtension.description"
             />
         ),
         featured: true
@@ -1694,269 +756,213 @@ let menuItems = [
         name: (
             <FormattedMessage
                 defaultMessage="Perlin Noise"
-                description="Name for the 'Perlin Noise' extension"
-                id="gui.extension.perlinnoise.name"
+                description="Name of perlin noise extension"
+                id="iygPerlin.iygPerlinExtension.name"
             />
         ),
-        extensionId: "iygPerlin",
-        tags: ["penguinmod"],
+        extensionId: 'iygPerlin',
+        tags: ['penguinmod'],
         iconURL: iygPerlinNoiseExtensionIcon,
         description: (
             <FormattedMessage
-                defaultMessage="Perlinノイズを生成・使用するためのブロック。地形や雲などの生成に適しています。"
-                description="Perlinノイズを生成・使用するためのブロック。地形や雲などの生成に適しています。"
-                id="gui.extension.perlinnoise.description"
+                defaultMessage="Blocks for generating and using Perlin noise. Good for generating terrain, clouds, and other things."
+                description="Description of perlin noise extension"
+                id="iygPerlin.iygPerlinExtension.description"
             />
         ),
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="GamePad"
-                description="Name for the 'GamePad' extension"
-                id="gui.extension.gamepad.name"
-            />
-        ),
-        extensionId: "Gamepad",
-        tags: ["turbowarp", "hardware"],
+        name: 'GamePad',
+        extensionId: 'Gamepad',
+        tags: ['turbowarp', 'hardware'],
         insetIconURL: turbowarpIcon,
-        twDeveloper: "GarboMuffin",
+        twDeveloper: 'GarboMuffin',
         iconURL: gp,
         description: (
             <FormattedMessage
-                defaultMessage="ボタンをキーにマッピングするのではなく、ゲームパッドに直接アクセスします。"
-                description="ボタンをキーにマッピングするのではなく、ゲームパッドに直接アクセスします。"
-                id="gui.extension.gamepad.description"
+                defaultMessage="Directly access gamepads instead of just mapping buttons to keys."
+                description="Description for the 'GamePad' extension"
+                id="GamepadExtension.GamepadExtension.description"
             />
         ),
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Printing"
-                description="Name for the 'Printing' extension"
-                id="gui.extension.printing.name"
-            />
-        ),
-        extensionId: "sharkpoolPrinting",
+        name: 'Printing',
+        tags: ['penguinmod', 'hardware'],
+        extensionId: 'sharkpoolPrinting',
         iconURL: sharkpoolPrintingIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="テキスト、画像、カスタム HTML をプリンターに印刷するためのダイアログを表示できます。"
-                description="テキスト、画像、カスタム HTML をプリンターに印刷するためのダイアログを表示できます。"
-                id="gui.extension.printing.description"
-            />
-        ),
+        description: 'Allows you to show a dialog for printing text, images, and custom HTML to a printer.',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Clipping and Blending"
-                description="Name for the 'Clipping and Blending' extension"
-                id="gui.extension.clippingandblending.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/Xeltalliv/clippingblending.js",
+        name: 'Clipping and Blending',
+        extensionId: 'https://extensions.turbowarp.org/Xeltalliv/clippingblending.js',
         iconURL: clippingblending,
-        tags: ["turbowarp", "graphics"],
+        tags: ['turbowarp', 'graphics'],
         insetIconURL: turbowarpIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="指定された長方形領域の外側をクリッピングし、加法的なカラーブレンドを行います。"
-                description="指定された長方形領域の外側をクリッピングし、加法的なカラーブレンドを行います。"
-                id="gui.extension.clippingandblending.description"
-            />
-        ),
+        description: 'Clipping outside of a specified rectangular area and additive color blending.',
         featured: true,
-        twDeveloper: "Vadik1"
+        twDeveloper: 'Vadik1'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Pointer Lock"
-                description="Name for the 'Pointer Lock' extension"
-                id="gui.extension.pointerlock.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/pointerlock.js",
-        tags: ["turbowarp"],
+        name: 'Pointer Lock',
+        extensionId: 'https://extensions.turbowarp.org/pointerlock.js',
+        tags: ['turbowarp'],
         insetIconURL: turbowarpIcon,
         iconURL: pointerlockThumb,
         description: (
             <FormattedMessage
-                defaultMessage="マウスカーソルをステージ上に固定する拡張機能。"
-                description="マウスカーソルをステージ上に固定する拡張機能。"
+                defaultMessage="A extension to lock the mouse cursor in the stage."
+                description="Scratch utilities"
                 id="gui.extension.pointerlock.description"
             />
         ),
         featured: true,
         internetConnectionRequired: false,
-        twDeveloper: "GarboMuffin"
+        twDeveloper: 'GarboMuffin'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Mouse Cursor"
-                description="Name for the 'Mouse Cursor' extension"
-                id="gui.extension.mousecursor.name"
-            />
-        ),
-        extensionId: "https://extensions.turbowarp.org/cursor.js",
-        tags: ["turbowarp"],
+        name: 'Mouse Cursor',
+        extensionId: 'https://extensions.turbowarp.org/cursor.js',
+        tags: ['turbowarp'],
         insetIconURL: turbowarpIcon,
-        iconURL: "https://extensions.turbowarp.org/images/cursor.png",
+        iconURL: 'https://extensions.turbowarp.org/images/cursor.png',
         description: (
             <FormattedMessage
-                defaultMessage="ステージ上でのマウス カーソルの外観を変更する拡張機能。"
-                description="ステージ上でのマウス カーソルの外観を変更する拡張機能。"
-                id="gui.extension.mousecursor.description"
+                defaultMessage="A extension to change what the mouse cursor looks like on the stage."
+                description="Scratch utilities"
+                id="gui.extension.MouseCursor.description"
             />
         ),
         featured: true,
         internetConnectionRequired: false,
-        twDeveloper: "GarboMuffin"
+        twDeveloper: 'GarboMuffin'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Scratch Authentication"
-                description="Name for the 'Scratch Authentication' extension"
-                id="gui.extension.scratchauthentication.name"
-            />
-        ),
-        extensionId: "jgScratchAuthenticate",
+        name: 'Scratch Authentication',
+        extensionId: 'jgScratchAuthenticate',
         iconURL: jgScratchAuthExtensionIcon,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="Scratch 認証と対話して、プレーヤーが実際の Scratch ユーザーであることを証明します。"
-                description="Scratch 認証と対話して、プレーヤーが実際の Scratch ユーザーであることを証明します。"
-                id="gui.extension.scratchauthentication.description"
-            />
-        ),
+        tags: ['penguinmod'],
+        description: "Interact with Scratch Authentication to prove the player is a real scratch user.",
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="JavaScript"
-                description="Name for the 'JavaScript' extension"
-                id="gui.extension.javascript.name"
-            />
-        ),
-        extensionId: "SPjavascriptV2",
+        name: 'JavaScript',
+        extensionId: 'SPjavascriptV2',
         iconURL: jgJavascriptExtensionIcon,
-        tags: ["penguinmod", "programminglanguage"],
-        description: (
-            <FormattedMessage
-                defaultMessage="JavaScript で記述された独自のカスタム コードを実行しましょう。"
-                description="JavaScript で記述された独自のカスタム コードを実行しましょう。"
-                id="gui.extension.javascript.description"
-            />
-        ),
+        tags: ['penguinmod', 'programminglanguage'],
+        description: 'Run your own custom code written in JavaScript!',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Arrays"
-                description="Name for the 'Arrays' extension"
-                id="gui.extension.arrays.name"
-            />
-        ),
-        extensionId: "jwArray",
+        name: 'Arrays',
+        extensionId: 'jwArray',
         iconURL: jwArrayExtensionThumb,
-        tags: ["penguinmod", "datamgmt"],
-        description: (
-            <FormattedMessage
-                defaultMessage="多目的配列にデータを効率的に保存します。"
-                description="多目的配列にデータを効率的に保存します。"
-                id="gui.extension.arrays.description"
-            />
-        ),
-        extDeveloper: "jwklong",
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store data efficiently in multi-purpose arrays.',
+        extDeveloper: 'jwklong',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Targets"
-                description="Name for the 'Targets' extension"
-                id="gui.extension.targets.name"
-            />
-        ),
-        extensionId: "jwTargets",
+        name: 'Objects',
+        extensionId: 'https://extensions.penguinmod.com/extensions/DogeisCut/dogeiscutObject.js',
+        iconURL: 'https://extensions.penguinmod.com/images/DogeisCut/dogeiscutObject.svg',
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Store data efficiently in multi-purpose objects.',
+        extDeveloper: 'DogeisCut',
+        featured: true
+    },
+    {
+        name: 'XML',
+        extensionId: 'jwXML',
+        iconURL: jwXMLExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Creating, parsing and modifying XML data.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Targets',
+        extensionId: 'jwTargets',
         iconURL: jwTargetsExtensionThumb,
-        tags: ["penguinmod"],
-        description: (
-            <FormattedMessage
-                defaultMessage="スプライトとそのクローンへの直接アクセス。"
-                description="スプライトとそのクローンへの直接アクセス。"
-                id="gui.extension.targets.description"
-            />
-        ),
-        extDeveloper: "jwklong",
+        tags: ['penguinmod'],
+        description: 'Direct access to sprites and their clones.',
+        extDeveloper: 'jwklong',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Infinity"
-                description="Name for the 'Infinity' extension"
-                id="gui.extension.infinity.name"
-            />
-        ),
-        extensionId: "jwNum",
+        name: 'Infinity',
+        extensionId: 'jwNum',
         iconURL: jwNumExtensionThumb,
-        tags: ["penguinmod", "math"],
-        description: (
-            <FormattedMessage
-                defaultMessage="非常に大きな数値を扱える高度な数値タイプです。"
-                description="非常に大きな数値を扱える高度な数値タイプです。"
-                id="gui.extension.infinity.description"
-            />
-        ),
-        extDeveloper: "jwklong",
-        credits: "Naruyoko for ExpantaNum.js",
+        tags: ['penguinmod', 'math'],
+        description: 'Advanced number type capable of really big numbers.',
+        extDeveloper: 'jwklong',
+        credits: 'Naruyoko for ExpantaNum.js',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="Color"
-                description="Name for the 'Color' extension"
-                id="gui.extension.color.name"
-            />
-        ),
-        extensionId: "jwColor",
+        name: 'Color',
+        extensionId: 'jwColor',
         iconURL: jwColorExtensionThumb,
-        tags: ["penguinmod", "graphics"],
-        description: (
-            <FormattedMessage
-                defaultMessage="色に関わるあらゆるもののためのユーティリティ。"
-                description="色に関わるあらゆるもののためのユーティリティ。"
-                id="gui.extension.color.description"
-            />
-        ),
-        extDeveloper: "jwklong",
+        tags: ['penguinmod', 'graphics'],
+        description: 'Utilities for anything involving colors.',
+        extDeveloper: 'jwklong',
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="micro:bit"
-                description="Name for the 'micro:bit' extension"
-                id="gui.extension.microbit.name"
-            />
-        ),
-        extensionId: "microbit",
-        collaborator: "micro:bit",
+        name: 'Vector',
+        extensionId: 'jwVector',
+        iconURL: jwVectorExtensionThumb,
+        tags: ['penguinmod', 'math'],
+        description: 'Vector type for calculating with X and Y coordinates.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Lambda',
+        extensionId: 'jwLambda',
+        iconURL: jwLambdaExtensionThumb,
+        tags: ['penguinmod'],
+        description: 'Create anonymous functions with arguments and execute them.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Scope',
+        extensionId: 'jwScope',
+        iconURL: jwScopeExtensionThumb,
+        tags: ['penguinmod'],
+        description: 'Temporary variables based on block stack. (extra blocks if used with Array extension)',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Pointers',
+        extensionId: 'jwPointer',
+        iconURL: jwPointerExtensionThumb,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Define references to values. (extra blocks if used with Array extension)',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'Integers',
+        extensionId: 'jwInt',
+        iconURL: jwIntExtensionThumb,
+        tags: ['penguinmod', 'math'],
+        description: 'Large integers with zero precision loss.',
+        extDeveloper: 'jwklong',
+        featured: true
+    },
+    {
+        name: 'micro:bit',
+        extensionId: 'microbit',
+        collaborator: 'micro:bit',
         iconURL: microbitIconURL,
         insetIconURL: microbitInsetIconURL,
-        tags: ["scratch", "hardware"],
+        tags: ['scratch', 'hardware'],
         description: (
             <FormattedMessage
                 defaultMessage="Connect your projects with the world."
@@ -1979,26 +985,20 @@ let menuItems = [
                 id="gui.extension.microbit.connectingMessage"
             />
         ),
-        helpLink: "https://scratch.mit.edu/microbit"
+        helpLink: 'https://scratch.mit.edu/microbit'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="LEGO MINDSTORMS EV3"
-                description="Name for the 'LEGO MINDSTORMS EV3' extension"
-                id="gui.extension.legomindstormsev3.name"
-            />
-        ),
-        extensionId: "ev3",
-        collaborator: "LEGO",
+        name: 'LEGO MINDSTORMS EV3',
+        extensionId: 'ev3',
+        collaborator: 'LEGO',
         iconURL: ev3IconURL,
         insetIconURL: ev3InsetIconURL,
-        tags: ["scratch", "hardware"],
+        tags: ['scratch', 'hardware'],
         description: (
             <FormattedMessage
                 defaultMessage="Build interactive robots and more."
                 description="Description for the 'LEGO MINDSTORMS EV3' extension"
-                id="gui.extension.legomindstormsev3.description"
+                id="gui.extension.ev3.description"
             />
         ),
         featured: true,
@@ -2009,34 +1009,28 @@ let menuItems = [
         useAutoScan: false,
         connectionIconURL: ev3ConnectionIconURL,
         connectionSmallIconURL: ev3ConnectionSmallIconURL,
-        customInsetColor: "#FFBF00",
+        customInsetColor: '#FFBF00',
         connectingMessage: (
             <FormattedMessage
                 defaultMessage="Connecting. Make sure the pin on your EV3 is set to 1234."
                 description="Message to help people connect to their EV3. Must note the PIN should be 1234."
-                id="gui.extension.legomindstormsev3.connectingMessage"
+                id="gui.extension.ev3.connectingMessage"
             />
         ),
-        helpLink: "https://scratch.mit.edu/ev3"
+        helpLink: 'https://scratch.mit.edu/ev3'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="LEGO BOOST"
-                description="Name for the 'LEGO BOOST' extension"
-                id="gui.extension.legoboost.name"
-            />
-        ),
-        extensionId: "boost",
-        collaborator: "LEGO",
+        name: 'LEGO BOOST',
+        extensionId: 'boost',
+        collaborator: 'LEGO',
         iconURL: boostIconURL,
         insetIconURL: boostInsetIconURL,
-        tags: ["scratch", "hardware"],
+        tags: ['scratch', 'hardware'],
         description: (
             <FormattedMessage
-                defaultMessage="ロボット作品に命を吹き込みます。"
-                description="ロボット作品に命を吹き込みます。"
-                id="gui.extension.legoboost.description"
+                defaultMessage="Bring robotic creations to life."
+                description="Description for the 'LEGO BOOST' extension"
+                id="gui.extension.boost.description"
             />
         ),
         featured: true,
@@ -2048,33 +1042,27 @@ let menuItems = [
         connectionIconURL: boostConnectionIconURL,
         connectionSmallIconURL: boostConnectionSmallIconURL,
         connectionTipIconURL: boostConnectionTipIconURL,
-        customInsetColor: "#FFAB19",
+        customInsetColor: '#FFAB19',
         connectingMessage: (
             <FormattedMessage
                 defaultMessage="Connecting"
                 description="Message to help people connect to their BOOST."
-                id="gui.extension.legoboost.connectingMessage"
+                id="gui.extension.boost.connectingMessage"
             />
         ),
-        helpLink: "https://scratch.mit.edu/boost"
+        helpLink: 'https://scratch.mit.edu/boost'
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="LEGO Education WeDo 2.0"
-                description="Name for the 'LEGO Education WeDo 2.0' extension"
-                id="gui.extension.legowedo2.name"
-            />
-        ),
-        extensionId: "wedo2",
-        collaborator: "LEGO",
+        name: 'LEGO Education WeDo 2.0',
+        extensionId: 'wedo2',
+        collaborator: 'LEGO',
         iconURL: wedo2IconURL,
         insetIconURL: wedo2InsetIconURL,
         description: (
             <FormattedMessage
-                defaultMessage="モーターとセンサーを使って組み立てます。"
-                description="モーターとセンサーを使って組み立てます。"
-                id="gui.extension.legowedo2.description"
+                defaultMessage="Build with motors and sensors."
+                description="Description for the 'LEGO WeDo 2.0' extension"
+                id="gui.extension.wedo2.description"
             />
         ),
         featured: true,
@@ -2107,7 +1095,7 @@ let menuItems = [
         tags: ['scratch', 'hardware'],
         description: (
             <FormattedMessage
-                defaultMessage="押す、引く、動く、回転するといった動作を感知します。"
+                defaultMessage="Sense push, pull, motion, and spin."
                 description="Description for the Vernier Go Direct Force and Acceleration sensor extension"
                 id="gui.extension.gdxfor.description"
             />
@@ -2132,17 +1120,17 @@ let menuItems = [
     {
         name: (
             <FormattedMessage
-                defaultMessage="ペンギンモッドの拡張機能"
+                defaultMessage="PenguinMod Extra Extensions"
                 description="Name of library item to open the Extra Extensions gallery"
                 id="pm.extraLibraryExtensions.name"
             />
         ),
-        href: 'https://extensions.penguinmod.com/',
+        href: 'https://extensions.penguinmod.com/?editor=true',
         extensionId: 'special_penguinmodExtensionLibrary',
         iconURL: penguinmodLibraryExtensionIcon,
         description: (
             <FormattedMessage
-                defaultMessage="Penguinmodユーザーが投稿した拡張機能をいくつかご覧ください。新しいタブで開きます。"
+                defaultMessage="See some user-submitted extensions. Opens in a new tab."
                 description="Description of library item to open the Extra Extensions gallery"
                 id="pm.extraLibraryExtensions.description"
             />
@@ -2167,7 +1155,7 @@ let menuItems = [
         description: (
             <FormattedMessage
                 // eslint-disable-next-line max-len
-                defaultMessage="ここでは多くの TurboWarp 拡張機能をリストしていますが、extensions.turbowarp.org でさらに多くの拡張機能を見つけることができます。"
+                defaultMessage="We list many TurboWarp extensions here for convenience, but you can find even more on extensions.turbowarp.org."
                 description="Description of extensions.turbowarp.org in extension library"
                 id="tw.extensionGallery.description"
             />
@@ -2176,69 +1164,113 @@ let menuItems = [
         featured: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage={'SharkPool\'s Extension Collection'}
-                description="Name for the 'ExtForge' extension"
-                id="gui.extension.sharkpoolExt.name"
-            />
-        ),
-        href: "https://soiz1-sharkpool-extensions.hf.space?originPM=true",
-        extensionId: "special_sharkpoolExtensionLibrary",
+        name: 'SharkPool\'s Extension Collection',
+        href: 'https://sharkpools-extensions.vercel.app/?originPM=true',
+        extensionId: 'special_sharkpoolExtensionLibrary',
         iconURL: sharkpoolGalleryIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage={"SharkPool によって作成された多数の拡張機能。\nこのメニューが開いているときに拡張機能をクリックすると、プロジェクトに追加されます。CORS制限のため、別のホストですが機能は同じで自動更新されます。"}
-                description={"SharkPool によって作成された多数の拡張機能。\nこのメニューが開いているときに拡張機能をクリックすると、プロジェクトに追加されます。CORS制限のため、別のホストですが機能は同じで自動更新されます。"}
-                id="gui.extension.sharkpoolextensioncollection.description"
-            />
-        ),
-        credits: "Listed in the site",
-        tags: ["library"],
+        description: 'Tons of extensions created by SharkPool.\n\nClick on an extension while this menu is open to add it to your project.',
+        credits: 'Listed in the site',
+        tags: ['library'],
         featured: true
-    },
-    {
-        name: (
-            <FormattedMessage
-                defaultMessage="ExtForge"
-                description="Name for the 'ExtForge' extension"
-                id="gui.extension.extforge.name"
-            />
-        ),
-        href: "https://jwklong.github.io/extforge",
-        extensionId: "special_extforge",
+    },{
+        // not really an extension, but it's easiest to present it as one
+        name: 'ExtForge',
+        href: 'https://jwklong.github.io/extforge',
+        extensionId: 'special_extforge',
         iconURL: ExtForgeIcon,
-        description: (
-            <FormattedMessage
-                defaultMessage="ブロックベースのUIを使用して拡張機能を作成します。"
-                description="ブロックベースのUIを使用して拡張機能を作成します。"
-                id="gui.extension.extforge.description"
-            />
-        ),
-        extDeveloper: "jwklong",
+        description: 'Create extensions with a block-based UI.',
+        extDeveloper: 'jwklong',
         isNew: true,
-        tags: ["extcreate"],
+        tags: ['extcreate'],
         featured: true
     },
     {
+        // not really an extension, but it's easiest to present it as one
         name: (
             <FormattedMessage
                 defaultMessage="Custom Extension"
-                description="Name for the 'Custom Extension' extension"
-                id="gui.extension.customextension.name"
+                description="Name of library item to load a custom extension from a remote source"
+                id="tw.customExtension.name"
             />
         ),
-        extensionId: "",
+        extensionId: '',
         iconURL: customExtensionIcon,
         description: (
             <FormattedMessage
-                defaultMessage="好きな拡張機能を読み込むことができます。"
-                description="好きな拡張機能を読み込むことができます。"
-                id="gui.extension.customextension.description"
+                defaultMessage="Load custom extensions from URLs, files, or JavaScript source code."
+                description="Description of library item to load a custom extension from a custom source"
+                id="tw.customExtension.description"
             />
         ),
         featured: true
     }
+    /*DEPRECATED
+    {
+        name: 'JSON',
+        extensionId: 'jgJSON',
+        iconURL: jgJSONExtensionIcon,
+        tags: ['penguinmod', 'datamgmt'],
+        description: 'Blocks for handling JSON objects and Arrays.',
+        featured: true
+    },
+    {
+        name: 'Color Utility Blocks',
+        extensionId: 'colors',
+        iconURL: gsaColorUtilExtensionIcon,
+        tags: ['penguinmod'],
+        description: 'Converters for Hex, RGB, HSV and Decimal colors and other color related things.',
+        featured: true
+    },
+    {
+        name: 'Odd Messages',
+        extensionId: 'oddMessage',
+        tags: ['penguinmod'],
+        iconURL: silvxrcatOddMessagesExtensionIcon,
+        description: 'For logging and variable utilization.',
+        featured: true,
+        extDeveloper: 'silvxrcat'
+    },
+    {
+        name: 'Extra Mathematics',
+        extensionId: 'https://extensions.penguinmod.com/extensions/jwklong/mathematics.js',
+        iconURL: 'https://extensions.penguinmod.com/images/jwklong/mathematics.avif',
+        tags: ['penguinmod', 'categoryexpansion', 'math'],
+        description: 'Complicated maths extension for nerds.',
+        extDeveloper: 'jwklong',
+        featured: false
+    },
+    {
+        name: 'All Menus',
+        extensionId: 'https://extensions.penguinmod.com/extensions/Lily/AllMenus.js',
+        iconURL: 'https://extensions.penguinmod.com/images/Lily/AllMenus.svg',
+        tags: ['penguinmod'],
+        description: 'Every dropdown menu for each block, in one extension.',
+        extDeveloper: 'LilyMakesThings',
+        featured: true
+    },
+    {
+        // not really an extension, but it's easiest to present it as one
+        name: 'TurboBuilder',
+        href: 'https://turbobuilder.vercel.app/',
+        extensionId: 'special_turboBuilder',
+        iconURL: turboBuilderIcon,
+        description: 'Create your own amazing extensions using a scratch-based UI!',
+        credits: 'Started by JeremyGamer13, continued by jwklong',
+        tags: ['extcreate'],
+        featured: true,
+        disabled: !(IsLocal || IsLiveTests)
+    },
+    {
+        // not really an extension, but it's easiest to present it as one
+        name: 'TurboBuilder - Dev Branch',
+        href: 'https://turbobuilder-dev.vercel.app/',
+        extensionId: 'special_turboBuilderDev',
+        iconURL: turboBuilderDevIcon,
+        description: 'Publicly available developer branch, with the latest features.',
+        credits: 'Started by JeremyGamer13, continued by jwklong',
+        tags: ['extcreate'],
+        featured: true
+    },*/
 ];
 
 /*
@@ -2270,7 +1302,7 @@ if (IsLocal || IsLiveTests) {
             customInsetColor: '#0094FF',
             description: (
                 <FormattedMessage
-                    defaultMessage="HTML キャンバスを使用した追加の描画ツール。他の拡張機能と併用すると効果的です。"
+                    defaultMessage="Extra drawing tools using an HTML Canvas. Works well when used with other extensions."
                     description="Description of Text extension"
                     id="text.description"
                 />
@@ -2284,7 +1316,7 @@ if (IsLocal || IsLiveTests) {
             tags: ['penguinmod'],
             insetIconURL: canvasExtensionIcon,
             customInsetColor: '#0094FF',
-            description: 'HTML Canvas の非推奨バージョン。',
+            description: 'depracated version of HTML Canvas.',
             featured: true
         },
         {
@@ -2292,7 +1324,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgFiles',
             iconURL: defaultExtensionIcon,
             tags: ['penguinmod', 'datamgmt'],
-            description: 'ファイルの基本ブロック。これはTurboWarpファイル拡張子に置き換えられました。',
+            description: 'Basic blocks for files. This has been replaced by the TurboWarp files extension.',
             featured: true
         },
         {
@@ -2300,7 +1332,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgClones',
             iconURL: jgCloneManagerExtensionIcon,
             tags: ['penguinmod'],
-            description: 'クローンとメインスプライト間のデータ共有が主な機能ですが、他にもいくつかの小さな機能があります。この機能はTurboWarp Clones+拡張機能に置き換えられました。',
+            description: 'Mainly sharing data between clones and the main sprite, but also some other small features. This has been replaced by the TurboWarp Clones+ extension.',
             featured: true
         },
         {
@@ -2308,7 +1340,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgEasySave',
             iconURL: defaultExtensionIcon,
             tags: ['penguinmod', 'datamgmt'],
-            description: '変数、リスト、および追加情報をファイルに保存し、それらを再度読み込みます。',
+            description: 'Save variables, lists and extra info to a file, then load those things back in.',
             featured: true
         },
         {
@@ -2327,7 +1359,7 @@ if (IsLocal || IsLiveTests) {
             tags: ['turbowarp'],
             insetIconURL: turbowarpIcon,
             iconURL: twIcon,
-            description: '奇妙な新しいブロック。感知拡張に置き換えられました。',
+            description: 'Weird new blocks. Replaced by Sensing Expansion.',
             featured: true
         },
         {
@@ -2341,7 +1373,7 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'Christmas',
             extensionId: 'jgChristmas',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/christmas.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/christmas.avif',
             tags: ['penguinmod', 'joke'],
             description: 'hooraye',
             featured: true
@@ -2349,26 +1381,26 @@ if (IsLocal || IsLiveTests) {
         {
             name: 'an amazing extension',
             extensionId: 'jgBestExtension',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epic.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epic.avif',
             internetConnectionRequired: true,
             tags: ['penguinmod', 'joke'],
-            description: 'これは本当に良い拡張機能です。今すぐ使ってください。',
+            description: 'this is SUCH A GOOD EXTENSION USE IT NOW',
             featured: true
         },
         {
             name: 'Epic utilities',
             extensionId: 'https://extensions.penguinmod.com/extensions/SharkPool/AprilFools.js',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epicutils.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/epicutils.avif',
             tags: ['penguinmod', 'joke'],
-            description: '本日のスポンサーである sharkpool (the epic utilities) がお届けする、非常に優れたユーティリティ',
+            description: 'the super good utilities brought to you by todays sponsor sharkpool (the epic utilities)',
             featured: true
         },
         {
             name: 'CATS',
             extensionId: 'https://extensions.penguinmod.com/extensions/Gen1x/CATS.js',
-            iconURL: 'https://extensions.penguinmod.com/images/Gen1x/cats.png',
+            iconURL: 'https://extensions.penguinmod.com/images/Gen1x/cats.avif',
             tags: ['penguinmod', 'joke'],
-            description: '猫に関するブロック。',
+            description: 'Blocks related to cats.',
             extDeveloper: 'G1nX',
             featured: true
         },
@@ -2378,17 +1410,17 @@ if (IsLocal || IsLiveTests) {
             tags: ['turbowarp', 'joke'],
             iconURL: 'https://extensions.turbowarp.org/images/Lily/McUtils.png',
             insetIconURL: turbowarpIcon,
-            description: 'ファーストフード店員のための基本的なユーティリティ',
+            description: 'Basic utilities for any fast food employee',
             featured: true,
             twDeveloper: 'LilyMakesThings'
         },
         {
             name: 'image blocks',
             extensionId: 'https://extensions.penguinmod.com/extensions/Ashime/funneimageblocks.js',
-            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/screenshot1.png',
+            iconURL: 'https://extensions.penguinmod.com/images/JeremyGamer13/screenshot1.avif',
             tags: ['penguinmod', 'joke'],
             internetConnectionRequired: true,
-            description: 'ペンギンブロックがあるのに猫ブロックなんて必要ない',
+            description: 'who needs cat blocks when you have penguin block',
             extDeveloper: 'Ashimee, 0znzw, CST1229',
             featured: true
         },
@@ -2398,7 +1430,7 @@ if (IsLocal || IsLiveTests) {
             iconURL: 'https://library.penguinmod.com/files/emojis/cluelesssmile.png',
             tags: ['penguinmod', 'joke'],
             internetConnectionRequired: true,
-            description: 'エイプリルフールは長すぎたね、このジョークはもう面白くない',
+            description: 'april fools took too long man this joke is not funny anymore',
             featured: true
         },
         {
@@ -2406,16 +1438,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jwUnite',
             iconURL: jwUniteExtensionIcon,
             tags: ['penguinmod'],
-            description: '最終的にデフォルトのツールボックスに統合されたレガシー拡張機能。',
-            featured: true
-        },
-        {
-            name: 'XML',
-            extensionId: 'jwXml',
-            iconURL: jwXmlExtensionIcon,
-            tags: ['penguinmod', 'datamgmt'],
-            description: 'XMLデータの作成と取得を可能にします。データの変更はまだできません。',
-            extDeveloper: 'jwklong',
+            description: 'Legacy extension that was eventually merged into the default toolbox.',
             featured: true
         },
         {
@@ -2423,7 +1446,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgDebugging',
             iconURL: jgDebuggingIcon,
             tags: ['penguinmod'],
-            description: '情報をログに記録し、コマンドを実行します。パッケージ化されたプロジェクトのデバッグや、ちょっとした変更に最適です。',
+            description: 'Log information and run commands. Good for debugging packaged projects or just easily changing things.',
             featured: true
         },
         {
@@ -2431,7 +1454,31 @@ if (IsLocal || IsLiveTests) {
             href: 'https://studio.penguinmod.com/loadExt.html',
             extensionId: 'special_testExtensionLibrary',
             iconURL: defaultExtensionIcon,
-            description: 'ライブラリから拡張機能を読み込むテスト。開発者向け。',
+            description: 'Test loading extensions from a library. For developers.',
+            featured: true
+        },
+        {
+            name: 'Editor',
+            href: 'https://studio.penguinmod.com/editor.html',
+            extensionId: 'special_editorExtensionLibrary',
+            iconURL: penguinmodLibraryExtensionIcon,
+            description: 'Opens the editor with this tab as the parent, still with the library opened. For developers.',
+            featured: true
+        },
+        {
+            name: 'localhost:5173',
+            href: 'http://localhost:5173',
+            extensionId: 'special_extensionLibraryLocalhost5173',
+            iconURL: defaultExtensionIcon,
+            description: 'Opens localhost:5173 in a new tab with this tab as the parent. For developers',
+            featured: true
+        },
+        {
+            name: 'localhost:5173?editor=true',
+            href: 'http://localhost:5173?editor=true',
+            extensionId: 'special_extensionLibraryLocalhost5173EditorTrue',
+            iconURL: defaultExtensionIcon,
+            description: 'Opens localhost:5173 in a new tab with this tab as the parent. Sets ?editor=true. For developers',
             featured: true
         },
         {
@@ -2447,7 +1494,7 @@ if (IsLocal || IsLiveTests) {
             iconURL: jwStructsExtensionIcon,
             description: (
                 <FormattedMessage
-                    defaultMessage="リストから削除されました。OOP ブロック。OOp は、オブジェクトとその相互作用を使用してアプリケーションやコンピュータ プログラムを設計するプログラミングパラダイムです。"
+                    defaultMessage="Removed from list. OOP blocks. OOp is a programming paradigm that uses objects and their interactions to design applications and computer programs."
                     description="Description of OOP extension"
                     id="jwStructs.jwStructsExtension.description"
                 />
@@ -2459,7 +1506,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'JgPermissionBlocks',
             iconURL: jgPermissionExtensionIcon,
             tags: ['penguinmod'],
-            description: 'レガシー拡張機能。古いブロックはもはや本来の用途を果たせません。PenguinModが特定のタスクを実行する際に要求する権限を管理するための直接ブロックです。',
+            description: 'Legacy extension, old blocks no longer serve a real purpose. Direct blocks to manage permissions that PenguinMod requires you have to do certain tasks.',
             featured: true
         },
         {
@@ -2467,19 +1514,20 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgDev',
             iconURL: defaultExtensionIcon,
             tags: ['penguinmod'],
-            description: '拡張機能をテストして、可能かどうかを確認します。\nブロックは変更される可能性があり、プロジェクトが破損する可能性があるため、本番環境では使用しないでください。',
+            description: 'Test extension to see if things are possible.\nDO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.',
             credits: 'Some features added from LilyMakesThings, CubesterYT, TheShovel',
             featured: true
         },
         {
             name: '3D',
             extensionId: 'jg3d',
-            iconURL: jg3dExtensionIcon,
+            iconURL: defaultExtensionIcon,
             tags: ['penguinmod', '3d'],
             customInsetColor: '#B200FF',
             insetIconURL: jg3dInsetExtensionIcon,
-            description: '3D の魔法を使ってプロジェクトに彩りを添えましょう。',
-            featured: true
+            description: 'Do not use for real projects. Not recommended, unstable, and will be rewritten/remade entirely at a later date. In development.',
+            featured: true,
+            extensionWarningOnImport: true
         },
         {
             name: '3D Physics',
@@ -2488,7 +1536,7 @@ if (IsLocal || IsLiveTests) {
             tags: ['penguinmod', '3d'],
             customInsetColor: '#D066FE',
             insetIconURL: fr3dPhysicsInsetExtensionIcon,
-            description: '3D 拡張のための物理。',
+            description: 'Physics for the 3D extension.',
             featured: true
         },
         {
@@ -2498,7 +1546,7 @@ if (IsLocal || IsLiveTests) {
             tags: ['penguinmod', 'hardware', '3d'],
             customInsetColor: '#B200FF',
             insetIconURL: jg3dVrInsetExtensionIcon,
-            description: '開発中。互換性が損なわれる可能性があります。プレイヤーがあなたの世界に飛び込めるようにしましょう！',
+            description: 'Do not use for real projects. Not recommended, unstable, and will be rewritten/remade entirely at a later date. In development. May break compatibility. Allow players to really jump into your world!',
             featured: true,
             extensionWarningOnImport: true
         },
@@ -2508,7 +1556,7 @@ if (IsLocal || IsLiveTests) {
             iconURL: jgsilvxrcatInterfacesExtensionIcon,
             credits: 'silvxrcat',
             tags: ['penguinmod'],
-            description: '開発中',
+            description: 'In development.',
             featured: true
         },
         {
@@ -2519,16 +1567,16 @@ if (IsLocal || IsLiveTests) {
             twDeveloper: 'CubesterYT',
             customInsetColor: '#66B8FF',
             tags: ['penguinmod', 'packager'],
-            description: '開発中。Web サイトでできないことをパッケージ アプリケーションで実現できます。',
+            description: 'In development. Do extra things in packaged applications that you can\'t do in the website!',
             featured: true
         },
-        
+
         {
             name: 'Inline Blocks',
             extensionId: 'pmInlineBlocks',
             iconURL: pmInlineBlocksExtensionIcon,
             tags: ['penguinmod'],
-            description: '簡単なタスク用のクイックブロックを作成します。任意の円形の場所に挿入して、任意の値を返すように設定できます。',
+            description: 'Create quick blocks for simple tasks. Insert them into any circle spot and have them return any value you want.',
             featured: true
         },
         {
@@ -2544,7 +1592,7 @@ if (IsLocal || IsLiveTests) {
             iconURL: jgPathfindingExtensionIcon,
             description: (
                 <FormattedMessage
-                    defaultMessage="(不安定または遅延あり。さらなる作業が必要です) スプライトがゲーム内の障害物にクリップするのではなく、障害物を回避できるようにします。"
+                    defaultMessage="(Unstable and or laggy; Needs further work) Have sprites navigate around obstacles in your game instead of clipping into them."
                     description="Description of Pathfinding extension"
                     id="jgPathfinding.Pathfinding.description"
                 />
@@ -2556,7 +1604,7 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgAnimation',
             iconURL: jgAnimationExtensionIcon,
             tags: ['penguinmod'],
-            description: '開発中。現在バグがあり、機能が不足しています。',
+            description: 'In development. Currently buggy and missing features.',
             featured: true
         },
         {
@@ -2564,24 +1612,21 @@ if (IsLocal || IsLiveTests) {
             extensionId: 'jgVr',
             iconURL: jgVrExtensionIcon,
             tags: ['penguinmod', 'hardware'],
-            description: '開発中',
+            description: 'In development.',
             extDeveloper: "JeremyGamer13",
             extraLabels: [
                 {
                     name: "Uses code from",
-                    value: '"Augmented Reality" by Vadik1'
+                    value: "\"Augmented Reality\" by Vadik1"
                 }
             ],
-            extensionWarningOnImport: true,
-            featured: true
+            featured: true,
+            extensionWarningOnImport: true
         }
     ];
     extras.forEach(ext => {
         menuItems.push(ext);
     });
 }
-const filteredMenuItems = (typeof ENV !== 'undefined' && ENV.CanLoadCustomExtension === false)
-    ? menuItems.filter(item => item.extensionId !== '')
-    : menuItems;
 
-export default filteredMenuItems;
+export default menuItems;
