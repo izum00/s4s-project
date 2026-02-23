@@ -53,8 +53,8 @@ export default async function () {
                 { title: "x", input: "number", params: "sx" },
                 { title: "y", input: "number", params: "sy" },
                 "br",
-                { title: "width", input: "monitor", params: "width" },
-                { title: "height", input: "monitor", params: "height" },
+                { title: "width", input: "number", params: "width" },
+                { title: "height", input: "number", params: "height" },
                 "br",
                 { title: "Group Scaling", id: "groupScale", input: "toggler" },
                 "br",
@@ -248,7 +248,7 @@ export default async function () {
 
     /* GUI Utils */
     function getButtonURI(name, dontCompile) {
-        const themeHex = isPM ? "#575e75" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
+        const themeHex = isPM ? "#00c3ff" : document.documentElement.style.getPropertyValue("--looks-secondary") || "#ff4c4c";
         const guiSVG = guiIMGS[name].replaceAll("red", themeHex);
         if (dontCompile) return guiSVG;
         else return "data:image/svg+xml;base64," + btoa(guiSVG);
@@ -348,7 +348,7 @@ export default async function () {
     }
 
     function getToolFunc(name) {
-        const isX = name.endsWith("x");
+        const isX = name.endsWith("x") || name.endsWith("width");
         switch (name) {
             case "Position/x":
             case "Position/y": return (item, value) => {
@@ -373,6 +373,20 @@ export default async function () {
                   value /= item[panelTag].sy;
                   item[panelTag].sy *= value;
                 }
+
+                scaleItem(item, value, isX, modalStorage["groupScale"], modalStorage["strokeScale"]);
+            }
+            case "Scaling/width":
+            case "Scaling/height": return (item, value) => {
+                if (!item[panelTag]) item[panelTag] = structuredClone(valueObserverObj);
+                const currentScale = item.getBounds()[isX ? "width" : "height"];
+
+                // determine the delta needed to move the currentScale to value
+                value = (value * 2) / currentScale;
+                if (!value) value = epsilon;
+
+                if (isX) item[panelTag].sx *= value;
+                else item[panelTag].sy *= value;
 
                 scaleItem(item, value, isX, modalStorage["groupScale"], modalStorage["strokeScale"]);
             }
