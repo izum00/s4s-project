@@ -1,127 +1,165 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import bindAll from 'lodash.bindall';
+import Draggable from 'react-draggable';
 import {FormattedMessage} from 'react-intl';
+import {ContextMenuTrigger} from 'react-contextmenu';
+import {BorderedMenuItem, ContextMenu, MenuItem} from '../context-menu/context-menu.jsx';
+import Box from '../box/box.jsx';
+import DefaultMonitor from './default-monitor.jsx';
+import LargeMonitor from './large-monitor.jsx';
+import SliderMonitor from '../../containers/slider-monitor.jsx';
+import ListMonitor from '../../containers/list-monitor.jsx';
 
 import styles from './monitor.css';
-import {List} from 'react-virtualized';
-import DOMElementRenderer from '../../containers/dom-element-renderer.jsx';
 
-class ListMonitorScroller extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'rowRenderer',
-            'noRowsRenderer',
-            'handleEventFactory'
-        ]);
-    }
-    handleEventFactory (index) {
-        return () => this.props.onActivate(index);
-    }
-    noRowsRenderer () {
-        return (
-            <div className={classNames(styles.listRow, styles.listEmpty)}>
-                <FormattedMessage
-                    defaultMessage="(empty)"
-                    description="Text shown on a list monitor when a list is empty"
-                    id="gui.monitor.listMonitor.empty"
-                />
-            </div>
-        );
-    }
-    rowRenderer ({index, key, style}) {
-        const item = this.props.values[index];
-        const renderedValue = (item === null || item === undefined) ? "null" : item.toListItem
-            ? item.toListItem()
-            : item.toMonitorContent
-                ? item.toMonitorContent()
-                : item.toReporterContent
-                    ? item.toReporterContent()
-                    : item;
-        const value = (item === null || item === undefined ? false : item.isHTML)
-            ? (<DOMElementRenderer domElement={renderedValue} />)
-            : String(item);
-        return (
-            <div
-                className={styles.listRow}
-                key={key}
-                style={style}
-            >
-                <div className={styles.listIndex}>{index + 1 /* one indexed */}</div>
-                <div
-                    className={styles.listValue}
-                    dataIndex={index}
-                    style={{background: this.props.categoryColor}}
-                    onClick={this.props.draggable ? this.handleEventFactory(index) : null}
-                >
-                    {this.props.draggable && this.props.activeIndex === index ? (
-                        <div className={styles.inputWrapper}>
-                            <input
-                                autoFocus
-                                autoComplete={false}
-                                className={classNames(styles.listInput, 'no-drag')}
-                                spellCheck={false}
-                                type="text"
-                                value={this.props.activeValue}
-                                onBlur={this.props.onDeactivate}
-                                onChange={this.props.onInput}
-                                onFocus={this.props.onFocus}
-                                onKeyDown={this.props.onKeyPress} // key down to get ahead of blur
-                            />
-                            <div
-                                className={styles.removeButton}
-                                onMouseDown={this.props.onRemove} // mousedown to get ahead of blur
-                            >
-                                {'✖︎'}
-                            </div>
-                        </div>
-
-                    ) : (
-                        <div className={styles.valueInner}>{value}</div>
-                    )}
-                </div>
-            </div>
-        );
-    }
-    render () {
-        const {height, values, width, activeIndex, activeValue} = this.props;
-        // Keep the active index in view if defined, else must be undefined for List component
-        const scrollToIndex = activeIndex === null ? undefined : activeIndex; /* eslint-disable-line no-undefined */
-        return (
-            <List
-                activeIndex={activeIndex}
-                activeValue={activeValue}
-                height={(height) - 42 /* Header/footer size, approx */}
-                noRowsRenderer={this.noRowsRenderer}
-                rowCount={values.length}
-                rowHeight={24 /* Row size is same for all rows */}
-                rowRenderer={this.rowRenderer}
-                scrollToIndex={scrollToIndex} /* eslint-disable-line no-undefined */
-                values={values}
-                width={width}
-            />
-        );
-    }
-}
-
-ListMonitorScroller.propTypes = {
-    activeIndex: PropTypes.number,
-    activeValue: PropTypes.string,
-    categoryColor: PropTypes.string,
-    draggable: PropTypes.bool,
-    height: PropTypes.number,
-    onActivate: PropTypes.func,
-    onDeactivate: PropTypes.func,
-    onFocus: PropTypes.func,
-    onInput: PropTypes.func,
-    onKeyPress: PropTypes.func,
-    onRemove: PropTypes.func,
-    values: PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ])),
-    width: PropTypes.number
+const categories = {
+    data: '#FF8C1A',
+    sensing: '#5CB1D6',
+    sound: '#CF63CF',
+    looks: '#9966FF',
+    motion: '#4C97FF',
+    list: '#FC662C',
+    control: '#FFAB19',
+    extension: '#0FBD8C'
 };
-export default ListMonitorScroller;
+
+const modes = {
+    default: DefaultMonitor,
+    large: LargeMonitor,
+    slider: SliderMonitor,
+    list: ListMonitor
+};
+
+const MonitorComponent = props => (
+    <ContextMenuTrigger
+        // TW: if export is defined, we always show it, even outside of the editor
+        disable={!props.draggable && !props.onExport}
+        holdToDisplay={props.mode === 'slider' ? -1 : 1000}
+        id={`monitor-${props.id}`}
+    >
+        <Draggable
+            bounds=".monitor-overlay" // Class for monitor container
+            cancel=".no-drag" // Class used for slider input to prevent drag
+            defaultClassNameDragging={styles.dragging}
+            disabled={!props.draggable}
+            onStop={props.onDragEnd}
+        >
+            <Box
+                className={styles.monitorContainer}
+                componentRef={props.componentRef}
+                onDoubleClick={props.mode === 'list' || !props.draggable ? null : props.onNextMode}
+                data-id={props.id}
+                data-opcode={props.opcode}
+            >
+                {React.createElement(modes[props.mode], {
+                    categoryColor: categories[props.category] ?? props.category,
+                    // Either get the color by category, or assume the passed category
+                    // is a valid color.
+                    ...props
+                })}
+            </Box>
+        </Draggable>
+        {ReactDOM.createPortal((
+            // Use a portal to render the context menu outside the flow to avoid
+            // positioning conflicts between the monitors `transform: scale` and
+            // the context menus `position: fixed`. For more details, see
+            // http://meyerweb.com/eric/thoughts/2011/09/12/un-fixing-fixed-elements-with-css-transforms/
+            <ContextMenu id={`monitor-${props.id}`}>
+                {props.draggable && props.onSetModeToDefault &&
+                    <MenuItem onClick={props.onSetModeToDefault}>
+                        <FormattedMessage
+                            defaultMessage="normal readout"
+                            description="Menu item to switch to the default monitor"
+                            id="gui.monitor.contextMenu.default"
+                        />
+                    </MenuItem>}
+                {props.draggable && props.onSetModeToLarge &&
+                    <MenuItem onClick={props.onSetModeToLarge}>
+                        <FormattedMessage
+                            defaultMessage="large readout"
+                            description="Menu item to switch to the large monitor"
+                            id="gui.monitor.contextMenu.large"
+                        />
+                    </MenuItem>}
+                {props.draggable && props.onSetModeToSlider &&
+                    <MenuItem onClick={props.onSetModeToSlider}>
+                        <FormattedMessage
+                            defaultMessage="slider"
+                            description="Menu item to switch to the slider monitor"
+                            id="gui.monitor.contextMenu.slider"
+                        />
+                    </MenuItem>}
+                {props.draggable && props.onSliderPromptOpen && props.mode === 'slider' &&
+                    <BorderedMenuItem onClick={props.onSliderPromptOpen}>
+                        <FormattedMessage
+                            defaultMessage="change slider range"
+                            description="Menu item to change the slider range"
+                            id="gui.monitor.contextMenu.sliderRange"
+                        />
+                    </BorderedMenuItem>}
+                {props.onImport &&
+                    <MenuItem onClick={props.onImport}>
+                        <FormattedMessage
+                            defaultMessage="import"
+                            description="Menu item to import into list monitors"
+                            id="gui.monitor.contextMenu.import"
+                        />
+                    </MenuItem>}
+                {props.onExport &&
+                    <MenuItem onClick={props.onExport}>
+                        <FormattedMessage
+                            defaultMessage="export"
+                            description="Menu item to export from list monitors"
+                            id="gui.monitor.contextMenu.export"
+                        />
+                    </MenuItem>}
+                {props.draggable && props.onHide &&
+                    <BorderedMenuItem onClick={props.onHide}>
+                        <FormattedMessage
+                            defaultMessage="hide"
+                            description="Menu item to hide the monitor"
+                            id="gui.monitor.contextMenu.hide"
+                        />
+                    </BorderedMenuItem>}
+            </ContextMenu>
+        ), document.body)}
+    </ContextMenuTrigger>
+
+);
+
+MonitorComponent.categories = categories;
+
+const monitorModes = Object.keys(modes);
+
+MonitorComponent.propTypes = {
+    category: PropTypes.oneOf([
+        PropTypes.string,
+        ...Object.keys(categories)
+    ]),
+    componentRef: PropTypes.func.isRequired,
+    draggable: PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    mode: PropTypes.oneOf(monitorModes),
+    opcode: PropTypes.string.isRequired,
+    onDragEnd: PropTypes.func.isRequired,
+    onExport: PropTypes.func,
+    onImport: PropTypes.func,
+    onHide: PropTypes.func,
+    onNextMode: PropTypes.func.isRequired,
+    onSetModeToDefault: PropTypes.func,
+    onSetModeToLarge: PropTypes.func,
+    onSetModeToSlider: PropTypes.func,
+    onSliderPromptOpen: PropTypes.func
+};
+
+MonitorComponent.defaultProps = {
+    category: 'extension',
+    mode: 'default'
+};
+
+export {
+    MonitorComponent as default,
+    monitorModes
+};
