@@ -13,7 +13,7 @@ RUN chmod -R 777 /app
 RUN chmod +x static-upload.sh
 RUN mkdir -p /app/translations/messages && chmod -R 777 /app/translations
 RUN apt-get update && apt-get install -y python3 python3-pip
-RUN pip3 install --upgrade huggingface_hub --break-system-packages
+RUN pip3 install --upgrade huggingface_hub
 # 依存関係をインストール（競合を無視）
 #RUN PNPM_SKIP_BUILDS_APPROVAL=true pnpm install --prefer-offline --strict-peer-dependencies=false
 RUN npm config set registry https://registry.npmjs.org/
