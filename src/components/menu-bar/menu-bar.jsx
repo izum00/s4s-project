@@ -9,12 +9,10 @@ import React from 'react';
 
 import VM from 'scratch-vm';
 
-
 import Box from '../box/box.jsx';
 import Button from '../button/button.jsx';
 import CommunityButton from './community-button.jsx';
 import ShareButton from './share-button.jsx';
-import GoogleDriveSave from './google-drive-save.jsx';
 import { ComingSoonTooltip } from '../coming-soon/coming-soon.jsx';
 import Divider from '../divider/divider.jsx';
 import LanguageSelector from '../../containers/language-selector.jsx';
@@ -79,12 +77,10 @@ import languageIcon from '../language-selector/language-icon.svg';
 import aboutIcon from './icon--about.svg';
 import errorIcon from './tw-error.svg';
 import themeIcon from './tw-moon.svg';
-import s4sicon from './favicon.png'
 
 import scratchLogo from './scratch-logo.svg';
 
 import sharedMessages from '../../lib/shared-messages';
-//import { consoleLogs } from '../../lib/pm-log-capture.js';
 
 import SeeInsideButton from './tw-see-inside.jsx';
 import { notScratchDesktop } from '../../lib/isScratchDesktop.js';
@@ -211,6 +207,7 @@ class MenuBar extends React.Component {
             'handleClickPackager',
             'handleClickRestorePoints',
             'handleClickSeeCommunity',
+            'handleClickDownloadLogs',
             'handleClickShare',
             'handleKeyPress',
             'handleLanguageMouseUp',
@@ -480,7 +477,7 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     <div className={styles.fileGroup}>
-                        {true ? (
+                        {this.props.onClickLogo ? (
                             <div className={classNames(styles.menuBarItem)}>
                                 <img
                                     alt="Scratch"
@@ -488,7 +485,7 @@ class MenuBar extends React.Component {
                                         [styles.clickable]: typeof this.props.onClickLogo !== 'undefined'
                                     })}
                                     draggable={false}
-                                    src={s4sicon}
+                                    src={this.props.logo}
                                     onClick={this.props.onClickLogo}
                                 />
                             </div>
@@ -700,22 +697,20 @@ class MenuBar extends React.Component {
                                             >
                                                 <FormattedMessage
                                                     defaultMessage="Load from a folder"
-                                                    description="Menu item to load a project from a folder"
+                                                    description="Loads the contents of a folder as if it was a project zip"
                                                     id="pm.menuBar.loadFromFolder"
                                                 />
-
                                             </MenuItem>
-                                            
                                             <SB3Downloader>{(_className, downloadProject, extended) => (
                                                 <React.Fragment>
                                                     <MenuItem
                                                         onClick={this.getSaveToComputerHandler(extended.saveAsFolder)}
                                                     >
-                                                            <FormattedMessage
-                                                                defaultMessage="Export project to folder"
-                                                                description="Menu item to export project to a folder"
-                                                                id="pm.menuBar.exportToFolder"
-                                                            />
+                                                        <FormattedMessage
+                                                            defaultMessage="Export project to folder"
+                                                            description="Exports the contents of a project save to a folder"
+                                                            id="pm.menuBar.ExportToFolder"
+                                                        />
                                                     </MenuItem>
                                                 </React.Fragment>
                                             )}</SB3Downloader>
@@ -852,7 +847,6 @@ class MenuBar extends React.Component {
                                         </MenuItem>
                                     )}</CloudVariablesToggler>
                                 </MenuSection>
-                                
                                 <MenuSection>
                                     <MenuItem onClick={this.props.onClickSettings}>
                                         <FormattedMessage
@@ -860,9 +854,13 @@ class MenuBar extends React.Component {
                                             description="Menu bar item for gameplay settings"
                                             id="pm.menuBar.moreSettings"
                                         />
-                                      <MenuItem onClick={this.handleClickDownloadLogs}>
-                                          Download Logs
-                                      </MenuItem>
+                                    </MenuItem>
+                                    <MenuItem onClick={this.handleClickDownloadLogs}>
+                                        <FormattedMessage
+                                            defaultMessage="Download Logs"
+                                            description="Menu bar button to download all logs stored by the browser."
+                                            id="pm.menuBar.downloadLogs"
+                                        />
                                     </MenuItem>
                                 </MenuSection>
                             </MenuBarMenu>
@@ -950,7 +948,6 @@ class MenuBar extends React.Component {
                             />
                         ) : []))}
                     </div>
-                    <GoogleDriveSave />
                     <div className={styles.menuBarItem}>
                         {this.props.isShowingProject && this.props.canEditTitle ?
                             (<ShareButton
@@ -962,7 +959,7 @@ class MenuBar extends React.Component {
                     <div className={styles.menuBarItem}>
                         <a
                             className={styles.feedbackLink}
-                            href="https://scratch-school.ct.ws"
+                            href="https://penguinmod.com"
                             rel="noopener noreferrer"
                             target="_blank"
                         >
