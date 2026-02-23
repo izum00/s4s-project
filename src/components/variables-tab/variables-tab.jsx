@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import React from 'react';
 import bindAll from 'lodash.bindall';
@@ -8,29 +8,6 @@ import bindAll from 'lodash.bindall';
 import Input from '../forms/input.jsx';
 import Box from '../box/box.jsx';
 import styles from './variables-tab.css';
-
-const messages = defineMessages({
-    searchPlaceholder: {
-        defaultMessage: 'Search',
-        description: 'Placeholder text for search bar',
-        id: 'tw.variablesTab.search'
-    },
-    sprite: {
-        defaultMessage: 'Variables for this sprite',
-        description: 'Heading for local sprite variables',
-        id: 'tw.variablesTab.sprite'
-    },
-    global: {
-        defaultMessage: 'Variables for all sprites',
-        description: 'Heading for global variables',
-        id: 'tw.variablesTab.global'
-    },
-    showLarge: {
-        defaultMessage: 'Click to display very large value.',
-        description: 'Button label for showing large variable value',
-        id: 'tw.variablesTab.showLarge'
-    }
-});
 
 class VariablesTab extends React.Component {
     constructor(props) {
@@ -49,7 +26,6 @@ class VariablesTab extends React.Component {
             query: String(event.target.value).toLowerCase()
         })
     }
-
     renderVariable(variable) {
         const isTooBig = (variable.type === 'list' ? variable.value.join('\n').length > 5000000
             : String(variable.value).length > 1000000) && !this.props.showLargeValue[variable.id];
@@ -60,7 +36,6 @@ class VariablesTab extends React.Component {
 
         const displayVariableValue = isEditingValue ? this.props.editingVariableEditValue
             : (variable.type === 'list' ? variable.value.join('\n') : variable.value);
-
         const inputValueProps = {
             onFocus: () => this.props.onClickVariableValue(variable),
             onBlur: (event) => this.props.onEditVariableValue(event, variable),
@@ -79,12 +54,12 @@ class VariablesTab extends React.Component {
                 />
             </td>
             <td className={styles.variableValue}>
-                {isTooBig ? 
+                {isTooBig ?
                     <button
                         onClick={() => this.props.onClickShowLarge(variable.id)}
                         className={styles.valueTooBig}
                     >
-                        <FormattedMessage {...messages.showLarge} />
+                        Click to display very large value.
                     </button>
                     : variable.type === 'list' ? <textarea {...inputValueProps} value={displayVariableValue} />
                     : <input {...inputValueProps} value={displayVariableValue} />
@@ -113,13 +88,25 @@ class VariablesTab extends React.Component {
                 />
 
                 {filteredLocal.length > 0 && <div>
-                    <span className={styles.heading}>Variables for this sprite</span>
+                    <span className={styles.heading}>
+                        <FormattedMessage
+                            defaultMessage="For this sprite only"
+                            description="Text for the section of variables that are for only this sprite"
+                            id="pm.variablesTab.forThisSpriteOnly"
+                        />
+                    </span>
                     <table>
                         {filteredLocal.map(this.renderVariable)}
                     </table>
                 </div>}
                 {filteredGlobal.length > 0 && <div>
-                    <span className={styles.heading}>Variables for all sprites</span>
+                    <span className={styles.heading}>
+                        <FormattedMessage
+                            defaultMessage="Variables for all sprites"
+                            description="Text for the section of variables that are for all sprites to use"
+                            id="pm.variablesTab.forAllSprites"
+                        />
+                    </span>
                     <table>
                         {filteredGlobal.map(this.renderVariable)}
                     </table>
