@@ -1,10 +1,10 @@
+
 import classNames from 'classnames';
 import bindAll from 'lodash.bindall';
 import PropTypes from 'prop-types';
 import React from 'react';
 import localforage from 'localforage';
-import {defineMessages, injectIntl, intlShape} from 'react-intl';
-import { FormattedMessage } from 'react-intl';
+import {defineMessages, injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
 import LibraryItem from '../../containers/library-item.jsx';
 import Modal from '../../containers/modal.jsx';
@@ -256,7 +256,8 @@ class LibraryComponent extends React.Component {
     }
     createFilteredData () {
         const data = [].concat(
-            this.state.data,
+            this.custom_extensions,
+            this.state.data
         );
 
         const no_tags = this.state.selectedTags.length === 0;
@@ -293,7 +294,6 @@ class LibraryComponent extends React.Component {
         }
 
         const fully_filtered = [].concat(
-            this.custom_extensions,
             filtered.filter(item => (this.state.favorites.includes(item.extensionId))),
             filtered.filter(item => (!this.state.favorites.includes(item.extensionId)))
         ).map(item => Object.assign(item, { custom: !!item.custom }));
@@ -314,9 +314,6 @@ class LibraryComponent extends React.Component {
                 id={this.props.id}
                 onRequestClose={this.handleClose}
             >
-                {/*
-                    todo: translation support?
-                */}
                 {this.props.header ? (
                     <h1
                         className={classNames(
@@ -347,29 +344,26 @@ class LibraryComponent extends React.Component {
                         className={classNames(styles.libraryFilterBar)}
                         style={this.state.collapsed ? { display: "none" } : null}
                     >
-                        {/*
-                            todo: translation?
-                        */}
                         <h3 className={classNames(styles.whiteTextInDarkMode)}>
                             <FormattedMessage
                                 defaultMessage="Filters"
-                                description="Label for the library filter section"
-                                id="gui.library.filters"
+                                description="Header text for the filter controls in the asset picker"
+                                id="pm.library.filtersHeader"
                             />
                         </h3>
                         {this.props.filterable && (
                             <div>
-                                    <Filter
-                                        className={classNames(
-                                            styles.filterBarItem,
-                                            styles.filter
-                                        )}
-                                        filterQuery={this.state.filterQuery}
-                                        inputClassName={styles.filterInput}
-                                        placeholderText={this.props.intl.formatMessage(messages.filterPlaceholder)}
-                                        onChange={this.handleFilterChange}
-                                        onClear={this.handleFilterClear}
-                                    />
+                                <Filter
+                                    className={classNames(
+                                        styles.filterBarItem,
+                                        styles.filter
+                                    )}
+                                    filterQuery={this.state.filterQuery}
+                                    inputClassName={styles.filterInput}
+                                    placeholderText={this.props.intl.formatMessage(messages.filterPlaceholder)}
+                                    onChange={this.handleFilterChange}
+                                    onClear={this.handleFilterClear}
+                                />
                                 <Divider className={classNames(styles.filterBarItem, styles.divider)} />
                             </div>
                         )}
