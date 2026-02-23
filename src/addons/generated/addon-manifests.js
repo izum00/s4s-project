@@ -81,6 +81,8 @@ import _tw_straighten_comments from "../addons/tw-straighten-comments/_manifest_
 import _tw_remove_feedback from "../addons/tw-remove-feedback/_manifest_entry.js";
 import _tw_remove_backpack from "../addons/tw-remove-backpack/_manifest_entry.js";
 import _tw_disable_cloud_variables from "../addons/tw-disable-cloud-variables/_manifest_entry.js";
+import _paint_reshape_tweaks from "../addons/paint-reshape-tweaks/_manifest_entry.js";
+import _block_pins from "../addons/block-pins/_manifest_entry.js";
 
 export default {
   "editor-tweaks": _editor_tweaks,
@@ -166,4 +168,6 @@ export default {
   "multi-tab-code": _multi_tab_code,
   "editor-animations": _editor_animations,
   "reorder-custom-inputs": _reorder_custom_inputs,
+  "paint-reshape-tweaks": _paint_reshape_tweaks,
+  "block-pins": _block_pins
 };
