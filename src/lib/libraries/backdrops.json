@@ -401,6 +401,22 @@
         "libraryFilePage": "images/user/backdrops/ducks.png"
     },
     {
+        "name": "Earth in Space",
+        "tags": [
+            "space",
+            "planet",
+            "stars",
+            "nasa",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 480,
+        "rotationCenterY": 360,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/user/backdrops/earth_space.png"
+    },
+    {
         "name": "Farm",
         "tags": [
             "outdoors",
@@ -963,6 +979,23 @@
         "md5ext": "32b2316fd375faa18088f6c57ebb1c8d.png",
         "rotationCenterX": 480,
         "rotationCenterY": 360
+    },
+    {
+        "name": "Space Galaxies",
+        "tags": [
+            "space",
+            "stars",
+            "hubble",
+            "galaxy",
+            "nasa",
+            "new"
+        ],
+        "bitmapResolution": 2,
+        "dataFormat": "png",
+        "rotationCenterX": 480,
+        "rotationCenterY": 360,
+        "fromPenguinModLibrary": true,
+        "libraryFilePage": "images/user/backdrops/space.png"
     },
     {
         "name": "Spaceship",
