@@ -7,7 +7,8 @@ const { exec } = require('child_process'); // 追加
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
-var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+var defaultsdeep = require('lodash.defaultsdeep');
+//var GhPagesWebpackPlugin = require('gh-pages-webpack-plugin');
 
 // PostCss
 var autoprefixer = require('autoprefixer');
@@ -106,73 +107,64 @@ const base = {
         fs: 'empty'
     },
     module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                include: [
-                    path.resolve(__dirname, 'src'),
-                    /node_modules[\\/]scratch-[^\\/]+[\\/]src/,
-                    /node_modules[\\/]pify/,
-                    /node_modules[\\/]@vernier[\\/]godirect/
-                ],
-                use: [
-                    {
-                        loader: 'cache-loader',
-                        options: {
-                            cacheDirectory: path.resolve(__dirname, '.webpack/cache1-babel')
-                        }
-                    },
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            babelrc: false,
-                            plugins: [
-                                ['react-intl', {
-                                    messagesDir: './translations/messages/'
-                                }]
-                            ],
-                            presets: ['@babel/preset-env', '@babel/preset-react']
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { 
-                        loader: 'cache-loader',
-                        options: {
-                            cacheDirectory: path.resolve(__dirname, '.webpack/cache2-postcss')
-                        }
-                    },
-                    { 
-                        loader: 'css-loader', 
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                            localIdentName: '[name]_[local]_[hash:base64:5]',
-                            camelCase: true
-                        }
-                    },
-                    { 
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: () => [postcssImport, postcssVars, autoprefixer]
-                        }
-                    }
-                ]
+        rules: [{
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+            include: [
+                path.resolve(__dirname, 'src'),
+                /node_modules[\\/]scratch-[^\\/]+[\\/]src/,
+                /node_modules[\\/]pify/,
+                /node_modules[\\/]@vernier[\\/]godirect/
+            ],
+            options: {
+                // Explicitly disable babelrc so we don't catch various config
+                // in much lower dependencies.
+                babelrc: false,
+                plugins: [
+                    ['react-intl', {
+                        messagesDir: './translations/messages/'
+                    }]],
+                presets: ['@babel/preset-env', '@babel/preset-react']
             }
-        ]
+        },
+        {
+            test: /\.css$/,
+            use: [{
+                loader: 'style-loader'
+            }, {
+                loader: 'css-loader',
+                options: {
+                    modules: true,
+                    importLoaders: 1,
+                    localIdentName: '[name]_[local]_[hash:base64:5]',
+                    camelCase: true
+                }
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    ident: 'postcss',
+                    plugins: function () {
+                        return [
+                            postcssImport,
+                            postcssVars,
+                            autoprefixer
+                        ];
+                    }
+                }
+            }]
+        },
+        {
+            test: /\.svg$/,
+            use: ['@svgr/webpack']
+        }]
     },
     plugins: [
-        new HardSourceWebpackPlugin({
-            cacheDirectory: path.resolve(__dirname, '.webpack/cache3-hard-source')
-        })
     ],
 };
-if (!process.env.CI) base.plugins.push(new webpack.ProgressPlugin());
+
+if (!process.env.CI) {
+    base.plugins.push(new webpack.ProgressPlugin());
+}
 
 // ★追加: ビルド後のアップロード処理を追加
 base.plugins.push(new RunStaticUploadPlugin());
@@ -189,13 +181,17 @@ module.exports = [
             'addon-settings': './src/playground/addon-settings.jsx',
             'credits': './src/playground/credits/credits.jsx'
         },
-        output: { path: path.resolve(__dirname, 'build') },
+        output: {
+            path: path.resolve(__dirname, 'build')
+        },
         module: {
             rules: base.module.rules.concat([
                 {
                     test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     loader: 'file-loader',
-                    options: { outputPath: 'static/assets/' }
+                    options: {
+                        outputPath: 'static/assets/'
+                    }
                 }
             ])
         },
@@ -210,7 +206,7 @@ module.exports = [
         plugins: base.plugins.concat([
             new FileListPlugin({ filename: 'file-list-webpack.json' }),
             new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+                'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
                 'process.env.DEBUG': Boolean(process.env.DEBUG),
                 'process.env.ANNOUNCEMENT': JSON.stringify(process.env.ANNOUNCEMENT || ''),
                 'process.env.ENABLE_SERVICE_WORKER': JSON.stringify(process.env.ENABLE_SERVICE_WORKER || ''),
@@ -296,4 +292,57 @@ module.exports = [
             new TWGenerateServiceWorkerPlugin()
         ])
     })
-];
+].concat(
+    process.env.NODE_ENV === 'production' || process.env.BUILD_MODE === 'dist' ? (
+        // export as library
+        defaultsDeep({}, base, {
+            target: 'web',
+            entry: {
+                'scratch-gui': './src/index.js'
+            },
+            output: {
+                libraryTarget: 'umd',
+                filename: 'js/[name].js',
+                chunkFilename: 'js/[name].js',
+                path: path.resolve('dist'),
+                publicPath: `${STATIC_PATH}/`
+            },
+            externals: {
+                'react': 'react',
+                'react-dom': 'react-dom'
+            },
+            module: {
+                rules: base.module.rules.concat([
+                    {
+                        test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'static/assets/',
+                            publicPath: `${STATIC_PATH}/assets/`
+                        }
+                    }
+                ])
+            },
+            plugins: base.plugins.concat([
+                new FileListPlugin({ filename: 'file-list-webpack.json' }),
+                new CopyWebpackPlugin({
+                    patterns: [
+                        {
+                            from: 'node_modules/scratch-blocks/media',
+                            to: 'static/blocks-media'
+                        }
+                    ]
+                }),
+                // Include library JSON files for scratch-desktop to use for downloading
+                new CopyWebpackPlugin({
+                    patterns: [
+                        {
+                            from: 'src/lib/libraries/*.json',
+                            to: 'libraries',
+                            flatten: true
+                        }
+                    ]
+                })
+            ])
+        })) : []
+);
