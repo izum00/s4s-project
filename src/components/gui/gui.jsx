@@ -50,15 +50,13 @@ import {resolveStageSize} from '../../lib/screen-utils';
 import {isRendererSupported, isBrowserSupported} from '../../lib/tw-environment-support-prober';
 
 import styles from './gui.css';
-import { ReactComponent as PlusIcon } from './add-tab.svg';
+import PlusIcon from './add-tab.svg';
 import AddExtensionIcon from './icon--extensions.svg';
-//import { ReactComponent as AddExtensionIcon } from './icon--extensions.svg';
 import CodeIcon from './icon--code.svg';
-//import { ReactComponent as CodeIcon } from './icon--code.svg';
-import { ReactComponent as CostumesIcon } from './icon--costumes.svg';
-import { ReactComponent as SoundsIcon } from './icon--sounds.svg';
-import { ReactComponent as VariablesIcon } from './icon--variables.svg';
-import { ReactComponent as FilesIcon } from './icon--files.svg';
+import CostumesIcon from './icon--costumes.svg';
+import SoundsIcon from './icon--sounds.svg';
+import VariablesIcon from './icon--variables.svg';
+import FilesIcon from './icon--files.svg';
 
 const urlParams = new URLSearchParams(location.search);
 
