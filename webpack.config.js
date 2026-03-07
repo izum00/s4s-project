@@ -152,10 +152,6 @@ const base = {
                     }
                 }
             }]
-        },
-        {
-            test: /\.svg$/,
-            use: ['@svgr/webpack']
         }]
     },
     plugins: [
@@ -187,7 +183,7 @@ module.exports = [
         module: {
             rules: base.module.rules.concat([
                 {
-                    test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                    test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     loader: 'file-loader',
                     options: {
                         outputPath: 'static/assets/'
