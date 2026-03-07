@@ -3,7 +3,7 @@ FROM node:20.18.1
 
 # 作業ディレクトリを設定
 WORKDIR /app
-
+USER root
 # ホストのファイルをコンテナにコピー
 COPY . .
 #RUN npm install -g pnpm
