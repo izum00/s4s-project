@@ -17,9 +17,8 @@ import styles from './sprite-info.css';
 
 import xIcon from './icon--x.svg';
 import yIcon from './icon--y.svg';
-import { ReactComponent as ShowIcon } from './icon--show.svg';
-import { ReactComponent as HideIcon } from './icon--hide.svg';
-
+import ShowIcon from './icon--show.svg';
+import HideIcon from './icon--hide.svg';
 const BufferedInput = BufferedInputHOC(Input);
 
 const messages = defineMessages({
