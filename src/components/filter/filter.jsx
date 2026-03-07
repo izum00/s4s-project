@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ReactComponent as FilterIcon } from './icon--filter.svg';
-import { ReactComponent as XIcon } from './icon--x.svg';
+import FilterIcon from './icon--filter.svg';
+import XIcon from './icon--x.svg';
 import styles from './filter.css';
 
 const FilterComponent = props => {
