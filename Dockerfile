@@ -12,7 +12,7 @@ RUN mkdir -p /app/translations && chmod -R 777 /app/translations
 RUN chmod -R 777 /app
 RUN chmod +x static-upload.sh
 RUN mkdir -p /app/translations/messages && chmod -R 777 /app/translations
-RUN apt-get update && apt-get install -y python3 python3-pip git-lfs
+RUN apt-get update && apt-get install -y python3 python3-pip git-lfs rsync
 RUN git lfs install
 RUN pip3 install --upgrade huggingface_hub --break-system-packages
 # 依存関係をインストール（競合を無視）
