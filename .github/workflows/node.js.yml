@@ -18,15 +18,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-
-    - uses: actions/configure-pages@v3
-
-    - name: Setup Node
-      uses: actions/setup-node@v4
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup GitHub Pages
+      id: pages
+      uses: actions/configure-pages@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v3
       with:
-        node-version: 18
-
+        node-version: 16.x
     - name: Install dependencies and build site
       run: |
         npm i -g pnpm@6
@@ -35,6 +35,11 @@ jobs:
         pnpm up
         pnpm i --shamefully-hoist --force
         NODE_ENV=production webpack --bail
+    - name: Upload artifact 
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./build/
+
   deploy:
     environment:
       name: github-pages
