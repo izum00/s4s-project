@@ -128,6 +128,20 @@ const base = {
             }
         },
         {
+            test: /\.svg$/,
+            use: [
+                {
+                    loader: '@svgr/webpack'
+                },
+                {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'static/assets/[name].[hash].[ext]'
+                    }
+                }
+            ]
+        },
+        {
             test: /\.css$/,
             use: [{
                 loader: 'style-loader'
