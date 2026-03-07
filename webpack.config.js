@@ -128,20 +128,6 @@ const base = {
             }
         },
         {
-            test: /\.svg$/,
-            use: [
-                {
-                    loader: '@svgr/webpack'
-                },
-                {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'static/assets/[name].[hash].[ext]'
-                    }
-                }
-            ]
-        },
-        {
             test: /\.css$/,
             use: [{
                 loader: 'style-loader'
@@ -197,9 +183,19 @@ module.exports = [
         module: {
             rules: base.module.rules.concat([
                 {
-                    test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                    test: /\.svg$/,
                     loader: 'file-loader',
                     options: {
+                        name: 'static/assets/[name].[hash].[ext]',
+                        esModule: false
+                    }
+                },
+                {
+                    test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                    loader: 'file-loader',
+                    options: {
+                        name: 'static/assets/[name].[hash].[ext]',
+                        esModule: false,
                         outputPath: 'static/assets/'
                     }
                 }
