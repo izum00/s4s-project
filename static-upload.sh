@@ -1,32 +1,64 @@
 #!/bin/bash
+echo "starting..."
 
-# 使用するディレクトリの判定
-if [ -d "build" ]; then
-    SRC_DIR="build"
-elif [ -d "dist" ]; then
-    SRC_DIR="dist"
-else
-    echo "Error: build も dist も存在しません"
-    exit 0
+# 必須: 環境変数 s4stoken01 が設定されていることを確認
+if [ -z "$s4stoken01" ]; then
+  echo "Error: 環境変数 s4stoken01 が設定されていません。"
+  exit 1
+fi
+SRC_DIR="$(cd "$(dirname "$0")" && pwd)/dist"
+# 作業用一時ディレクトリ作成
+WORK_DIR=$(mktemp -d)
+echo "作業ディレクトリ: $WORK_DIR"
+
+# Git 認証つきURL
+REPO_URL="https://user:$s4stoken01@huggingface.co/spaces/s-4-s/editor"
+
+# リモートから clone
+git clone "$REPO_URL" "$WORK_DIR"
+cd "$WORK_DIR" || exit 1
+
+# Git LFS を初期化
+git lfs install
+
+# LFS対象ファイルを指定
+git lfs track "js/scratch-gui.js"
+git lfs track "js/scratch-gui.js.map"
+git lfs track "dist/js/scratch-gui.js"
+git lfs track "dist/js/scratch-gui.js.map"
+git lfs track "*.ttf"
+git lfs track "*.otf"
+git lfs track "*.png"
+git lfs track "*.svg"
+
+git add .gitattributes
+
+# 既存内容を削除（.git を除く）
+find . -mindepth 1 -maxdepth 1 ! -name ".git" -exec rm -rf {} +
+
+
+# dist フォルダの中身をすべてコピー
+rsync -av "$SRC_DIR/" "$WORK_DIR/"
+
+# LFS対象ファイルを rm --cached → add し直す
+git rm --cached js/scratch-gui.js js/scratch-gui.js.map 2>/dev/null || true
+git add js/scratch-gui.js js/scratch-gui.js.map
+
+
+# Dockerfile の CMD を置換
+if [ -f Dockerfile ]; then
+  sed -i.bak 's|CMD /bin/sh -c "./upload.sh && npm start"|CMD /bin/sh -c "npm start"|' Dockerfile
 fi
 
-echo "アップロード元ディレクトリ: $SRC_DIR"
+# Git 設定と commit/push
+git config user.name "soiz1"
+git config user.email "izum.1414.go@gmail.com"
+git add .
+git commit -m "Auto deploy at $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit."
+git push origin main --force
 
+# 後始末
+cd ..
+rm -rf "$WORK_DIR"
 
-# Hugging Face Hub CLI がなければインストール
-if ! command -v huggingface-cli &> /dev/null; then
-    pip install --upgrade --break-system-packages huggingface_hub
-    python3 -m pip install --upgrade --break-system-packages huggingface_hub
-fi
-
-# 一時ディレクトリ作成
-TMP_DIR=$(mktemp -d)
-cp -r "$SRC_DIR"/* "$TMP_DIR"
-
-# Hugging Face Space に push
-huggingface-cli upload s-4-s/editor "$TMP_DIR" --repo-type=space --token "$s4stoken01" --commit-message "Upload static files"
-
-# 後片付け
-rm -rf "$TMP_DIR"
-
-echo "アップロード完了"
+echo "アップロード完了 ✅"
