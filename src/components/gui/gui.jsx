@@ -51,8 +51,10 @@ import {isRendererSupported, isBrowserSupported} from '../../lib/tw-environment-
 
 import styles from './gui.css';
 import { ReactComponent as PlusIcon } from './add-tab.svg';
-import { ReactComponent as AddExtensionIcon } from './icon--extensions.svg';
-import { ReactComponent as CodeIcon } from './icon--code.svg';
+import AddExtensionIcon from './icon--extensions.svg';
+//import { ReactComponent as AddExtensionIcon } from './icon--extensions.svg';
+import CodeIcon from './icon--code.svg';
+//import { ReactComponent as CodeIcon } from './icon--code.svg';
 import { ReactComponent as CostumesIcon } from './icon--costumes.svg';
 import { ReactComponent as SoundsIcon } from './icon--sounds.svg';
 import { ReactComponent as VariablesIcon } from './icon--variables.svg';
