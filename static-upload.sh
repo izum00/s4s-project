@@ -16,6 +16,7 @@ echo "アップロード元ディレクトリ: $SRC_DIR"
 # Hugging Face Hub CLI がなければインストール
 if ! command -v huggingface-cli &> /dev/null; then
     pip install --upgrade --break-system-packages huggingface_hub
+    python3 -m pip install --upgrade --break-system-packages huggingface_hub
 fi
 
 # 一時ディレクトリ作成
