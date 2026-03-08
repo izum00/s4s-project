@@ -184,11 +184,23 @@ module.exports = [
             rules: base.module.rules.concat([
                 {
                     test: /\.svg$/,
-                    loader: 'file-loader',
-                    options: {
-                        name: 'static/assets/[name].[hash].[ext]',
-                        esModule: false
-                    }
+                    oneOf: [
+                        {
+                            issuer: /\.[jt]sx?$/,
+                            use: [
+                                {
+                                    loader: '@svgr/webpack'
+                                }
+                            ]
+                        },
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: 'static/assets/[name].[hash].[ext]',
+                                esModule: false
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
