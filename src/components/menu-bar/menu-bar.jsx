@@ -460,7 +460,7 @@ class MenuBar extends React.Component {
                 )}
                 onClick={this.handleClickRemix}
             >
-                <RemixIcon className={styles.remixButtonIcon} />
+                <remixIcon className={styles.remixButtonIcon} />
                 {remixMessage}
             </Button>
         );
