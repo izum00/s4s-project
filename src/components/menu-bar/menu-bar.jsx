@@ -165,10 +165,10 @@ MenuItemTooltip.propTypes = {
 const AboutButton = props => (
     <Button
         className={classNames(styles.menuBarItem, styles.hoverable)}
-        iconClassName={styles.aboutIcon}
-        iconSrc={aboutIcon}
         onClick={props.onClick}
-    />
+    >
+        <AboutIcon className={styles.aboutIcon} />
+    </Button>
 );
 
 AboutButton.propTypes = {
@@ -391,9 +391,8 @@ class MenuBar extends React.Component {
                 })}
                 onMouseUp={this.props.onRequestOpenAbout}
             >
-                <img
+                <aboutIcon
                     className={styles.aboutIcon}
-                    src={aboutIcon}
                     draggable={false}
                 />
                 <MenuBarMenu
@@ -459,10 +458,9 @@ class MenuBar extends React.Component {
                     styles.menuBarButton,
                     styles.remixButton
                 )}
-                iconClassName={styles.remixButtonIcon}
-                iconSrc={remixIcon}
                 onClick={this.handleClickRemix}
             >
+                <RemixIcon className={styles.remixButtonIcon} />
                 {remixMessage}
             </Button>
         );
@@ -494,15 +492,13 @@ class MenuBar extends React.Component {
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
                         >
                             <div>
-                                <img
+                                <languageIcon
                                     className={styles.languageIcon}
-                                    src={languageIcon}
                                     width="24"
                                     height="24"
                                 />
-                                <img
+                                <dropdownCaret
                                     className={styles.languageCaret}
-                                    src={dropdownCaret}
                                     width="8"
                                     height="5"
                                 />
@@ -515,8 +511,7 @@ class MenuBar extends React.Component {
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
                                 onMouseUp={this.props.onClickTheme}
                             >
-                                <img
-                                    src={themeIcon}
+                                <themeIcon
                                     width="24"
                                     height="24"
                                     draggable={false}
@@ -532,13 +527,11 @@ class MenuBar extends React.Component {
                                 onMouseUp={this.props.onClickErrors}
                             >
                                 <div className={classNames(styles.errorsMenu)}>
-                                    <img
+                                    <errorIcon
                                         className={styles.languageIcon}
-                                        src={errorIcon}
                                     />
-                                    <img
+                                    <dropdownCaret
                                         className={styles.languageCaret}
-                                        src={dropdownCaret}
                                     />
                                 </div>
                                 <MenuBarMenu
