@@ -71,12 +71,12 @@ import collectMetadata from '../../lib/collect-metadata';
 
 import styles from './menu-bar.css';
 
-import remixIcon from './icon--remix.svg';
-import dropdownCaret from './dropdown-caret.svg';
-import languageIcon from '../language-selector/language-icon.svg';
-import aboutIcon from './icon--about.svg';
-import errorIcon from './tw-error.svg';
-import themeIcon from './tw-moon.svg';
+import RemixIcon from './icon--remix.svg';
+import DropdownCaret from './dropdown-caret.svg';
+import LanguageIcon from '../language-selector/language-icon.svg';
+import AboutIcon from './icon--about.svg';
+import ErrorIcon from './tw-error.svg';
+import ThemeIcon from './tw-moon.svg';
 
 import scratchLogo from './scratch-logo.svg';
 
@@ -391,7 +391,7 @@ class MenuBar extends React.Component {
                 })}
                 onMouseUp={this.props.onRequestOpenAbout}
             >
-                <aboutIcon
+                <AboutIcon
                     className={styles.aboutIcon}
                     draggable={false}
                 />
@@ -460,7 +460,7 @@ class MenuBar extends React.Component {
                 )}
                 onClick={this.handleClickRemix}
             >
-                <remixIcon className={styles.remixButtonIcon} />
+                <RemixIcon className={styles.remixButtonIcon} />
                 {remixMessage}
             </Button>
         );
@@ -492,12 +492,12 @@ class MenuBar extends React.Component {
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
                         >
                             <div>
-                                <languageIcon
+                                <LanguageIcon
                                     className={styles.languageIcon}
                                     width="24"
                                     height="24"
                                 />
-                                <dropdownCaret
+                                <DropdownCaret
                                     className={styles.languageCaret}
                                     width="8"
                                     height="5"
@@ -511,7 +511,7 @@ class MenuBar extends React.Component {
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
                                 onMouseUp={this.props.onClickTheme}
                             >
-                                <themeIcon
+                                <ThemeIcon
                                     width="24"
                                     height="24"
                                     draggable={false}
@@ -527,10 +527,10 @@ class MenuBar extends React.Component {
                                 onMouseUp={this.props.onClickErrors}
                             >
                                 <div className={classNames(styles.errorsMenu)}>
-                                    <errorIcon
+                                    <ErrorIcon
                                         className={styles.languageIcon}
                                     />
-                                    <dropdownCaret
+                                    <DropdownCaret
                                         className={styles.languageCaret}
                                     />
                                 </div>
