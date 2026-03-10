@@ -1,17 +1,17 @@
 const defaultsDeep = require('lodash.defaultsdeep');
-const path = require('path');
-const webpack = require('webpack');
-const { exec } = require('child_process');
+var path = require('path');
+var webpack = require('webpack');
 
 // Plugins
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
+var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 // PostCss
-const autoprefixer = require('autoprefixer');
-const postcssVars = require('postcss-simple-vars');
-const postcssImport = require('postcss-import');
+var autoprefixer = require('autoprefixer');
+var postcssVars = require('postcss-simple-vars');
+var postcssImport = require('postcss-import');
 
 const STATIC_PATH = process.env.STATIC_PATH || '/static';
 
@@ -86,9 +86,7 @@ class RunStaticUploadPlugin {
 
 
 const base = {
-
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-
     // Webpack公式キャッシュ
     cache: {
         type: 'filesystem'
@@ -116,18 +114,12 @@ const base = {
             ]
         }
     },
-
     output: {
         library: 'GUI',
-        filename: process.env.NODE_ENV === 'production'
-            ? 'js/[name].[contenthash].js'
-            : 'js/[name].js',
-        chunkFilename: process.env.NODE_ENV === 'production'
-            ? 'js/[name].[contenthash].js'
-            : 'js/[name].js',
+        filename: process.env.NODE_ENV === 'production' ? 'js/[name].[contenthash].js' : 'js/[name].js',
+        chunkFilename: process.env.NODE_ENV === 'production' ? 'js/[name].[contenthash].js' : 'js/[name].js',
         publicPath: root
     },
-
     resolve: {
         symlinks: false,
         alias: {
@@ -135,9 +127,7 @@ const base = {
             'scratch-render-fonts$': path.resolve(__dirname, 'src/lib/tw-scratch-render-fonts')
         }
     },
-
     node: { fs: 'empty' },
-
     module: {
         rules: [
             {
@@ -148,23 +138,39 @@ const base = {
                     /node_modules[\\/]pify/,
                     /node_modules[\\/]@vernier[\\/]godirect/
                 ],
-                loader: 'babel-loader',
-                options: {
-                    babelrc: false,
-                    plugins: [
-                        ['react-intl', {
-                            messagesDir: './translations/messages/'
-                        }]
-                    ],
-                    presets: ['@babel/preset-env', '@babel/preset-react']
-                }
+                use: [
+                    {
+                        loader: 'cache-loader',
+                        options: {
+                            cacheDirectory: path.resolve(__dirname, '.webpack/cache1-babel')
+                        }
+                    },
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            plugins: [
+                                ['react-intl', {
+                                    messagesDir: './translations/messages/'
+                                }]
+                            ],
+                            presets: ['@babel/preset-env', '@babel/preset-react']
+                        }
+                    }
+                ]
             },
             {
                 test: /\.css$/,
                 use: [
                     { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
+                    { 
+                        loader: 'cache-loader',
+                        options: {
+                            cacheDirectory: path.resolve(__dirname, '.webpack/cache2-postcss')
+                        }
+                    },
+                    { 
+                        loader: 'css-loader', 
                         options: {
                             modules: true,
                             importLoaders: 1,
@@ -172,89 +178,54 @@ const base = {
                             camelCase: true
                         }
                     },
-                    {
+                    { 
                         loader: 'postcss-loader',
                         options: {
                             ident: 'postcss',
-                            plugins: () => [
-                                postcssImport,
-                                postcssVars,
-                                autoprefixer
-                            ]
+                            plugins: () => [postcssImport, postcssVars, autoprefixer]
                         }
                     }
                 ]
             }
         ]
     },
-
     plugins: [
-
+        new HardSourceWebpackPlugin({
+            cacheDirectory: path.resolve(__dirname, '.webpack/cache3-hard-source')
+        }),
+        
         new FileListPlugin({
             filename: 'file-list-webpack.json'
         }),
 
         new RunStaticUploadPlugin()
 
-    ]
+    ],
 };
 
-if (!process.env.CI) {
-    base.plugins.push(new webpack.ProgressPlugin());
-}
-
+if (!process.env.CI) base.plugins.push(new webpack.ProgressPlugin());
 
 module.exports = [
-
     defaultsDeep({}, base, {
-
         entry: {
-            editor: './src/playground/editor.jsx',
-            playground: './src/playground/playground.jsx',
-            player: './src/playground/player.jsx',
-            fullscreen: './src/playground/fullscreen.jsx',
-            embed: './src/playground/embed.jsx',
+            'editor': './src/playground/editor.jsx',
+            'playground': './src/playground/playground.jsx',
+            'player': './src/playground/player.jsx',
+            'fullscreen': './src/playground/fullscreen.jsx',
+            'embed': './src/playground/embed.jsx',
             'addon-settings': './src/playground/addon-settings.jsx',
-            credits: './src/playground/credits/credits.jsx'
+            'credits': './src/playground/credits/credits.jsx'
         },
-
-        output: {
-            path: path.resolve(__dirname, 'build')
-        },
-
+        output: { path: path.resolve(__dirname, 'build') },
         module: {
             rules: base.module.rules.concat([
                 {
-                    test: /\.svg$/,
-                    oneOf: [
-                        {
-                            issuer: /\.[jt]sx?$/,
-                            use: [
-                                {
-                                    loader: '@svgr/webpack'
-                                }
-                            ]
-                        },
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: 'static/assets/[name].[hash].[ext]',
-                                esModule: false
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                    test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     loader: 'file-loader',
-                    options: {
-                        name: 'static/assets/[name].[hash].[ext]',
-                        esModule: false
-                    }
+                    options: { outputPath: 'static/assets/' }
                 }
             ])
         },
-
         optimization: {
             splitChunks: {
                 chunks: 'all',
@@ -263,9 +234,7 @@ module.exports = [
                 maxInitialRequests: 5
             }
         },
-
         plugins: base.plugins.concat([
-
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
                 'process.env.DEBUG': Boolean(process.env.DEBUG),
@@ -274,85 +243,38 @@ module.exports = [
                 'process.env.ROOT': JSON.stringify(root),
                 'process.env.ROUTING_STYLE': JSON.stringify(process.env.ROUTING_STYLE || 'filehash')
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['editor'],
-                template: 'src/playground/index.ejs',
-                filename: 'editor.html',
-                title: 'PenguinMod - Editor',
-                ...htmlWebpackPluginCommon
+                chunks: ['editor'], template: 'src/playground/index.ejs', filename: 'editor.html',
+                title: 'PenguinMod - Editor', ...htmlWebpackPluginCommon
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['playground'],
-                template: 'src/playground/index.ejs',
-                filename: 'playground.html',
-                title: 'PenguinMod - Playground',
-                ...htmlWebpackPluginCommon
+                chunks: ['playground'], template: 'src/playground/index.ejs', filename: 'playground.html',
+                title: 'PenguinMod - Playground', ...htmlWebpackPluginCommon
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['player'],
-                template: 'src/playground/index.ejs',
-                filename: 'index.html',
-                title: 'PenguinMod - A mod of TurboWarp',
-                ...htmlWebpackPluginCommon
+                chunks: ['player'], template: 'src/playground/index.ejs', filename: 'index.html',
+                title: 'PenguinMod - A mod of TurboWarp', ...htmlWebpackPluginCommon
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['fullscreen'],
-                template: 'src/playground/index.ejs',
-                filename: 'fullscreen.html',
-                title: 'PenguinMod - A mod of TurboWarp',
-                ...htmlWebpackPluginCommon
+                chunks: ['fullscreen'], template: 'src/playground/index.ejs', filename: 'fullscreen.html',
+                title: 'PenguinMod - A mod of TurboWarp', ...htmlWebpackPluginCommon
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['embed'],
-                template: 'src/playground/index.ejs',
-                filename: 'embed.html',
-                title: 'Embedded Project - PenguinMod',
-                noTheme: true,
-                ...htmlWebpackPluginCommon
+                chunks: ['embed'], template: 'src/playground/index.ejs', filename: 'embed.html',
+                title: 'Embedded Project - PenguinMod', noTheme: true, ...htmlWebpackPluginCommon
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['addon-settings'],
-                template: 'src/playground/simple.ejs',
-                filename: 'addons.html',
-                title: 'Addon Settings - PenguinMod',
-                ...htmlWebpackPluginCommon
+                chunks: ['addon-settings'], template: 'src/playground/simple.ejs', filename: 'addons.html',
+                title: 'Addon Settings - PenguinMod', ...htmlWebpackPluginCommon
             }),
-
             new HtmlWebpackPlugin({
-                chunks: ['credits'],
-                template: 'src/playground/simple.ejs',
-                filename: 'credits.html',
-                title: 'PenguinMod & TurboWarp Credits',
-                noSplash: true,
-                ...htmlWebpackPluginCommon
+                chunks: ['credits'], template: 'src/playground/simple.ejs', filename: 'credits.html',
+                title: 'PenguinMod & TurboWarp Credits', noSplash: true, ...htmlWebpackPluginCommon
             }),
-
-            new CopyWebpackPlugin({
-                patterns: [{ from: 'static', to: '' }]
-            }),
-
-            new CopyWebpackPlugin({
-                patterns: [
-                    { from: 'node_modules/scratch-blocks/media', to: 'static/blocks-media' }
-                ]
-            }),
-
-            new CopyWebpackPlugin({
-                patterns: [
-                    { from: 'extensions/**', to: 'static', context: 'src/examples' }
-                ]
-            }),
-
+            new CopyWebpackPlugin({ patterns: [{ from: 'static', to: '' }] }),
+            new CopyWebpackPlugin({ patterns: [{ from: 'node_modules/scratch-blocks/media', to: 'static/blocks-media' }] }),
+            new CopyWebpackPlugin({ patterns: [{ from: 'extensions/**', to: 'static', context: 'src/examples' }] }),
             new TWGenerateServiceWorkerPlugin()
-
         ])
-
     })
-
 ];
