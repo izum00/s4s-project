@@ -129,6 +129,7 @@ const base = {
     node: { fs: 'empty' },
     module: {
         rules: [
+            
             {
                 test: /\.jsx?$/,
                 include: [
@@ -214,11 +215,26 @@ module.exports = [
         output: { path: path.resolve(__dirname, 'build') },
         module: {
             rules: base.module.rules.concat([
+        
+                // SVG (Reactコンポーネントとして読み込み)
                 {
-                    test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                    test: /\.svg$/,
+                    use: [
+                        '@svgr/webpack',
+                        {
+                            loader: 'file-loader',
+                            options: { outputPath: 'static/assets/' }
+                        }
+                    ]
+                },
+        
+                // その他画像
+                {
+                    test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     loader: 'file-loader',
                     options: { outputPath: 'static/assets/' }
                 }
+        
             ])
         },
         optimization: {
