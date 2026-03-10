@@ -215,17 +215,20 @@ module.exports = [
         output: { path: path.resolve(__dirname, 'build') },
         module: {
             rules: base.module.rules.concat([
-        
-                // SVG (Reactコンポーネントとして読み込み)
+        // Reactコンポーネントとして使用するSVG（メニューアイコンなど）
                 {
                     test: /\.svg$/,
-                    use: [
-                        '@svgr/webpack',
-                        {
-                            loader: 'file-loader',
-                            options: { outputPath: 'static/assets/' }
-                        }
-                    ]
+                    issuer: /\.(js|jsx)$/,
+                    use: ['@svgr/webpack']
+                },
+                // アセットとして扱うSVG（静的なファイル）
+                {
+                    test: /\.svg$/,
+                    issuer: /\.(css|html)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'static/assets/[hash][ext][query]'
+                    }
                 },
         
                 // その他画像
