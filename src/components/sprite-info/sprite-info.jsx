@@ -15,8 +15,8 @@ import {isWideLocale} from '../../lib/locale-utils.js';
 
 import styles from './sprite-info.css';
 
-import xIcon from './icon--x.svg';
-import yIcon from './icon--y.svg';
+import XIcon from './icon--x.svg';
+import YIcon from './icon--y.svg';
 import ShowIcon from './icon--show.svg';
 import HideIcon from './icon--hide.svg';
 const BufferedInput = BufferedInputHOC(Input);
@@ -95,10 +95,9 @@ class SpriteInfo extends React.Component {
                 {
                     (stageSize === STAGE_DISPLAY_SIZES.large) ?
                         <div className={styles.iconWrapper}>
-                            <img
+                            <XIcon
                                 aria-hidden="true"
                                 className={classNames(styles.xIcon, styles.icon)}
-                                src={xIcon}
                             />
                         </div> :
                         null
@@ -122,10 +121,9 @@ class SpriteInfo extends React.Component {
                 {
                     (stageSize === STAGE_DISPLAY_SIZES.large) ?
                         <div className={styles.iconWrapper}>
-                            <img
+                            <YIcon
                                 aria-hidden="true"
                                 className={classNames(styles.yIcon, styles.icon)}
-                                src={yIcon}
                             />
                         </div> :
                         null
