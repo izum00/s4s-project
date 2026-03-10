@@ -6,7 +6,6 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var TWGenerateServiceWorkerPlugin = require('./src/playground/generate-service-worker-plugin');
-var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 // PostCss
 var autoprefixer = require('autoprefixer');
@@ -190,10 +189,6 @@ const base = {
         ]
     },
     plugins: [
-        new HardSourceWebpackPlugin({
-            cacheDirectory: path.resolve(__dirname, '.webpack/cache3-hard-source')
-        }),
-        
         new FileListPlugin({
             filename: 'file-list-webpack.json'
         }),
