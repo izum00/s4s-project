@@ -214,21 +214,7 @@ module.exports = [
         },
         output: { path: path.resolve(__dirname, 'build') },
         module: {
-            rules: base.module.rules.concat([{
-    test: /\.svg$/,
-    oneOf: [
-        {
-            issuer: /\.(js|jsx)$/,
-            use: [
-                {
-                    loader: '@svgr/webpack',
-                    options: {
-                        svgo: true,
-                        titleProp: true
-                    }
-                }
-            ]
-        },
+            rules: base.module.rules.concat([
         {
             issuer: /\.(css|html)$/,
             use: [
@@ -246,7 +232,7 @@ module.exports = [
         
                 // その他画像
                 {
-                    test: /\.(png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
+                    test: /\.(svg|png|wav|gif|jpg|mp3|ttf|otf|ico)$/,
                     loader: 'file-loader',
                     options: { outputPath: 'static/assets/' }
                 }
