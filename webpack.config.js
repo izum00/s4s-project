@@ -214,7 +214,9 @@ module.exports = [
         },
         output: { path: path.resolve(__dirname, 'build') },
         module: {
-            rules: base.module.rules.concat([
+            rules: base.module.rules.concat([{
+    test: /\.svg$/,
+    oneOf: [
         {
             issuer: /\.(css|html)$/,
             use: [
