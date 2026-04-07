@@ -214,23 +214,7 @@ module.exports = [
         },
         output: { path: path.resolve(__dirname, 'build') },
         module: {
-            rules: base.module.rules.concat([{
-    test: /\.svg$/,
-    oneOf: [
-        {
-            issuer: /\.(css|html)$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {
-                        outputPath: 'static/assets/',
-                        name: '[hash].[ext]'
-                    }
-                }
-            ]
-        }
-    ]
-},
+            rules: base.module.rules.concat([
         
                 // その他画像
                 {
