@@ -71,12 +71,12 @@ import collectMetadata from '../../lib/collect-metadata';
 
 import styles from './menu-bar.css';
 
-import RemixIcon from './icon--remix.svg';
-import DropdownCaret from './dropdown-caret.svg';
-import LanguageIcon from '../language-selector/language-icon.svg';
-import AboutIcon from './icon--about.svg';
-import ErrorIcon from './tw-error.svg';
-import ThemeIcon from './tw-moon.svg';
+import remixIcon from './icon--remix.svg';
+import dropdownCaret from './dropdown-caret.svg';
+import languageIcon from '../language-selector/language-icon.svg';
+import aboutIcon from './icon--about.svg';
+import errorIcon from './tw-error.svg';
+import themeIcon from './tw-moon.svg';
 
 import scratchLogo from './scratch-logo.svg';
 
@@ -165,10 +165,10 @@ MenuItemTooltip.propTypes = {
 const AboutButton = props => (
     <Button
         className={classNames(styles.menuBarItem, styles.hoverable)}
+        iconClassName={styles.aboutIcon}
+        iconSrc={aboutIcon}
         onClick={props.onClick}
-    >
-        <AboutIcon className={styles.aboutIcon} />
-    </Button>
+    />
 );
 
 AboutButton.propTypes = {
@@ -391,8 +391,9 @@ class MenuBar extends React.Component {
                 })}
                 onMouseUp={this.props.onRequestOpenAbout}
             >
-                <AboutIcon
+                <img
                     className={styles.aboutIcon}
+                    src={aboutIcon}
                     draggable={false}
                 />
                 <MenuBarMenu
@@ -458,9 +459,10 @@ class MenuBar extends React.Component {
                     styles.menuBarButton,
                     styles.remixButton
                 )}
+                iconClassName={styles.remixButtonIcon}
+                iconSrc={remixIcon}
                 onClick={this.handleClickRemix}
             >
-                <RemixIcon className={styles.remixButtonIcon} />
                 {remixMessage}
             </Button>
         );
@@ -492,13 +494,15 @@ class MenuBar extends React.Component {
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
                         >
                             <div>
-                                <LanguageIcon
+                                <img
                                     className={styles.languageIcon}
+                                    src={languageIcon}
                                     width="24"
                                     height="24"
                                 />
-                                <DropdownCaret
+                                <img
                                     className={styles.languageCaret}
+                                    src={dropdownCaret}
                                     width="8"
                                     height="5"
                                 />
@@ -511,7 +515,8 @@ class MenuBar extends React.Component {
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
                                 onMouseUp={this.props.onClickTheme}
                             >
-                                <ThemeIcon
+                                <img
+                                    src={themeIcon}
                                     width="24"
                                     height="24"
                                     draggable={false}
@@ -527,11 +532,13 @@ class MenuBar extends React.Component {
                                 onMouseUp={this.props.onClickErrors}
                             >
                                 <div className={classNames(styles.errorsMenu)}>
-                                    <ErrorIcon
+                                    <img
                                         className={styles.languageIcon}
+                                        src={errorIcon}
                                     />
-                                    <DropdownCaret
+                                    <img
                                         className={styles.languageCaret}
+                                        src={dropdownCaret}
                                     />
                                 </div>
                                 <MenuBarMenu
