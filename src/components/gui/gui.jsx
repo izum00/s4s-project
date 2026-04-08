@@ -50,13 +50,13 @@ import {resolveStageSize} from '../../lib/screen-utils';
 import {isRendererSupported, isBrowserSupported} from '../../lib/tw-environment-support-prober';
 
 import styles from './gui.css';
-import PlusIcon from './add-tab.svg';
-import AddExtensionIcon from './icon--extensions.svg';
-import CodeIcon from './icon--code.svg';
-import CostumesIcon from './icon--costumes.svg';
-import SoundsIcon from './icon--sounds.svg';
-import VariablesIcon from './icon--variables.svg';
-import FilesIcon from './icon--files.svg';
+import plusIcon from './add-tab.svg';
+import addExtensionIcon from './icon--extensions.svg';
+import codeIcon from './icon--code.svg';
+import costumesIcon from './icon--costumes.svg';
+import soundsIcon from './icon--sounds.svg';
+import variablesIcon from './icon--variables.svg';
+import filesIcon from './icon--files.svg';
 
 const urlParams = new URLSearchParams(location.search);
 
@@ -226,7 +226,10 @@ const GUIComponent = props => {
     // currently each tab can decide whether or not its hidden, remove this once rearranging tabs is supported
     const codeTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('code') ? null : styles.tabDisabled)}>
             <ContextMenuWrapTab tabId="code">
-                <CodeIcon />
+                <img
+                    draggable={false}
+                    src={codeIcon}
+                />
                 <FormattedMessage
                     defaultMessage="Code"
                     description="Button to get to the code panel"
@@ -236,7 +239,10 @@ const GUIComponent = props => {
         </Tab>);
     const costumesTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('costume') ? null : styles.tabDisabled)} onClick={onActivateCostumesTab}>
             <ContextMenuWrapTab tabId="costume">
-                <CostumesIcon />
+                <img
+                    draggable={false}
+                    src={costumesIcon}
+                />
                 {targetIsStage ? (
                     <FormattedMessage
                         defaultMessage="Backdrops"
@@ -254,7 +260,10 @@ const GUIComponent = props => {
         </Tab>);
     const soundsTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('sound') ? null : styles.tabDisabled)} onClick={onActivateSoundsTab}>
             <ContextMenuWrapTab tabId="sound">
-                <SoundsIcon />
+                <img
+                    draggable={false}
+                    src={soundsIcon}
+                />
                 <FormattedMessage
                     defaultMessage="Sounds"
                     description="Button to get to the sounds panel"
@@ -264,21 +273,27 @@ const GUIComponent = props => {
         </Tab>);
     const variablesTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('variable') ? null : styles.tabDisabled)} onClick={onActivateVariablesTab}>
             <ContextMenuWrapTab tabId="variable">
-                <VariablesIcon />
+                <img
+                    draggable={false}
+                    src={variablesIcon}
+                />
                 <FormattedMessage
                     defaultMessage="Variables"
                     description="Button to get to the variables panel"
-                    id="gui.gui.variablesTab"
+                    id="pm.gui.variablesTab"
                 />
             </ContextMenuWrapTab>
         </Tab>);
     const filesTab = (<Tab className={classNames(tabClassNames.tab, tabOrder.includes('file') ? null : styles.tabDisabled)} onClick={onActivateFilesTab}>
             <ContextMenuWrapTab tabId="file">
-                <FilesIcon />
+                <img
+                    draggable={false}
+                    src={filesIcon}
+                />
                 <FormattedMessage
                     defaultMessage="Files"
                     description="Button to get to the files panel"
-                    id="gui.gui.filesTab"
+                    id="pm.gui.filesTab"
                 />
             </ContextMenuWrapTab>
         </Tab>);
@@ -415,7 +430,7 @@ const GUIComponent = props => {
                 {isCreating ? (
                     <Loader
                         isFullScreen
-                        messageId={isPlayground ? "gui.loader.playground" : "gui.loader.creating"}
+                        messageId={isPlayground ? "pm.loader.playground" : "gui.loader.creating"}
                     />
                 ) : null}
                 {isBrowserSupported() ? null : (
@@ -506,14 +521,20 @@ const GUIComponent = props => {
                                         id={`add-editor-tab-button`}
                                     >
                                         <button className={classNames(styles.addTabButton, addTabButtonDisabled ? styles.addTabButtonDisabled : null)}>
-                                            <PlusIcon />
+                                            <img
+                                                draggable={false}
+                                                src={plusIcon}
+                                            />
                                         </button>
                                     </ContextMenuTrigger>
                                     
                                     <ContextMenu id={`add-editor-tab-button`}>
                                         {!tabOrder.includes('code') && <MenuItem onClick={() => addTabToEditor('code')}>
                                             <div className={styles.tabAdditionItem}>
-                                                <CodeIcon />
+                                                <img
+                                                    draggable={false}
+                                                    src={codeIcon}
+                                                />
                                                 <FormattedMessage
                                                     defaultMessage="Code"
                                                     description="Button to get to the code panel"
@@ -523,7 +544,10 @@ const GUIComponent = props => {
                                         </MenuItem>}
                                         {!tabOrder.includes('costume') && <MenuItem onClick={() => addTabToEditor('costume')}>
                                             <div className={styles.tabAdditionItem}>
-                                                <CostumesIcon />
+                                                <img
+                                                    draggable={false}
+                                                    src={costumesIcon}
+                                                />
                                                 <FormattedMessage
                                                     defaultMessage="Costumes"
                                                     description="Button to get to the costumes panel"
@@ -533,7 +557,10 @@ const GUIComponent = props => {
                                         </MenuItem>}
                                         {!tabOrder.includes('sound') && <MenuItem onClick={() => addTabToEditor('sound')}>
                                             <div className={styles.tabAdditionItem}>
-                                                <SoundsIcon />
+                                                <img
+                                                    draggable={false}
+                                                    src={soundsIcon}
+                                                />
                                                 <FormattedMessage
                                                     defaultMessage="Sounds"
                                                     description="Button to get to the sounds panel"
@@ -543,21 +570,27 @@ const GUIComponent = props => {
                                         </MenuItem>}
                                         {!tabOrder.includes('variable') && <MenuItem onClick={() => addTabToEditor('variable')}>
                                             <div className={styles.tabAdditionItem}>
-                                                <VariablesIcon />
+                                                <img
+                                                    draggable={false}
+                                                    src={variablesIcon}
+                                                />
                                                 <FormattedMessage
                                                     defaultMessage="Variables"
                                                     description="Button to get to the variables panel"
-                                                    id="gui.gui.variablesTab"
+                                                    id="pm.gui.variablesTab"
                                                 />
                                             </div>
                                         </MenuItem>}
                                         {/* {!tabOrder.includes('file') && <MenuItem onClick={() => addTabToEditor('file')}>
                                             <div className={styles.tabAdditionItem}>
-                                                <FilesIcon />
+                                                <img
+                                                    draggable={false}
+                                                    src={filesIcon}
+                                                />
                                                 <FormattedMessage
                                                     defaultMessage="Files"
                                                     description="Button to get to the files panel"
-                                                    id="gui.gui.filesTab"
+                                                    id="pm.gui.filesTab"
                                                 />
                                             </div>
                                         </MenuItem>} */}
@@ -584,7 +617,11 @@ const GUIComponent = props => {
                                             title={intl.formatMessage(messages.addExtension)}
                                             onClick={onExtensionButtonClick}
                                         >
-                                            <AddExtensionIcon className={styles.extensionButtonIcon} />
+                                            <img
+                                                className={styles.extensionButtonIcon}
+                                                draggable={false}
+                                                src={addExtensionIcon}
+                                            />
                                         </button>
                                     </Box>
                                     <Box className={styles.watermark}>
