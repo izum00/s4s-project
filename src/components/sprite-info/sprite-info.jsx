@@ -15,10 +15,11 @@ import {isWideLocale} from '../../lib/locale-utils.js';
 
 import styles from './sprite-info.css';
 
-import XIcon from './icon--x.svg';
-import YIcon from './icon--y.svg';
-import ShowIcon from './icon--show.svg';
-import HideIcon from './icon--hide.svg';
+import xIcon from './icon--x.svg';
+import yIcon from './icon--y.svg';
+import showIcon from './icon--show.svg';
+import hideIcon from './icon--hide.svg';
+
 const BufferedInput = BufferedInputHOC(Input);
 
 const messages = defineMessages({
@@ -95,9 +96,10 @@ class SpriteInfo extends React.Component {
                 {
                     (stageSize === STAGE_DISPLAY_SIZES.large) ?
                         <div className={styles.iconWrapper}>
-                            <XIcon
+                            <img
                                 aria-hidden="true"
                                 className={classNames(styles.xIcon, styles.icon)}
+                                src={xIcon}
                             />
                         </div> :
                         null
@@ -121,9 +123,10 @@ class SpriteInfo extends React.Component {
                 {
                     (stageSize === STAGE_DISPLAY_SIZES.large) ?
                         <div className={styles.iconWrapper}>
-                            <YIcon
+                            <img
                                 aria-hidden="true"
                                 className={classNames(styles.yIcon, styles.icon)}
+                                src={yIcon}
                             />
                         </div> :
                         null
@@ -197,7 +200,10 @@ class SpriteInfo extends React.Component {
                                 onClick={this.props.onClickVisible}
                                 onKeyPress={this.props.onPressVisible}
                             >
-                                <ShowIcon className={styles.icon} />
+                                <img
+                                    className={styles.icon}
+                                    src={showIcon}
+                                />
                             </div>
                             <div
                                 className={classNames(
@@ -213,7 +219,10 @@ class SpriteInfo extends React.Component {
                                 onClick={this.props.onClickNotVisible}
                                 onKeyPress={this.props.onPressNotVisible}
                             >
-                                <HideIcon className={styles.icon} />
+                                <img
+                                    className={styles.icon}
+                                    src={hideIcon}
+                                />
                             </div>
                         </div>
                     </div>
