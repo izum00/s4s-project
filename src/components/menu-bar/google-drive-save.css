@@ -259,4 +259,165 @@
 
 .deleteButton {
     background: #f44336;
-    color: white
+    color: white;
+}
+
+.deleteButton:hover:not(:disabled) {
+    background: #d32f2f;
+}
+
+.shareButton {
+    background: #9c27b0;
+    color: white;
+}
+
+.shareButton:hover:not(:disabled) {
+    background: #7b1fa2;
+}
+
+.publicButton {
+    background: #ff9800;
+    color: white;
+}
+
+.publicButton:hover:not(:disabled) {
+    background: #f57c00;
+}
+
+/* Share Modal */
+.shareModalContent {
+    padding: 20px;
+}
+
+.shareSection {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.shareSection h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.permissionRow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.emailInput {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.roleSelect {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+}
+
+.removeButton {
+    padding: 4px 8px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.removeButton:hover {
+    background: #d32f2f;
+}
+
+.addButton {
+    padding: 6px 12px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.addButton:hover {
+    background: #45a049;
+}
+
+/* Loading States */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.noFiles {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+/* Disabled state for buttons */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Scrollbar styling */
+.fileList::-webkit-scrollbar,
+.modalContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.fileList::-webkit-scrollbar-track,
+.modalContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.fileList::-webkit-scrollbar-thumb,
+.modalContainer::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.fileList::-webkit-scrollbar-thumb:hover,
+.modalContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .buttonGroup {
+        flex-direction: column;
+    }
+    
+    .actionButton {
+        width: 100%;
+    }
+    
+    .thumbnailContainer {
+        float: none;
+        margin: 0 auto 12px auto;
+    }
+    
+    .permissionRow {
+        flex-direction: column;
+    }
+    
+    .emailInput,
+    .roleSelect {
+        width: 100%;
+    }
+}
