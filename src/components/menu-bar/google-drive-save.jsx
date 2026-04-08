@@ -40,14 +40,6 @@ class GoogleDriveSave extends React.Component {
         
         // Get ScratchBlocks instance
         let ScratchBlocks = window.ScratchBlocks;
-        if (window.Scratch && window.Scratch.gui) {
-            ScratchBlocks = await window.Scratch.gui.getBlockly();
-        } else if (window.Blockly) {
-            ScratchBlocks = window.Blockly;
-        } else {
-            this.showAlert("error", "ScratchBlocks not available");
-            return;
-        }
 
         const modal = await ScratchBlocks.customPrompt({
             title: "Googleドライブに保存",
@@ -145,15 +137,7 @@ class GoogleDriveSave extends React.Component {
     async openNewFileModal() {
         if (this.state.isProcessing) return;
         
-        let ScratchBlocks = null;
-        if (window.Scratch && window.Scratch.gui) {
-            ScratchBlocks = await window.Scratch.gui.getBlockly();
-        } else if (window.Blockly) {
-            ScratchBlocks = window.Blockly;
-        } else {
-            this.showAlert("error", "ScratchBlocks not available");
-            return;
-        }
+        let ScratchBlocks = window.ScratchBlocks;
 
         const modal = await ScratchBlocks.customPrompt({
             title: "新規保存",
@@ -361,16 +345,7 @@ class GoogleDriveSave extends React.Component {
     async openShareModal(fileId) {
         if (this.state.isProcessing) return;
         
-        let ScratchBlocks = null;
-        if (window.Scratch && window.Scratch.gui) {
-            ScratchBlocks = await window.Scratch.gui.getBlockly();
-        } else if (window.Blockly) {
-            ScratchBlocks = window.Blockly;
-        } else {
-            this.showAlert("error", "ScratchBlocks not available");
-            return;
-        }
-
+        let ScratchBlocks = window.ScratchBlocks;
         const modal = await ScratchBlocks.customPrompt({
             title: "共有設定",
             scrollable: true
