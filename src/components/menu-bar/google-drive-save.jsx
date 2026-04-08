@@ -39,7 +39,7 @@ class GoogleDriveSave extends React.Component {
         if (this.state.isProcessing) return;
         
         // Get ScratchBlocks instance
-        let ScratchBlocks = null;
+        let ScratchBlocks = window.ScratchBlocks;
         if (window.Scratch && window.Scratch.gui) {
             ScratchBlocks = await window.Scratch.gui.getBlockly();
         } else if (window.Blockly) {
