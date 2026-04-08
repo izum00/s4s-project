@@ -1,552 +1,262 @@
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: #333;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-out;
+.saveButton {
+    background: #4caf50;
+    color: white;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.saveButton:hover {
+    background: #45a049;
 }
 
-.modalContent {
-    background-color: white;
-    border-radius: 8px;
-    width: 800px;
-    max-width: 90%;
-    max-height: 80vh;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-20px);
-    animation: slideUp 0.3s ease-out forwards;
-    position: relative;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.modalHeader {
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f9fa;
-}
-
-.closeButton {
-    background: none;
-    border: none;
-    color: #962d21;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
-}
-
-.closeButton:hover:not(:disabled) {
-    transform: scale(1.1);
-    color: #c0392b;
-}
-
-.closeButton:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.modalBody {
-    padding: 1rem;
+/* Modal Container */
+.modalContainer {
+    padding: 16px;
     max-height: 70vh;
     overflow-y: auto;
 }
 
+/* Auth Section */
 .authSection {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 6px;
-    animation: fadeIn 0.5s ease-out;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.authSection p {
+    margin-bottom: 16px;
+    color: #666;
 }
 
 .accountInfo {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
-.loginButton, .changeAccountButton, .newFileButton {
-    padding: 0.5rem 1rem;
-    background-color: #4CAF50;
+.loginButton,
+.changeAccountButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.loginButton {
+    background: #4285f4;
+    color: white;
+}
+
+.loginButton:hover {
+    background: #357ae8;
+}
+
+.changeAccountButton {
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.changeAccountButton:hover {
+    background: #e0e0e0;
+}
+
+/* New File Section */
+.newFileSection {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.newFileButton {
+    padding: 10px 20px;
+    background: #2196f3;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-.loginButton:hover:not(:disabled), 
-.changeAccountButton:hover:not(:disabled), 
-.newFileButton:hover:not(:disabled) {
-    background-color: #3e8e41;
-    transform: translateY(-1px);
+.newFileButton:hover {
+    background: #1976d2;
 }
 
-.loginButton:disabled, 
-.changeAccountButton:disabled, 
-.newFileButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+/* New File Modal */
+.newFileModalContent {
+    padding: 20px;
 }
 
-.changeAccountButton {
-    background-color: #f0ad4e;
+.newFileInputGroup {
+    margin-bottom: 16px;
 }
 
-.changeAccountButton:hover:not(:disabled) {
-    background-color: #ec971f;
+.newFileInputGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
 }
 
-.loading, .noFiles {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
+.newFileInputGroup input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
+.permissionDropdown {
+    margin-top: 16px;
+}
+
+.permissionDropdown label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.permissionDropdown select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+}
+
+/* File List */
 .fileListContainer {
-    margin-top: 1rem;
-    animation: fadeIn 0.5s ease-out;
+    margin-top: 20px;
 }
 
 .fileListHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e0e0;
 }
 
-.projectTitle {
-    cursor: pointer;
-    border-bottom: 1px dashed #000;
+.fileListHeader h3 {
+    margin: 0;
+    font-size: 18px;
     color: #333;
 }
 
 .fileList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .fileItem {
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    background: #fff;
-    height: 100%;
-    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.3s;
+    background: white;
 }
 
 .fileItem:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .thumbnailContainer {
-    position: relative;
-    aspect-ratio: 4/3;
-    max-height: 150px;
-    overflow: hidden;
+    width: 120px;
+    height: 90px;
+    margin-right: 16px;
+    float: left;
     border-radius: 4px;
-    background-color: #f0f0f0;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    background: #f5f5f5;
 }
 
 .thumbnail {
     width: 100%;
     height: 100%;
-    border-radius: 4px;
-    object-fit: contain;
-    background-color: #f0f0f0;
-    transition: transform 0.3s ease;
-}
-
-.thumbnail:hover {
-    transform: scale(1.05);
+    object-fit: cover;
 }
 
 .thumbnailPlaceholder {
     width: 100%;
     height: 100%;
-    background-color: #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
-    color: #666;
+    font-size: 12px;
+    color: #999;
+    background: #fafafa;
 }
 
 .fileName {
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
+    margin: 0 0 10px 0;
+    font-size: 16px;
     color: #333;
 }
 
+/* Link Container */
 .linkContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-bottom: 0.5rem;
+    margin: 12px 0;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    clear: both;
 }
 
 .linkHeader {
     display: flex;
     gap: 8px;
-    align-items: center;
     margin-bottom: 8px;
     flex-wrap: wrap;
 }
 
-.copyButton {
-    padding: 4px 8px;
-    font-size: 12px;
-    background-color: #50545e;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.copyButton:hover:not(:disabled) {
-    background-color: #3d4048;
-}
-
-.copyButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
 .linkUrl {
-    font-size: 0.9em;
-    word-break: break-all;
-    color: #1155cc;
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
     text-decoration: none;
-    border-bottom: 1px solid #1155cc;
-    transition: color 0.2s;
+    word-break: break-all;
 }
 
 .linkUrl:hover {
-    color: #0d3d8b;
+    text-decoration: underline;
 }
 
+/* Button Group */
 .buttonGroup {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    clear: both;
 }
 
 .actionButton {
-    width: 100%;
-    padding: 0.5rem;
+    padding: 6px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s;
+    font-size: 12px;
+    transition: all 0.3s;
+    background: #f0f0f0;
+    color: #333;
 }
 
 .actionButton:hover:not(:disabled) {
+    background: #e0e0e0;
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .actionButton:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-.shareButton {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.shareButton:hover:not(:disabled) {
-    background-color: #3e8e41;
 }
 
 .deleteButton {
-    background-color: #ff4444;
-    color: white;
-}
-
-.deleteButton:hover:not(:disabled) {
-    background-color: #cc0000;
-}
-
-.newFileSection {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 6px;
-}
-
-.newFileInputGroup {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.newFileNameInput {
-    flex: 1;
-    min-width: 200px;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.2s;
-}
-
-.newFileNameInput:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-.newFileNameInput:disabled {
-    background-color: #f0f0f0;
-}
-
-.permissionDropdown {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.permissionDropdown select {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    transition: border-color 0.2s;
-}
-
-.permissionDropdown select:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-.permissionDropdown select:disabled {
-    background-color: #f0f0f0;
-}
-
-.newFileSaveButton, .newFileCancelButton {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.newFileSaveButton {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.newFileSaveButton:hover:not(:disabled) {
-    background-color: #3e8e41;
-    transform: translateY(-1px);
-}
-
-.newFileSaveButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.newFileCancelButton {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.newFileCancelButton:hover:not(:disabled) {
-    background-color: #e0e0e0;
-    transform: translateY(-1px);
-}
-
-.newFileCancelButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.processingOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top-color: #4CAF50;
-    animation: spin 1s ease-in-out infinite;
-    margin-bottom: 1rem;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.saveButton {
-    transition: all 0.2s;
-}
-
-.saveButton:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.permissionDropdown {
-    margin-top: 10px;
-    padding: 5px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-}
-
-.permissionDropdown label {
-    margin-right: 5px;
-    font-size: 12px;
-}
-
-.permissionDropdown select {
-    padding: 3px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    font-size: 12px;
-}
-/* Google Drive Save コンポーネント用の追加スタイル */
-.shareSection {
-    margin-bottom: 20px;
-}
-
-.shareSection h3 {
-    margin: 0 0 10px 0;
-    font-size: 14px;
-    color: #333;
-}
-
-.permissionRow {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 10px;
-}
-
-.emailInput {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.roleSelect {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 120px;
-}
-
-.addButton, .removeButton {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    background: #f5f5f5;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.addButton:hover, .removeButton:hover {
-    background: #e0e0e0;
-}
-
-.modalFooter {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding: 20px;
-    border-top: 1px solid #eee;
-}
-
-.applyButton, .cancelButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.applyButton {
-    background: #4CAF50;
-    color: white;
-}
-
-.applyButton:hover:not(:disabled) {
-    background: #45a049;
-}
-
-.cancelButton {
-    background: #f5f5f5;
-    color: #333;
-}
-
-.cancelButton:hover:not(:disabled) {
-    background: #e0e0e0;
-}
-
-.applyButton:disabled, .cancelButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* 特定のクラス付き要素も固定 */
-.emailInput,
-.newFileNameInput,
-.permissionDropdown select,
-.roleSelect {
-    background-color: #fff !important;
-    color: #333 !important;
-}
-.publicButton {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.publicButton:hover:not(:disabled) {
-    background-color: #45a049;
-}
-
-.publicButton:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
+    background: #f44336;
+    color: white
