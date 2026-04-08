@@ -8,7 +8,7 @@ import bowser from 'bowser';
 import React from 'react';
 
 import VM from 'scratch-vm';
-
+import GoogleDriveSave from './google-drive-save.jsx';
 import Box from '../box/box.jsx';
 import Button from '../button/button.jsx';
 import CommunityButton from './community-button.jsx';
@@ -893,6 +893,7 @@ class MenuBar extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <GoogleDriveSave />
                     <Divider className={classNames(styles.divider)} />
                     {/* {(this.props.authorUsername && this.props.authorUsername !== this.props.username) ? (
                         <AuthorInfo
