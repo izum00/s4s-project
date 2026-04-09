@@ -294,7 +294,11 @@ const customJa = {
     "gui.soundEditor.highpass": "低音除去",
     "gui.soundEditor.format": "フォーマット",
     "gui.gui.soundsTab": "音",
-    "gui.lists": "リスト"
+    "gui.lists": "リスト",
+    "pm.directionPicker.rotationStyles.lookAt": "左右に向く",
+    "pm.directionPicker.rotationStyles.upDown": "上下のみ",
+    "pm.gui.variablesTab": "変数",
+    "pm.controls.pause": "一時停止"
   }
 };
 
